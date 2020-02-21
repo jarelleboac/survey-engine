@@ -1,0 +1,22 @@
+{
+  "name": "survey-engine",
+  "version": "1.0.0",
+  "description": "Anonymous survey engine for the Percentage Project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Percentage-Project/survey-engine.git"
+  },
+  "keywords": [
+    "survey"
+  ],
+  "author": "Gabriel Ting <gabrielfting@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/The-Percentage-Project/survey-engine/issues"
+  },
+  "homepage": "https://github.com/The-Percentage-Project/survey-engine#readme"
+}
