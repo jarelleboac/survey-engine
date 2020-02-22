@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/The-Percentage-Project/survey-enginestatic/css/main.39e772ee.chunk.css",
+    "main.js": "/The-Percentage-Project/survey-enginestatic/js/main.a81b506f.chunk.js",
+    "main.js.map": "/The-Percentage-Project/survey-enginestatic/js/main.a81b506f.chunk.js.map",
+    "runtime-main.js": "/The-Percentage-Project/survey-enginestatic/js/runtime-main.162b67c6.js",
+    "runtime-main.js.map": "/The-Percentage-Project/survey-enginestatic/js/runtime-main.162b67c6.js.map",
+    "static/js/2.c4262f79.chunk.js": "/The-Percentage-Project/survey-enginestatic/js/2.c4262f79.chunk.js",
+    "static/js/2.c4262f79.chunk.js.map": "/The-Percentage-Project/survey-enginestatic/js/2.c4262f79.chunk.js.map",
+    "index.html": "/The-Percentage-Project/survey-engineindex.html",
+    "precache-manifest.d56ee592ab5a186b1c00246217555521.js": "/The-Percentage-Project/survey-engineprecache-manifest.d56ee592ab5a186b1c00246217555521.js",
+    "service-worker.js": "/The-Percentage-Project/survey-engineservice-worker.js",
+    "static/css/main.39e772ee.chunk.css.map": "/The-Percentage-Project/survey-enginestatic/css/main.39e772ee.chunk.css.map",
+    "static/js/2.c4262f79.chunk.js.LICENSE.txt": "/The-Percentage-Project/survey-enginestatic/js/2.c4262f79.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.162b67c6.js",
+    "static/js/2.c4262f79.chunk.js",
+    "static/css/main.39e772ee.chunk.css",
+    "static/js/main.a81b506f.chunk.js"
+  ]
+}
