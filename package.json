@@ -16,12 +16,12 @@
 		"url": "https://github.com/The-Percentage-Project/survey-engine/issues"
 	},
 	"scripts": {
-		"dev": "concurrently -n -c bgBlue.bold,bgMagenta.bold,bgYellow.bold deploy,server,start \"npm run deploy\" \"npm run server\" \"npm run start\"",
+		"dev": "concurrently -n deploy,server,start -c bgBlue.bold,bgMagenta.bold,bgYellow.bold \"npm run deploy\" \"npm run server\" \"npm run start\"",
 		"deploy": "prisma deploy",
 		"start": "node scripts/start.js",
 		"build": "node scripts/build.js",
 		"test": "node scripts/test.js",
-		"server": "node server/index.js"
+		"server": "nodemon server/index.js"
 	},
 	"dependencies": {
 		"@babel/core": "7.8.4",
