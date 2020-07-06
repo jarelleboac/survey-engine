@@ -1,6 +1,0 @@
-node_modules/
-dist/
-webpack.*.js
-*.d.ts
-graphql.ts
-generated/
