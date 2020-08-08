@@ -1,12 +1,27 @@
 const mongoose = require('mongoose');
+const { schools, roles } = require('../../../common/schema');
 
-const { Schema } = mongoose;
-
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     email: {
-        required: true,
+        type: String,
+        required: [true, 'Email is required'],
     },
     password: {
-        required: true,
+        type: String,
+        required: [true, 'A password is required'],
+    },
+    school: {
+        type: String,
+        required: [true, 'A school is required'],
+        enum: schools,
+    },
+    role: {
+        type: String,
+        required: [true, 'A valid role is required'],
+        enum: roles,
     },
 });
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
