@@ -19,8 +19,8 @@ const app = express();
 
 // Connect to our database
 mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 });
 
 // Perform basic logging of requests [could be disabled for perfect security after dev]
@@ -31,16 +31,16 @@ app.use(helmet());
 
 // Allow CORS from the frontend
 app.use(cors({
-  origin: process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN,
 }));
 
 // Parse JSON bodies
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.json({
-    message: 'Hello World!',
-  });
+    res.json({
+        message: 'Hello World!',
+    });
 });
 
 app.use('/api/logs', logs);
@@ -51,5 +51,5 @@ app.use(middlewares.errorHandler);
 // Start the server
 const port = process.env.PORT || 1337;
 app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`);
+    console.log(`Listening at http://localhost:${port}`);
 });
