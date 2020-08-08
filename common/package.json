@@ -1,0 +1,16 @@
+{
+  "name": "common",
+  "version": "1.0.0",
+  "description": "Handle schema and enforce style",
+  "main": "schema.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabriel Ting <gabrielfting@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  }
+}
