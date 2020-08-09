@@ -10,6 +10,7 @@ require('dotenv').config();
 // Import our routes and middlewares
 const middlewares = require('./middlewares');
 const logs = require('./api/logs');
+const models = require('./models');
 
 // Initialize the server
 const app = express();
@@ -21,7 +22,7 @@ const app = express();
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-});
+}).catch((error) => console.log(error));
 
 // Perform basic logging of requests [could be disabled for perfect security after dev]
 app.use(morgan('common'));
@@ -51,9 +52,6 @@ app.use(middlewares.errorHandler);
 // Connect to the database and start the server
 const port = process.env.PORT || 1337;
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(async () => {
-        app.listen(port, () => {
-            console.log(`Connected to database and listening at http://localhost:${port}`);
-        });
-    });
+app.listen(port, () => {
+    console.log(`Connected to database and listening at http://localhost:${port}`);
+});
