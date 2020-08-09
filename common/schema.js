@@ -16,9 +16,22 @@ export const demographicQuestions = [
 ];
 
 export const commonQuestions = [
+  ...demographicQuestions,
   {
     id: '',
     question: '',
     component: '',
   },
+];
+
+export const brownQuestions = [
+
+];
+
+export const uPennQuestions = [
+
+];
+
+export const harvardQuestions = [
+
 ];
