@@ -11,7 +11,7 @@ exports.harvardQuestions = exports.uPennQuestions = exports.brownQuestions = exp
  */
 var schools = {
   brown: 'BROWN',
-  upenn: 'UPENN',
+  uPenn: 'UPENN',
   harvard: 'HARVARD',
   percentProj: 'PERCENTAGE_PROJECT'
 };
@@ -45,10 +45,28 @@ var commonQuestions = [].concat(demographicQuestions, [{
   question: '',
   component: ''
 }]);
+/**
+ * QUESTIONS SPECIFIC TO SCHOOLS
+ *
+ * Note: please make the ID field different
+ */
+
 exports.commonQuestions = commonQuestions;
 var brownQuestions = [];
 exports.brownQuestions = brownQuestions;
 var uPennQuestions = [];
 exports.uPennQuestions = uPennQuestions;
-var harvardQuestions = [];
+var harvardQuestions = []; // /**
+//  * Builds an object mapping the school dict to the different questions. Actually probably don't need to use this yet
+//  */
+// const mapSchoolsToQuestions = () => {
+//   const schoolsToQuestions = {};
+//   // Specify the string here since you can't directly specify keys as values from another object :(
+//   schoolsToQuestions[schools.brown] = brownQuestions;
+//   schoolsToQuestions[schools.uPenn] = uPennQuestions;
+//   schoolsToQuestions[schools.harvard] = harvardQuestions;
+//   return schoolsToQuestions;
+// };
+// export const schoolsToQuestions = mapSchoolsToQuestions();
+
 exports.harvardQuestions = harvardQuestions;

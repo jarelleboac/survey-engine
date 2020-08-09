@@ -13,7 +13,7 @@ router.post('/updateEmailStatus', async (req, res) => {
     // Should validate email before continuing
 
     // Find the email by the token
-    const email = Email.findOne({ token: emailToken });
+    const email = await Email.findOne({ token: emailToken });
 
     // Update status and save
     if (email.status !== submissionStatus.completed) {
@@ -42,7 +42,7 @@ router.post('/:school', async (req, res) => {
                 { email: emails[i], school, status: submissionStatus.unsent },
             );
             // eslint-disable-next-line no-await-in-loop
-            await emailModel.save();
+            await emailModel.save(emailModel);
         }
     } catch (err) {
         return res.status(400).send({ error: err.message });

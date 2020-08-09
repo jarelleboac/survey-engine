@@ -3,7 +3,7 @@
  * universities.
  */
 export const schools = {
-  brown: 'BROWN', upenn: 'UPENN', harvard: 'HARVARD', percentProj: 'PERCENTAGE_PROJECT',
+  brown: 'BROWN', uPenn: 'UPENN', harvard: 'HARVARD', percentProj: 'PERCENTAGE_PROJECT',
 };
 export const schoolsArray = Object.values(schools);
 
@@ -32,6 +32,11 @@ export const commonQuestions = [
   },
 ];
 
+/**
+ * QUESTIONS SPECIFIC TO SCHOOLS
+ *
+ * Note: please make the ID field different
+ */
 export const brownQuestions = [
 
 ];
@@ -43,3 +48,17 @@ export const uPennQuestions = [
 export const harvardQuestions = [
 
 ];
+
+// /**
+//  * Builds an object mapping the school dict to the different questions. Actually probably don't need to use this yet
+//  */
+// const mapSchoolsToQuestions = () => {
+//   const schoolsToQuestions = {};
+//   // Specify the string here since you can't directly specify keys as values from another object :(
+//   schoolsToQuestions[schools.brown] = brownQuestions;
+//   schoolsToQuestions[schools.uPenn] = uPennQuestions;
+//   schoolsToQuestions[schools.harvard] = harvardQuestions;
+
+//   return schoolsToQuestions;
+// };
+// export const schoolsToQuestions = mapSchoolsToQuestions();
