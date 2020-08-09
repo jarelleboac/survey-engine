@@ -69,7 +69,7 @@ router.get('/', async (req, res) => {
  */
 router.get('/:school', async (req, res) => {
     // TODO: this needs school admin perms
-    const { school } = req.params.school;
+    const { school } = req.params;
 
     try {
         // Get the school's appropriate survey model
