@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { commonQuestions, submissionStatus, schools } = require('../../../../common/schema');
+const { commonQuestions, submissionStatusArray, schoolsArray } = require('../../../../common/schema');
 const { questionSchemaToMongooseModel } = require('../../utils');
 
 // Generate a mongoose-compatible version of the question schema
@@ -9,12 +9,12 @@ const surveyCommonSchema = new mongoose.Schema({
     status: {
         type: String,
         required: [true, 'Submission status is required'],
-        enum: submissionStatus,
+        enum: submissionStatusArray,
     },
     school: {
         type: String,
         required: [true, 'A school is required'],
-        enum: schools,
+        enum: schoolsArray,
     },
     ...mappedCommonQuestions,
 });

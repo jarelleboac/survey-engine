@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 const mongoose = require('mongoose');
-const { schools, submissionStatus } = require('../../../common/schema');
+const { schoolsArray, submissionStatusArray } = require('../../../common/schema');
 
 // Email schema that has no linkage to the survey itself
 const emailSchema = new mongoose.Schema({
@@ -13,23 +13,23 @@ const emailSchema = new mongoose.Schema({
     school: {
         type: String,
         required: [true, 'A school is required'],
-        enum: schools,
+        enum: schoolsArray,
     },
     status: {
         type: String,
         required: [true, 'Submission status is required'],
-        enum: submissionStatus,
+        enum: submissionStatusArray,
     },
     token: {
         type: String,
-        required: true,
         unique: true,
     },
 });
 
 // Generates a token that wil be sent in the email to just mark off emails
-emailSchema.pre('save', (next) => {
-    this.emailToken = uuidv4();
+// TODO: this should also manage validating that the email is legitimate
+emailSchema.pre('save', function (next) {
+    this.token = uuidv4();
     next();
 });
 

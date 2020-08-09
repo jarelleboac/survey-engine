@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { schools, roles } from '../../../common/schema';
+import { schoolsArray, rolesArray } from '../../../common/schema';
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -14,12 +14,12 @@ const userSchema = new mongoose.Schema({
     school: {
         type: String,
         required: [true, 'A school is required'],
-        enum: schools,
+        enum: schoolsArray,
     },
     role: {
         type: String,
         required: [true, 'A valid role is required'],
-        enum: roles,
+        enum: rolesArray,
     },
 });
 
