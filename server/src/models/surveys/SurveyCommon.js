@@ -11,4 +11,6 @@ const surveyCommonSchema = new mongoose.Schema({
 
 const SurveyCommon = mongoose.model('SurveyCommon', surveyCommonSchema);
 
-module.exports = SurveyCommon;
+module.exports = {
+    SurveyCommon,
+};
