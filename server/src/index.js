@@ -1,15 +1,16 @@
+// Allow pulling in environment variables across the application
+import 'dotenv/config';
+
+import api from './api';
+
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-// Allow pulling in environment variables across the application
-require('dotenv').config();
 // Import our routes and middlewares
 const middlewares = require('./middlewares');
-const logs = require('./api/logs');
-const models = require('./models');
 
 // Initialize the server
 const app = express();
@@ -18,10 +19,13 @@ const app = express();
 // app.enable('trust proxy');
 
 // Connect to our database
-mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).catch((error) => console.log(error));
+mongoose
+    .connect(process.env.DATABASE_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(console.log(`DB connection successful at ${process.env.DATABASE_URL}`))
+    .catch((error) => console.log(error));
 
 // Perform basic logging of requests [could be disabled for perfect security after dev]
 app.use(morgan('common'));
@@ -43,7 +47,8 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/api/logs', logs);
+// import and define our apis
+app.use('/api/user', api.user);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
@@ -52,5 +57,5 @@ app.use(middlewares.errorHandler);
 const port = process.env.PORT || 1337;
 
 app.listen(port, () => {
-    console.log(`Connected to database and listening at http://localhost:${port}`);
+    console.log(`App listening at http://localhost:${port}`);
 });

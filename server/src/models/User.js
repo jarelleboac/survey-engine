@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { schools, roles } = require('../../../common/schema');
+import mongoose from 'mongoose';
+import { schools, roles } from '../../../common/schema';
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -24,4 +24,4 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;

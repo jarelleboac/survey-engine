@@ -15,8 +15,11 @@ docker run -p 49160:8080 -d <username>/survey-engine
 ```
 
 ### No Docker
-- For development, use:
+- For development, use the following to have nodemon watch for changes:
 
 ```
-npm run dev
+npm run watch:dev
 ```
+
+## Credits
+- Huge thanks to https://www.robinwieruch.de/minimal-node-js-babel-setup/ for the initial Babel setup after using `require` syntax failed while importing from `../common`.
