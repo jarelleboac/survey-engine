@@ -48,8 +48,12 @@ app.use('/api/logs', logs);
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 
-// Start the server
+// Connect to the database and start the server
 const port = process.env.PORT || 1337;
-app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}`);
-});
+
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(async () => {
+        app.listen(port, () => {
+            console.log(`Connected to database and listening at http://localhost:${port}`);
+        });
+    });
