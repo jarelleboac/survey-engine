@@ -7,6 +7,8 @@ export const schools = ['BROWN', 'UPENN', 'HARVARD', 'PERCENTAGE_PROJECT'];
 
 export const roles = ['SCHOOL_ADMIN', 'PERCENTAGE_PROJECT_ADMIN'];
 
+export const submissionStatus = ['UNSENT', 'SENT', 'IN-PROGRESS', 'COMPLETED'];
+
 export const demographicQuestions = [
   {
     id: 'first_name',
