@@ -1,6 +1,4 @@
-const BrownSurvey = require('./BrownSurvey.js');
-const SurveyCommon = require('./SurveyCommon.js');
+import BrownSurvey from './BrownSurvey';
+import SurveyCommon from './SurveyCommon';
 
-module.exports = {
-    SurveyCommon, BrownSurvey,
-};
+export default { SurveyCommon, BrownSurvey };

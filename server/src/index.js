@@ -1,16 +1,15 @@
 // Allow pulling in environment variables across the application
 import 'dotenv/config';
 
-import api from './api';
-
-const express = require('express');
-const morgan = require('morgan');
-const helmet = require('helmet');
-const cors = require('cors');
-const mongoose = require('mongoose');
+import express from 'express';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import cors from 'cors';
+import mongoose from 'mongoose';
 
 // Import our routes and middlewares
-const middlewares = require('./middlewares');
+import api from './api';
+import middlewares from './middlewares';
 
 // Initialize the server
 const app = express();

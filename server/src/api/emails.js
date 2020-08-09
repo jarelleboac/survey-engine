@@ -34,7 +34,6 @@ router.get('/:school', async (req, res) => {
 // Expects email to be an array of valid emails
 router.post('/:school', async (req, res) => {
     const { emails } = req.body;
-    console.log(emails);
     // need to validate emails as well
     const { school } = req.params;
     try {
@@ -60,23 +59,16 @@ router.post('/:school/sendEmails', async (req, res) => {
     // need to validate emails as well
     const { school } = req.params;
     res.send('Not yet implemented');
-    // emails.forEach(async (email) => {
-    //     const emailModel = new Email({ email, school, status: submissionStatus[0] });
-    //     await emailModel.save();
-    // });
-    // res.send(`${emails.length} successfully added to ${school}`);
 });
 
-// TODO: sendAllEmails route for a specific school.
+/**
+ * TODO: sendAllEmails route for a specific school. Will send out reminders to all complete surveys
+ *
+ */
 router.post('/:school/sendAllEmails', async (req, res) => {
     // need to validate emails as well
     const { school } = req.params;
     res.send('Not yet implemented');
-    // emails.forEach(async (email) => {
-    //     const emailModel = new Email({ email, school, status: submissionStatus[0] });
-    //     await emailModel.save();
-    // });
-    // res.send(`${emails.length} successfully added to ${school}`);
 });
 
 export default router;

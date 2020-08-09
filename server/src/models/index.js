@@ -1,3 +1,4 @@
-const User = require('./User');
+import Email from './Email';
+import User from './User';
 
-module.exports = { User };
+export default { Email, User };

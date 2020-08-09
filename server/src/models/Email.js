@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-
-const mongoose = require('mongoose');
-const { schoolsArray, submissionStatusArray } = require('../../../common/schema');
+import mongoose from 'mongoose';
+import { schoolsArray, submissionStatusArray } from '../../../common/schema';
 
 // Email schema that has no linkage to the survey itself
 const emailSchema = new mongoose.Schema({
@@ -35,4 +34,4 @@ emailSchema.pre('save', function (next) {
 
 const Email = mongoose.model('Email', emailSchema);
 
-module.exports = Email;
+export default Email;
