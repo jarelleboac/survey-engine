@@ -4,7 +4,7 @@ const { questionSchemaToMongooseModel } = require('../../utils');
 
 // Generate a mongoose-compatible version of the question schema
 const mappedCommonQuestions = questionSchemaToMongooseModel(commonQuestions);
-
+console.log(mappedCommonQuestions);
 const surveyCommonSchema = new mongoose.Schema({
     status: {
         type: String,

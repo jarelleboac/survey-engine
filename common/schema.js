@@ -35,15 +35,25 @@ exports.submissionStatus = submissionStatus;
 var submissionStatusArray = Object.values(submissionStatus);
 exports.submissionStatusArray = submissionStatusArray;
 var demographicQuestions = [{
-  id: 'first_name',
+  id: 'firstName',
   question: 'First name',
-  component: ''
+  component: '',
+  required: true,
+  type: String
+}, {
+  id: 'lastName',
+  question: 'Last name',
+  component: '',
+  required: true,
+  type: String
 }];
 exports.demographicQuestions = demographicQuestions;
 var commonQuestions = [].concat(demographicQuestions, [{
-  id: '',
-  question: '',
-  component: ''
+  id: 'food',
+  question: 'What is your favorite food?',
+  component: '',
+  required: true,
+  type: String
 }]);
 /**
  * QUESTIONS SPECIFIC TO SCHOOLS

@@ -42,7 +42,7 @@ router.post('/:school', async (req, res) => {
                 { email: emails[i], school, status: submissionStatus.unsent },
             );
             // eslint-disable-next-line no-await-in-loop
-            await emailModel.save(emailModel);
+            await emailModel.save();
         }
     } catch (err) {
         return res.status(400).send({ error: err.message });

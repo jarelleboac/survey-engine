@@ -28,7 +28,11 @@ const emailSchema = new mongoose.Schema({
 // Generates a token that wil be sent in the email to just mark off emails
 // TODO: this should also manage validating that the email is legitimate
 emailSchema.pre('save', function (next) {
-    this.token = uuidv4();
+    // Only sets a token if there was none previously
+    if (!this.token) {
+        this.token = uuidv4();
+    }
+
     next();
 });
 

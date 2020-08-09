@@ -17,18 +17,29 @@ export const submissionStatusArray = Object.values(submissionStatus);
 
 export const demographicQuestions = [
   {
-    id: 'first_name',
+    id: 'firstName',
     question: 'First name',
     component: '',
+    required: true,
+    type: String,
+  },
+  {
+    id: 'lastName',
+    question: 'Last name',
+    component: '',
+    required: true,
+    type: String,
   },
 ];
 
 export const commonQuestions = [
   ...demographicQuestions,
   {
-    id: '',
-    question: '',
+    id: 'food',
+    question: 'What is your favorite food?',
     component: '',
+    required: true,
+    type: String,
   },
 ];
 
