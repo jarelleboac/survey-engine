@@ -25,8 +25,12 @@ const emailSchema = new mongoose.Schema({
     },
 });
 
-// Generates a token that wil be sent in the email to just mark off emails
-// TODO: this should also manage validating that the email is legitimate
+/**
+ * Generates a token that wil be sent in the email to just mark off emails
+ * TODO: this should also manage validating that the email is legitimate
+ */
+
+// eslint-disable-next-line func-names
 emailSchema.pre('save', function (next) {
     // Only sets a token if there was none previously
     if (!this.token) {

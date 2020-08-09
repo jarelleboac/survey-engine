@@ -28,10 +28,8 @@ router.post('/', async (req, res) => {
             try {
                 // Get the school's appropriate survey model
                 const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
-                const builtObj = { ...responses, status: submissionStatus.completed, school };
-                console.log(builtObj);
-                // Save that model
 
+                // Save that model
                 const builtModel = new SurveyModel(
                     { ...responses, status: submissionStatus.completed, school },
                 );
