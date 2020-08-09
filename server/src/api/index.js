@@ -1,3 +1,4 @@
-import user from './user';
+import users from './users';
+import emails from './emails';
 
-export default { user };
+export default { users, emails };

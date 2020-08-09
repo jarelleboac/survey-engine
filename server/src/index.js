@@ -23,6 +23,7 @@ mongoose
     .connect(process.env.DATABASE_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        useCreateIndex: true,
     })
     .then(console.log(`DB connection successful at ${process.env.DATABASE_URL}`))
     .catch((error) => console.log(error));
@@ -48,7 +49,8 @@ app.get('/', (req, res) => {
 });
 
 // import and define our apis
-app.use('/api/user', api.user);
+app.use('/api/users', api.users);
+app.use('/api/emails', api.emails);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);

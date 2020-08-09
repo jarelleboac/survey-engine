@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
-const { schools, submissionStatus } = require('../../../common/schema-raw');
+const { schools, submissionStatus } = require('../../../common/schema');
 
 // Email schema that has no linkage to the survey itself
 const emailSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, 'Email is required'],
+        unique: true,
     },
     school: {
         type: String,
