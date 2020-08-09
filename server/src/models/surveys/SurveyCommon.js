@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const { commonQuestions, submissionStatusArray, schoolsArray } = require('../../../../common/schema');
-const { questionSchemaToMongooseModel } = require('../../utils');
+import mongoose from 'mongoose';
+import { questionSchemaToMongooseModel } from '../../utils';
+import { commonQuestions, submissionStatusArray, schoolsArray } from '../../../../common/schema';
 
 // Generate a mongoose-compatible version of the question schema
 const mappedCommonQuestions = questionSchemaToMongooseModel(commonQuestions);

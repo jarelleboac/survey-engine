@@ -1,5 +1,5 @@
 // Creates a mapped version of the common questions schema particular to the
-const questionSchemaToMongooseModel = (questions) => {
+export const questionSchemaToMongooseModel = (questions) => {
     const obj = {};
     questions.forEach(({ id, required, type }) => {
         obj[id] = {
@@ -8,8 +8,4 @@ const questionSchemaToMongooseModel = (questions) => {
     });
 
     return obj;
-};
-
-module.exports = {
-    questionSchemaToMongooseModel,
 };
