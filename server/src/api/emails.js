@@ -17,12 +17,16 @@ router.post('/updateEmailStatus', async (req, res) => {
 
     // Should validate email before continuing
 
-    // Find the email by the token. Update status and save.
+    // Find the email by the token
     const email = Email.findOne({ token: emailToken });
-    email.status = status;
-    await email.save();
 
-    res.send(`${emailToken} successfully updated to ${status}`);
+    // Update status and save
+    if (email.status !== submissionStatus.completed) {
+        email.status = status;
+        await email.save();
+        res.json({ message: `${emailToken} successfully updated to ${status}`, status: email.status });
+    }
+    res.status(400).send(`This email is already listed as ${submissionStatus.completed}.`);
 });
 
 // TODO: this really needs to be admin-only for the specific school
@@ -37,11 +41,17 @@ router.post('/:school', async (req, res) => {
     console.log(emails);
     // need to validate emails as well
     const { school } = req.params;
-    emails.forEach(async (email) => {
-        const emailModel = new Email({ email, school, status: submissionStatus[0] });
-        await emailModel.save();
-    });
-    res.send(`${emails.length} successfully added to ${school}`);
+    try {
+        for (let i = 0; i < emails.length; i += 1) {
+            const emailModel = new Email({ email: emails[i], school, status: submissionStatus.unsent });
+            // eslint-disable-next-line no-await-in-loop
+            await emailModel.save();
+        }
+    } catch (err) {
+        return res.status(400).send({ error: err.message });
+    }
+
+    return res.send(`${emails.length} successfully added to ${school}`);
 });
 
 // TODO: sendEmails route for a specific school
