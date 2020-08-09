@@ -51,6 +51,7 @@ app.get('/', (req, res) => {
 // import and define our apis
 app.use('/api/users', api.users);
 app.use('/api/emails', api.emails);
+app.use('/api/surveys', api.surveys);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);

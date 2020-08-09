@@ -1,5 +1,7 @@
+import SurveyCommon from './SurveyCommon';
+
 const mongoose = require('mongoose');
-const SurveyCommon = require('./SurveyCommon');
+
 const { brownQuestions } = require('../../../../common/schema');
 const { questionSchemaToMongooseModel } = require('../../utils');
 

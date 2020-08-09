@@ -4,11 +4,6 @@ import Email from '../models/Email';
 
 const router = Router();
 
-// TODO: remove this once testing is over
-router.get('/', (req, res) => {
-    res.send('email route sanity check');
-});
-
 /**
  * Update a single email's status. Expects the emailToken and status in the body.
  */
@@ -24,9 +19,10 @@ router.post('/updateEmailStatus', async (req, res) => {
     if (email.status !== submissionStatus.completed) {
         email.status = status;
         await email.save();
-        res.json({ message: `${emailToken} successfully updated to ${status}`, status: email.status });
+
+        return res.json({ message: `${emailToken} successfully updated to ${status}`, status: email.status });
     }
-    res.status(400).send(`This email is already listed as ${submissionStatus.completed}.`);
+    return res.status(400).send(`This email is already listed as ${submissionStatus.completed}.`);
 });
 
 // TODO: this really needs to be admin-only for the specific school
@@ -43,7 +39,9 @@ router.post('/:school', async (req, res) => {
     const { school } = req.params;
     try {
         for (let i = 0; i < emails.length; i += 1) {
-            const emailModel = new Email({ email: emails[i], school, status: submissionStatus.unsent });
+            const emailModel = new Email(
+                { email: emails[i], school, status: submissionStatus.unsent },
+            );
             // eslint-disable-next-line no-await-in-loop
             await emailModel.save();
         }
