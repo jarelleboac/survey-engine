@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const mongoose = require('mongoose');
 const { schools, submissionStatus } = require('../../../common/schema');
 
@@ -15,9 +17,20 @@ const emailSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        required: [true, 'Submissions status is required'],
+        required: [true, 'Submission status is required'],
         enum: submissionStatus,
     },
+    token: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+});
+
+// Generates a token that wil be sent in the email to just mark off emails
+emailSchema.pre('save', (next) => {
+    this.emailToken = uuidv4();
+    next();
 });
 
 const Email = mongoose.model('Email', emailSchema);
