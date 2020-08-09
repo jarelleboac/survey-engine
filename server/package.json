@@ -5,11 +5,12 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "npm run prod",
-		"build": "npm-run-all clean transpile",
+		"build": "npm-run-all clean transpile transpile-common",
 		"server": "node ./dist/index.js",
 		"dev": "NODE_ENV=development npm-run-all build server",
 		"prod": "NODE_ENV=production npm-run-all build server",
 		"transpile": "babel ./src --out-dir dist",
+		"transpile-common": "cd ../common && npm run transpile",
 		"clean": "rimraf dist",
 		"watch:dev": "nodemon",
 		"test": "jest"
