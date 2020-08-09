@@ -4,9 +4,41 @@
 	"description": "Backend of survey engine",
 	"main": "index.js",
 	"scripts": {
-		"start": "node src/index.js",
-		"dev": "nodemon src/index.js",
-		"lint": "eslint src/ --fix"
+		"start": "npm run prod",
+		"build": "npm-run-all clean transpile",
+		"server": "node ./dist/index.js",
+		"dev": "NODE_ENV=development npm-run-all build server",
+		"prod": "NODE_ENV=production npm-run-all build server",
+		"transpile": "babel ./src --out-dir dist",
+		"clean": "rimraf dist",
+		"watch:dev": "nodemon",
+		"test": "jest"
+	},
+	"nodemonConfig": {
+		"exec": "npm run dev",
+		"watch": [
+			"src/*"
+		],
+		"ignore": [
+			"**/__tests__/**",
+			"*.test.js",
+			"*.spec.js"
+		]
+	},
+	"babel": {
+		"presets": [
+			[
+				"@babel/preset-env",
+				{
+					"targets": {
+						"esmodules": true
+					}
+				}
+			]
+		]
+	},
+	"jest": {
+		"testEnvironment": "node"
 	},
 	"repository": {
 		"type": "git",
@@ -19,6 +51,7 @@
 	},
 	"homepage": "https://github.com/The-Percentage-Project/survey-engine#readme",
 	"dependencies": {
+		"@babel/cli": "^7.10.5",
 		"cors": "^2.8.5",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
@@ -26,12 +59,18 @@
 		"helmet": "^3.23.3",
 		"mongoose": "^5.9.22",
 		"morgan": "^1.10.0",
-		"rate-limit-mongo": "^2.2.0"
+		"npm-run-all": "^4.1.5",
+		"rate-limit-mongo": "^2.2.0",
+		"regenerator-runtime": "^0.13.7",
+		"rimraf": "^3.0.2"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.11.1",
+		"@babel/preset-env": "^7.11.0",
 		"eslint": "^7.4.0",
 		"eslint-config-airbnb-base": "^14.2.0",
 		"eslint-plugin-import": "^2.22.0",
+		"jest": "^26.2.2",
 		"nodemon": "^2.0.4"
 	}
 }

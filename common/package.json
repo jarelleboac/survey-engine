@@ -4,11 +4,18 @@
   "description": "Handle schema and enforce style",
   "main": "schema.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "transpile": "babel schema-raw.js --out-file schema.js"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
   },
   "author": "Gabriel Ting <gabrielfting@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0"

@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 
 // Allow pulling in environment variables across the application
 require('dotenv').config();
-
 // Import our routes and middlewares
 const middlewares = require('./middlewares');
 const logs = require('./api/logs');
