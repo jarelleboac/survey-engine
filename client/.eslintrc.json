@@ -3,12 +3,6 @@
         "browser": true,
         "es6": true
     },
-    "extends": [
-        "airbnb",
-        "plugin:prettier/recommended",
-        "prettier",
-        "prettier/react"
-    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -21,9 +15,11 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react", "prettier"
+        "react"
     ],
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4]
     }
 }

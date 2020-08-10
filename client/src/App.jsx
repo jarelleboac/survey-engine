@@ -1,7 +1,7 @@
-import React from "react";
-import logo from "./assets/logo.svg";
-import "./App.css";
-import { Survey } from "./components/Survey";
+import React from 'react';
+import logo from './assets/logo.svg';
+import './App.css';
+import { Survey } from './components/Survey';
 
 function App() {
     return (
