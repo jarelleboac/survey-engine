@@ -1,16 +1,41 @@
+html,
+body,
+#root,
 .App {
-  text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
-
-#logo {
-    position: absolute;
+#logo-container {
+    grid-area: logo;
     top: 0px;
     left: 0px;
-    /* Needs to be removed once global flexbox is set up */
-    width: 10%;
+    overflow:hidden;
+    object-fit: contain;
 }
 
+#logo {
+    height: 100%;
+    display: block;
+    width: auto; 
+}
+
+.survey-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 10% auto 10%;
+
+    grid-template-areas:
+          "logo head head head"
+          "side1 main main side2"
+          "footer footer footer footer";
+    grid-gap: 1rem;
+}
+
+.survey {
+    grid-area: main;
+}
 /* 
 .App-logo {
   height: 40vmin;

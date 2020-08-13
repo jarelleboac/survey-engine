@@ -6,12 +6,16 @@ import { Survey } from './components/Survey';
 
 function App() {
     return (
-        <div className="App">
-            <img src="logo.png" id="logo" alt="% project logo"/>
-            <Theme>
-                <Survey />
-            </Theme>
-        </div>
+        <Theme>
+            <div className="App">
+                <div className="survey-container">
+                    <div id="logo-container">
+                        <img src="logo.png" id="logo" alt="% project logo"/>
+                    </div>
+                    <Survey />
+                </div>
+            </div>
+        </Theme>
     );
 }
 

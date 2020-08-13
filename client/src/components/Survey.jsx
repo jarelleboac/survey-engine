@@ -56,7 +56,8 @@ export function Survey() {
             <Container
                 as='form'
                 onSubmit={e => e.preventDefault()}
-                sx={{width: '80%', height: '80%', top: '50%'}}>
+                sx={{width: '80%', height: '80%', top: '50%'}}
+                className="survey">
                 <Label htmlFor='username'>Username</Label>
                 <Input
                     name='username'
