@@ -14,6 +14,8 @@ import {
     Container
 } from 'theme-ui'
 
+import {commonQuestions} from '../../../common/schema.js'
+
 /**
  * Frame that sets the logo
  */
@@ -98,20 +100,17 @@ export function Survey() {
                         <Radio name='letter' /> Charlie
                     </Label>
                 </Flex>
-                <Label>
-    Slider
-                </Label>
-                <Slider mb={3} />
+
                 <Button>
     Submit
                 </Button>
             </Container>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            {/* <form onSubmit={handleSubmit(onSubmit)}>
                 <CustomInput label="First Name" register={register} required />
                 <CustomSelect label="Age" ref={register} />
                 <input type="submit" />
-            </form>
+            </form> */}
 
         </>
     );
