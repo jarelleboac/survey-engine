@@ -3,6 +3,14 @@
 }
 
 
+#logo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /* Needs to be removed once global flexbox is set up */
+    width: 10%;
+}
+
 /* 
 .App-logo {
   height: 40vmin;

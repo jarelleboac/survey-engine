@@ -1,14 +1,16 @@
 import React from 'react';
-import logo from './assets/logo.svg';
 import './App.css';
+import Theme from './Theme'
 import { Survey } from './components/Survey';
+
 
 function App() {
     return (
         <div className="App">
-
-            <Survey />
-
+            <img src="logo.png" id="logo" alt="% project logo"/>
+            <Theme>
+                <Survey />
+            </Theme>
         </div>
     );
 }
