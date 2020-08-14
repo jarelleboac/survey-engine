@@ -33,8 +33,19 @@ var submissionStatus = {
 };
 exports.submissionStatus = submissionStatus;
 var submissionStatusArray = Object.values(submissionStatus);
+/**
+ * Schema for questions. Note that the "type" field should be for Mongoose
+ */
+
 exports.submissionStatusArray = submissionStatusArray;
 var demographicQuestions = [{
+  id: 'grade',
+  question: 'What is your grade?',
+  component: 'Checkbox',
+  options: ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Super Senior', 'Graduate'],
+  required: true,
+  type: String
+}, {
   id: 'firstName',
   question: 'First name',
   component: '',
