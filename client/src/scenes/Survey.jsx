@@ -85,67 +85,69 @@ export function Survey() {
 
     return (
         <>
-            <Container
-                as='form'
-                onSubmit={e => e.preventDefault()}
-                sx={{width: '80%', height: '80%', top: '50%'}}
-                className="survey">
-                <Label htmlFor='firstName'>First name</Label>
-                <Input
-                    name='firstName'
-                    id='firstName'
-                    mb={3}
-                />
-                <Label htmlFor='lastName'>Last name</Label>
-                <Input
-                    type='lastName'
-                    name='lastName'
-                    id='lastName'
-                    mb={3}
-                />
-                {/* <Box>
+            <div className="survey-container">
+                <div id="logo-container">
+                    <img src="logo.png" id="logo" alt="% project logo"/>
+                </div>
+                <Container
+                    as='form'
+                    onSubmit={e => e.preventDefault()}
+                    sx={{width: '80%', height: '80%', top: '50%'}}
+                    className="survey">
+                    <Label htmlFor='firstName'>First name</Label>
+                    <Input
+                        name='firstName'
+                        id='firstName'
+                        mb={3}
+                    />
+                    <Label htmlFor='lastName'>Last name</Label>
+                    <Input
+                        type='lastName'
+                        name='lastName'
+                        id='lastName'
+                        mb={3}
+                    />
+                    {/* <Box>
                     <Label mb={3}>
                         <Checkbox />
       Remember me
                     </Label>
                 </Box> */}
-                <Label htmlFor='major'>Major</Label>
-                <Select name='major' id='major' mb={3}>
-                    <option>CS</option>
-                    <option>Math</option>
-                    <option>Physics</option>
-                </Select>
-                <Label htmlFor='comment'>Comment</Label>
-                <Textarea
-                    name='comment'
-                    id='comment'
-                    rows='6'
-                    mb={3}
-                />
-                <Flex mb={3}>
-                    <Label>
-                        <Radio name='letter' /> Alpha
-                    </Label>
-                    <Label>
-                        <Radio name='letter' /> Bravo
-                    </Label>
-                    <Label>
-                        <Radio name='letter' /> Charlie
-                    </Label>
-                </Flex>
-                {commonQuestions.map(question => { return(questionToComponent(question))})}
-                <Button>
-    Submit
-                </Button>
+                    <Label htmlFor='major'>Major</Label>
+                    <Select name='major' id='major' mb={3}>
+                        <option>CS</option>
+                        <option>Math</option>
+                        <option>Physics</option>
+                    </Select>
+                    <Label htmlFor='comment'>Comment</Label>
+                    <Textarea
+                        name='comment'
+                        id='comment'
+                        rows='6'
+                        mb={3}
+                    />
+                    <Flex mb={3}>
+                        <Label>
+                            <Radio name='letter' /> Alpha
+                        </Label>
+                        <Label>
+                            <Radio name='letter' /> Bravo
+                        </Label>
+                        <Label>
+                            <Radio name='letter' /> Charlie
+                        </Label>
+                    </Flex>
+                    {commonQuestions.map(question => { return(questionToComponent(question))})}
+                    <Button>Submit</Button>
                 
-            </Container>
+                </Container>
 
-            {/* <form onSubmit={handleSubmit(onSubmit)}>
+                {/* <form onSubmit={handleSubmit(onSubmit)}>
                 <CustomInput label="First Name" register={register} required />
                 <CustomSelect label="Age" ref={register} />
                 <input type="submit" />
             </form> */}
-
+            </div>
         </>
     );
 }

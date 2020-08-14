@@ -1,5 +1,7 @@
 import { Grid } from "gridjs";
 import "gridjs/dist/theme/mermaid.css";
+import React, {useRef, useEffect} from 'react'
+
 export const Table =  () => {
     const wrapperRef = useRef(null);
     const grid = new Grid({
