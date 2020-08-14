@@ -7,6 +7,7 @@ export const schools = {
 };
 export const schoolsArray = Object.values(schools);
 
+// Defines roles that are particular to admins. Vanilla users have no roles.
 export const roles = { schoolAdmin: 'SCHOOL_ADMIN', percentAdmin: 'PERCENTAGE_PROJECT_ADMIN' };
 export const rolesArray = Object.values(roles);
 

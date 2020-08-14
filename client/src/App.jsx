@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Theme from './Theme'
-import { Survey } from './routes/Survey';
+import { Survey } from './scenes/Survey';
 import {
     BrowserRouter as Router,
     Switch,
