@@ -39,7 +39,15 @@ const CustomCheckbox = ({ question }) => {
 }
 
 const CustomRadio = ({question}) => {
-    return (<></>)
+
+    return (<>
+        <Flex mb={1}>
+            {/* {question.options.map(option => <Label>
+                <Radio name={question.id} />{option}
+            </Label>)} */}
+
+        </Flex>
+    </>)
 }
 
 const questionToComponent = (question) => {
@@ -48,7 +56,6 @@ const questionToComponent = (question) => {
     } else if (question.component === "Radio") {
         return (<CustomRadio question={question} />)
     }
-
     return (<></>)
 }
 
@@ -126,7 +133,7 @@ export function Survey() {
                         rows='6'
                         mb={3}
                     />
-                    <Flex mb={3}>
+                    {/* <Flex mb={3}>
                         <Label>
                             <Radio name='letter' /> Alpha
                         </Label>
@@ -136,7 +143,7 @@ export function Survey() {
                         <Label>
                             <Radio name='letter' /> Charlie
                         </Label>
-                    </Flex>
+                    </Flex> */}
                     {commonQuestions.map(question => { return(questionToComponent(question))})}
                     <Button>Submit</Button>
                 

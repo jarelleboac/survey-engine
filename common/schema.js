@@ -16,7 +16,8 @@ var schools = {
   percentProj: 'PERCENTAGE_PROJECT'
 };
 exports.schools = schools;
-var schoolsArray = Object.values(schools);
+var schoolsArray = Object.values(schools); // Defines roles that are particular to admins. Vanilla users have no roles.
+
 exports.schoolsArray = schoolsArray;
 var roles = {
   schoolAdmin: 'SCHOOL_ADMIN',
@@ -57,7 +58,15 @@ var demographicQuestions = [{
   component: '',
   required: true,
   type: String
-}];
+}, {
+  id: 'ethnicity',
+  question: 'What is your ethnicity?',
+  component: 'Radio',
+  options: ['American Indian or Alaskan Native', 'Asian', 'Black or African American', 'Native Hawaiian or other Pacific Islander', 'White', 'Other', 'Prefer not to say'],
+  required: true,
+  type: String
+}]; // TODO: make this a function that can take custom params
+
 exports.demographicQuestions = demographicQuestions;
 var commonQuestions = [].concat(demographicQuestions, [{
   id: 'food',

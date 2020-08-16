@@ -64,6 +64,7 @@ export const demographicQuestions = [
   },
 ];
 
+// TODO: make this a function that can take custom params
 export const commonQuestions = [
   ...demographicQuestions,
   {
@@ -78,7 +79,7 @@ export const commonQuestions = [
 /**
  * QUESTIONS SPECIFIC TO SCHOOLS
  *
- * Note: please make the ID field different
+ * Note: please make the ID field different from any other questions
  */
 export const brownQuestions = [
 
