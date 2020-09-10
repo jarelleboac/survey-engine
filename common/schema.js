@@ -78,7 +78,7 @@ var commonQuestions = [].concat(demographicQuestions, [{
 /**
  * QUESTIONS SPECIFIC TO SCHOOLS
  *
- * Note: please make the ID field different
+ * Note: please make the ID field different from any other questions
  */
 
 exports.commonQuestions = commonQuestions;
