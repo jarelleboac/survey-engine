@@ -10,14 +10,6 @@ export const fetchOptions = {
 };
 
 export const Table =  () => {
-    const [emails, setEmails] = useState(['Loading...', 'Loading...', 'Loading...'] )
-
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/emails/BROWN`, {...fetchOptions, method: 'GET'})
-            .then(res => res.json())
-            .then(res => res.map(email => [email.email, email.school, email.status]))
-            .then(mappedEmails => setEmails(mappedEmails))
-    }, [])
     const wrapperRef = useRef(null);
 
     const grid = new Grid({
@@ -31,7 +23,7 @@ export const Table =  () => {
   
     useEffect(() => {
         grid.render(wrapperRef.current);
-    }, [emails]);
+    });
   
-    return <><div style={{width:'80%'}}><div ref={wrapperRef} /></div></>;
+    return <><div ref={wrapperRef} style={{width:'80%'}}/></>;
 }
