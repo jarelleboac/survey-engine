@@ -31,24 +31,30 @@ router.get('/:school', async (req, res) => {
     res.send(JSON.stringify(emails));
 });
 
-// Expects email to be an array of valid emails
+// Expects email to be an array of valid emails. Allows adding emails to that school
 router.post('/:school', async (req, res) => {
+    console.log(req);
     const { emails } = req.body;
     // need to validate emails as well
     const { school } = req.params;
+    let count = 0;
     try {
         for (let i = 0; i < emails.length; i += 1) {
-            const emailModel = new Email(
-                { email: emails[i], school, status: submissionStatus.unsent },
-            );
-            // eslint-disable-next-line no-await-in-loop
-            await emailModel.save();
+            // Only add the email if it doesn't exist already
+            if (!Email.findOne({ email: emails[i] })) {
+                const emailModel = new Email(
+                    { email: emails[i], school, status: submissionStatus.unsent },
+                );
+                // eslint-disable-next-line no-await-in-loop
+                await emailModel.save();
+                count += 1;
+            }
         }
     } catch (err) {
         return res.status(400).send({ error: err.message });
     }
 
-    return res.send(`${emails.length} successfully added to ${school}`);
+    return res.send({ message: `${count} successfully added to ${school}` });
 });
 
 // TODO: sendEmails route for a specific school
