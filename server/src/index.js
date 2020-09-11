@@ -8,7 +8,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 
 // Import our routes and middlewares
-import api from './api';
+import { userRoutes, emailRoutes, surveyRoutes } from './routes';
 import middlewares from './middlewares';
 
 // Initialize the server
@@ -38,6 +38,9 @@ app.use(cors({
     origin: process.env.CORS_ORIGIN,
 }));
 
+// Parse body of HTTP requests
+app.use(express.urlencoded({ extended: true }));
+
 // Parse JSON bodies
 app.use(express.json());
 
@@ -48,9 +51,11 @@ app.get('/', (req, res) => {
 });
 
 // import and define our apis
-app.use('/api/users', api.users);
-app.use('/api/emails', api.emails);
-app.use('/api/surveys', api.surveys);
+const apiRouter = express.Router();
+app.use('/api', apiRouter);
+apiRouter.use('/users', userRoutes);
+apiRouter.use('/emails', emailRoutes);
+apiRouter.use('/surveys', surveyRoutes);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);

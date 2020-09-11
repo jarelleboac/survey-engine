@@ -3,7 +3,19 @@
  * universities.
  */
 export const schools = {
-  brown: 'BROWN', uPenn: 'UPENN', harvard: 'HARVARD', percentProj: 'PERCENTAGE_PROJECT',
+  unset: 'UNSET',
+  brown: 'BROWN',
+  penn: 'PENN',
+  harvard: 'HARVARD',
+  drexel: 'DREXEL',
+  duke: 'DUKE',
+  rutgers: 'RUTGERS',
+  cmu: 'CMU',
+  columbia: 'COLUMBIA',
+  nyu: 'NYU',
+  uiuc: 'UIUC',
+  vanderbilt: 'VANDERBILT',
+  percentProj: 'PERCENTAGE_PROJECT',
 };
 export const schoolsArray = Object.values(schools);
 
