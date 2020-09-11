@@ -7,7 +7,8 @@ export const signup = user => (
         }
     })
 );
-export const login = user => (
+
+export const login = user => {
     fetch(`${process.env.REACT_APP_API_URL}/session`, {
         method: "POST",
         body: JSON.stringify(user),
@@ -15,7 +16,9 @@ export const login = user => (
             "Content-Type": "application/json"
         }
     })
-);
+}
+    
+
 export const logout = () => (
     fetch("api/session", { method: "DELETE" })
 );

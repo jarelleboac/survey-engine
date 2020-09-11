@@ -21,6 +21,7 @@ export const login = user => async dispatch => {
     }
     return dispatch(receiveErrors(data));
 };
+
 export const signup = user => async dispatch => {
     const response = await apiUtil.signup(user);
     const data = await response.json();
@@ -30,6 +31,7 @@ export const signup = user => async dispatch => {
     }
     return dispatch(receiveErrors(data));
 };
+
 export const logout = () => async dispatch => {
     const response = await apiUtil.logout();
     const data = await response.json();

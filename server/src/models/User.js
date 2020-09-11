@@ -33,7 +33,10 @@ userSchema.pre('save', function () {
 
 userSchema.statics.doesNotExist = async (field) => await this.where(field).countDocuments() === 0;
 
-userSchema.methods.comparePasswords = (password) => compareSync(password, this.password);
+// eslint-disable-next-line func-names
+userSchema.methods.comparePasswords = function (password) {
+    return compareSync(password, this.password);
+};
 
 const User = mongoose.model('User', userSchema);
 

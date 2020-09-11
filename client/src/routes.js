@@ -1,5 +1,7 @@
 import React from 'react';
 import { Survey } from './scenes/Survey'
+import Login from './scenes/Login'
+import Signup from './scenes/Signup'
 import { SchoolAdminPanel } from './scenes/SchoolAdmin/AdminPanel'
 import { PercentAdminPanel } from './scenes/PercentAdmin/AdminPanel'
 import { roles } from '../../common/schema';
@@ -45,6 +47,12 @@ export const PageRouter = () => {
                         <Route key={route.path} path={route.path} render={() => <route.component />} />
                     ) : null;
                 })}
+                <Route path="/login">
+                    <Login />
+                </Route>
+                <Route path="/signup">
+                    <Signup />
+                </Route>
                 <Route path="/">
                     {() => {
                         switch (currentUser.userType) {
@@ -53,10 +61,11 @@ export const PageRouter = () => {
                         case roles.percentAdmin:
                             return <PercentAdminPanel />;
                         default:
-                            return <div>Please use the survey link in your email.</div>;
+                            return <div>Navigate to /login, /signup, or please use the survey link in your email to access your email.</div>;
                         }
                     }}
                 </Route>
+                
             </Switch>
         </Router>)
 }

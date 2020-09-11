@@ -1,13 +1,14 @@
 import express from 'express';
 
 import User from '../models/User';
-import { signIn, parseError, sessionizeUser } from '../utils/validation';
+import { signIn } from '../utils/validation';
+import { parseError, sessionizeUser } from '../utils';
 
 const { SESS_NAME } = process.env;
 
 const sessionRouter = express.Router();
 
-// Login route that will make the session for the user if login was sucessful
+// Login route that will make the session for the user if login was successful
 sessionRouter.post('/', async (req, res) => {
     try {
         const { email, password } = req.body;
