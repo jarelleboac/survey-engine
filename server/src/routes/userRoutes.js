@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import Joi from 'joi';
 import { signUp } from '../utils/validation';
 import { roles, schools } from '../schema';
+import { parseError, sessionizeUser } from '../utils';
 
 import User from '../models/User';
 
@@ -31,12 +31,15 @@ router.post('/', async (req, res) => {
         const newUser = new User({
             email, password, role: roles.unset, school: schools.unset,
         });
+        const sessionUser = sessionizeUser(newUser);
 
         await newUser.save();
-        res.send({ userId: newUser.id });
+
+        req.session.user = sessionUser;
+        res.send(sessionUser);
     } catch (err) {
         console.log(err);
-        res.status(400).send(err);
+        res.status(400).send(parseError(err));
     }
 });
 

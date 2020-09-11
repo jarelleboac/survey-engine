@@ -6,10 +6,16 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import session from 'express-session';
+import connectStore from 'connect-mongo';
 
 // Import our routes and middlewares
 import { userRoutes, emailRoutes, surveyRoutes } from './routes';
 import middlewares from './middlewares';
+
+const {
+    NODE_ENV, PORT, DATABASE_URL, SESS_NAME, SESS_SECRET, SESS_LIFETIME,
+} = process.env;
 
 // Initialize the server
 const app = express();
@@ -19,7 +25,7 @@ const app = express();
 
 // Connect to our database
 mongoose
-    .connect(process.env.DATABASE_URL, {
+    .connect(DATABASE_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -44,6 +50,25 @@ app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies
 app.use(express.json());
 
+const MongoStore = connectStore(session);
+const cookieAge = 1000 * 60 * 60;
+app.use(session({
+    name: SESS_NAME,
+    secret: SESS_SECRET,
+    saveUninitialized: false,
+    resave: false,
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        collection: 'session',
+        ttl: cookieAge / 1000,
+    }),
+    cookie: {
+        sameSite: true,
+        secure: NODE_ENV === 'production',
+        maxAge: cookieAge,
+    },
+}));
+
 app.get('/', (req, res) => {
     res.json({
         message: 'Hello World!',
@@ -61,7 +86,7 @@ app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 
 // Connect to the database and start the server
-const port = process.env.PORT || 1337;
+const port = PORT || 1337;
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);

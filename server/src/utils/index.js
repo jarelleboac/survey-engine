@@ -9,3 +9,10 @@ export const questionSchemaToMongooseModel = (questions) => {
 
     return obj;
 };
+
+export const parseError = (err) => {
+    if (err.isJoi) return err.details[0];
+    return JSON.stringify(err, Object.getOwnPropertyNames(err));
+};
+
+export const sessionizeUser = (user) => ({ userId: user.id, role: user.role, school: user.school });
