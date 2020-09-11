@@ -5,11 +5,11 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "npm run prod",
-		"build": "concurrently --raw npm:clean npm:transpile npm:transpile-common",
+		"build": "npm run clean && npm run transpile && npm run transpile-common",
 		"server": "node ./dist/index.js",
 		"dev": "NODE_ENV=development npm run build && npm run server",
 		"dev:concurrent": "NODE_ENV=development concurrently --names build,server -c bgBlue.bold,bgMagenta.bold npm:build npm:server",
-		"prod": "NODE_ENV=production concurrently npm:build npm:server",
+		"prod": "NODE_ENV=production npm run build && npm run server",
 		"transpile": "babel ./src --out-dir dist",
 		"transpile-common": "cd ../common && npm run transpile",
 		"clean": "rimraf dist",
