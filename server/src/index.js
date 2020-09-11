@@ -10,7 +10,9 @@ import session from 'express-session';
 import connectStore from 'connect-mongo';
 
 // Import our routes and middlewares
-import { userRoutes, emailRoutes, surveyRoutes } from './routes';
+import {
+    userRoutes, emailRoutes, surveyRoutes, sessionRoutes,
+} from './routes';
 import middlewares from './middlewares';
 
 const {
@@ -81,6 +83,7 @@ app.use('/api', apiRouter);
 apiRouter.use('/users', userRoutes);
 apiRouter.use('/emails', emailRoutes);
 apiRouter.use('/surveys', surveyRoutes);
+apiRouter.use('/session', sessionRoutes);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
