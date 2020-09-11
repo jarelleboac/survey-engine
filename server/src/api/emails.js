@@ -28,7 +28,7 @@ router.post('/updateEmailStatus', async (req, res) => {
 // TODO: this really needs to be admin-only for the specific school
 router.get('/:school', async (req, res) => {
     const emails = await Email.find({ school: req.params.school });
-    res.send(emails);
+    res.send(JSON.stringify(emails));
 });
 
 // Expects email to be an array of valid emails

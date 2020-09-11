@@ -10,7 +10,6 @@ function App() {
         <Theme>
             <div className="App">
                 <PageRouter />
-                
             </div>
         </Theme>
     );
