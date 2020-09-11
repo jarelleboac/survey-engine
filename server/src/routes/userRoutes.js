@@ -1,4 +1,7 @@
 import { Router } from 'express';
+import Joi from 'joi';
+import { signUp } from '../utils/validation';
+import { roles, schools } from '../schema';
 
 import User from '../models/User';
 
@@ -20,14 +23,20 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-router.post('/', async (req, res, next) => {
-    const user = new User(req.body);
-    console.log(req.body);
+router.post('/', async (req, res) => {
     try {
-        await user.save();
-        res.send(`Created user with the email ${user.error}`);
-    } catch (error) {
-        next(error);
+        const { email, password } = req.body;
+        await signUp.validate({ email, password });
+
+        const newUser = new User({
+            email, password, role: roles.unset, school: schools.unset,
+        });
+
+        await newUser.save();
+        res.send({ userId: newUser.id });
+    } catch (err) {
+        console.log(err);
+        res.status(400).send(err);
     }
 });
 
