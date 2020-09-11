@@ -11,6 +11,7 @@ This project is under construction with MongoDB, Express, Node.js, and React.
 - From root, repeat:
 ### Client
 `cd client`
+`npm start`
 
 ### Server
 
