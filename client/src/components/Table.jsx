@@ -9,7 +9,7 @@ export const fetchOptions = {
     },
 };
 
-export const Table =  () => {
+export const Table = () => {
     const wrapperRef = useRef(null);
 
     const grid = new Grid({
@@ -18,12 +18,12 @@ export const Table =  () => {
         server: {
             url: `${process.env.REACT_APP_API_URL}/emails/BROWN`,
             then: data => data.map(email => [email.email, email.school, email.status])
-        }
+        },
     });
   
     useEffect(() => {
         grid.render(wrapperRef.current);
     });
   
-    return <><div ref={wrapperRef} style={{width:'80%'}}/></>;
+    return <div ref={wrapperRef} style={{width:'80%'}}/>;
 }
