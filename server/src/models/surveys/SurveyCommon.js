@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { questionSchemaToMongooseModel } from '../../utils';
-import { commonQuestions, submissionStatusArray, schoolsArray } from '../../../../common/schema';
+import { commonQuestions, submissionStatusArray, schoolsArray } from '../../schema';
 
 // Generate a mongoose-compatible version of the question schema
 const mappedCommonQuestions = questionSchemaToMongooseModel(commonQuestions);

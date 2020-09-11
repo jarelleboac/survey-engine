@@ -20,14 +20,17 @@ This project is under construction with MongoDB, Express, Node.js, and React.
 
 `cd server`
 
-- Transpile the values in common
-`npm run transpile-common` 
+- Get the latest schema into local (needed for production)
+`npm run schema`
 
 - Transpile the values in server
 `npm run transpile`
 
 - Start the server
 `npm run watch:dev`
+
+- Deploy to Heroku with monorepo support
+`npm run heroku`
 
 ## Credits
 The basic frame for the project and hooking up the Express server was inspired by https://github.com/CodingGarden/travel-log. 

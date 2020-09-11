@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "npm run prod",
-		"build": "npm run clean && npm run transpile && npm run transpile-common",
+		"build": "npm run clean && npm run transpile",
 		"server": "node ./dist/index.js",
 		"dev": "NODE_ENV=development npm run build && npm run server",
 		"dev:concurrent": "NODE_ENV=development concurrently --names build,server -c bgBlue.bold,bgMagenta.bold npm:build npm:server",
@@ -14,7 +14,9 @@
 		"transpile-common": "cd ../common && npm run transpile",
 		"clean": "rimraf dist",
 		"watch:dev": "nodemon",
-		"test": "jest"
+		"test": "jest",
+		"schema": "cp ../common/schema.js ./src/schema.js",
+		"heroku": "npm run schema && git push heroku master"
 	},
 	"nodemonConfig": {
 		"exec": "npm run dev",

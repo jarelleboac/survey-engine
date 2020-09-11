@@ -1,6 +1,6 @@
 import BrownSurvey from './BrownSurvey';
 import SurveyCommon from './SurveyCommon';
-import { schools } from '../../../../common/schema';
+import { schools } from '../../schema';
 
 /**
  * Builds an object mapping the school dict to the different questions

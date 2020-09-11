@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { submissionStatus } from '../../../common/schema';
+import { submissionStatus } from '../schema';
 import Email from '../models/Email';
 
 const router = Router();

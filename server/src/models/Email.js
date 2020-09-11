@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import mongoose from 'mongoose';
-import { schoolsArray, submissionStatusArray } from '../../../common/schema';
+import { schoolsArray, submissionStatusArray } from '../schema';
 
 // Email schema that has no linkage to the survey itself
 const emailSchema = new mongoose.Schema({

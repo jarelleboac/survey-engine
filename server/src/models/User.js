@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { schoolsArray, rolesArray } from '../../../common/schema';
+import { schoolsArray, rolesArray } from '../schema';
 
 const userSchema = new mongoose.Schema({
     email: {

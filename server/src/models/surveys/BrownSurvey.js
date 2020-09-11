@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import SurveyCommon from './SurveyCommon';
-import { brownQuestions } from '../../../../common/schema';
+import { brownQuestions } from '../../schema';
 import { questionSchemaToMongooseModel } from '../../utils';
 
 // Generate a mongoose-compatible version of the question schema

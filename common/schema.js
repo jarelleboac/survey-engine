@@ -1,92 +1,99 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.harvardQuestions = exports.uPennQuestions = exports.brownQuestions = exports.commonQuestions = exports.demographicQuestions = exports.submissionStatusArray = exports.submissionStatus = exports.rolesArray = exports.roles = exports.schoolsArray = exports.schools = void 0;
-
 /**
  * Exports shared schemas between client and server. Holds information specific to certain
  * universities.
  */
-var schools = {
-  brown: 'BROWN',
-  uPenn: 'UPENN',
-  harvard: 'HARVARD',
-  percentProj: 'PERCENTAGE_PROJECT'
+export const schools = {
+  brown: 'BROWN', uPenn: 'UPENN', harvard: 'HARVARD', percentProj: 'PERCENTAGE_PROJECT',
 };
-exports.schools = schools;
-var schoolsArray = Object.values(schools); // Defines roles that are particular to admins. Vanilla users have no roles.
+export const schoolsArray = Object.values(schools);
 
-exports.schoolsArray = schoolsArray;
-var roles = {
-  schoolAdmin: 'SCHOOL_ADMIN',
-  percentAdmin: 'PERCENTAGE_PROJECT_ADMIN'
+// Defines roles that are particular to admins. Vanilla users have no roles.
+export const roles = { schoolAdmin: 'SCHOOL_ADMIN', percentAdmin: 'PERCENTAGE_PROJECT_ADMIN' };
+export const rolesArray = Object.values(roles);
+
+export const submissionStatus = {
+  unsent: 'UNSENT', sent: 'SENT', inProgress: 'IN-PROGRESS', completed: 'COMPLETED',
 };
-exports.roles = roles;
-var rolesArray = Object.values(roles);
-exports.rolesArray = rolesArray;
-var submissionStatus = {
-  unsent: 'UNSENT',
-  sent: 'SENT',
-  inProgress: 'IN-PROGRESS',
-  completed: 'COMPLETED'
-};
-exports.submissionStatus = submissionStatus;
-var submissionStatusArray = Object.values(submissionStatus);
+export const submissionStatusArray = Object.values(submissionStatus);
+
 /**
  * Schema for questions. Note that the "type" field should be for Mongoose
  */
+export const demographicQuestions = [
+  {
+    id: 'grade',
+    question: 'What is your grade?',
+    component: 'Checkbox',
+    options: ['Freshman',
+      'Sophomore',
+      'Junior',
+      'Senior',
+      'Super Senior',
+      'Graduate'],
+    required: true,
+    type: String,
+  },
+  {
+    id: 'firstName',
+    question: 'First name',
+    component: '',
+    required: true,
+    type: String,
+  },
+  {
+    id: 'lastName',
+    question: 'Last name',
+    component: '',
+    required: true,
+    type: String,
+  },
+  {
+    id: 'ethnicity',
+    question: 'What is your ethnicity?',
+    component: 'Radio',
+    options: ['American Indian or Alaskan Native',
+      'Asian',
+      'Black or African American',
+      'Native Hawaiian or other Pacific Islander',
+      'White',
+      'Other',
+      'Prefer not to say',
+    ],
+    required: true,
+    type: String,
+  },
+];
 
-exports.submissionStatusArray = submissionStatusArray;
-var demographicQuestions = [{
-  id: 'grade',
-  question: 'What is your grade?',
-  component: 'Checkbox',
-  options: ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Super Senior', 'Graduate'],
-  required: true,
-  type: String
-}, {
-  id: 'firstName',
-  question: 'First name',
-  component: '',
-  required: true,
-  type: String
-}, {
-  id: 'lastName',
-  question: 'Last name',
-  component: '',
-  required: true,
-  type: String
-}, {
-  id: 'ethnicity',
-  question: 'What is your ethnicity?',
-  component: 'Radio',
-  options: ['American Indian or Alaskan Native', 'Asian', 'Black or African American', 'Native Hawaiian or other Pacific Islander', 'White', 'Other', 'Prefer not to say'],
-  required: true,
-  type: String
-}]; // TODO: make this a function that can take custom params
+// TODO: make this a function that can take custom params
+export const commonQuestions = [
+  ...demographicQuestions,
+  {
+    id: 'food',
+    question: 'What is your favorite food?',
+    component: '',
+    required: true,
+    type: String,
+  },
+];
 
-exports.demographicQuestions = demographicQuestions;
-var commonQuestions = [].concat(demographicQuestions, [{
-  id: 'food',
-  question: 'What is your favorite food?',
-  component: '',
-  required: true,
-  type: String
-}]);
 /**
  * QUESTIONS SPECIFIC TO SCHOOLS
  *
  * Note: please make the ID field different from any other questions
  */
+export const brownQuestions = [
 
-exports.commonQuestions = commonQuestions;
-var brownQuestions = [];
-exports.brownQuestions = brownQuestions;
-var uPennQuestions = [];
-exports.uPennQuestions = uPennQuestions;
-var harvardQuestions = []; // /**
+];
+
+export const uPennQuestions = [
+
+];
+
+export const harvardQuestions = [
+
+];
+
+// /**
 //  * Builds an object mapping the school dict to the different questions. Actually probably don't need to use this yet
 //  */
 // const mapSchoolsToQuestions = () => {
@@ -95,8 +102,7 @@ var harvardQuestions = []; // /**
 //   schoolsToQuestions[schools.brown] = brownQuestions;
 //   schoolsToQuestions[schools.uPenn] = uPennQuestions;
 //   schoolsToQuestions[schools.harvard] = harvardQuestions;
+
 //   return schoolsToQuestions;
 // };
 // export const schoolsToQuestions = mapSchoolsToQuestions();
-
-exports.harvardQuestions = harvardQuestions;
