@@ -92,7 +92,7 @@ export function Survey() {
 
     return (
         <>
-            <div className="survey-container">
+            <div className="container">
                 <div id="logo-container">
                     <img src="logo.png" id="logo" alt="% project logo"/>
                 </div>

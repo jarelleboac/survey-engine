@@ -21,7 +21,7 @@ export const routes = [
     {
         authLevel: [roles.schoolAdmin],
         component: SchoolAdminPanel,
-        displayText: 'Dashboard',
+        displayText: 'School Admin Dashboard',
         path: '/schoolAdmin',
     },
     {

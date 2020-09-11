@@ -20,10 +20,10 @@ export const CSVUpload = () => {
 
     const sendEmails = () => {
         if (!uploaded) {
-            setMessage("Please upload emails.");
+            setMessage("Please upload a CSV containing emails first.");
             return;
         } else if (!validEmails(emails)) {
-            setMessage("Please make sure your emails are valid.")
+            setMessage("Please make sure your emails are valid emails.")
             return;
         }
         // Ready to dispatch emails to API
@@ -35,23 +35,26 @@ export const CSVUpload = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ emails: emails })
             })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw Error(res.statusText)
+                else return res.json()
+            })
             .then(res => setMessage(res.message))
             .catch(error => {
-                console.log(error)
+                console.error(error)
                 setMessage(`Error: ${error.msg}`);
             });
     }
 
     return(
-        <>
+        <div className="csv-upload">
             <CSVReader onFileLoaded={(data, fileInfo) => {
                 setUploaded(true)
                 setEmails(data.flat())
             }
             } />
             <Button onClick={sendEmails}>Upload</Button>
-        </>
+        </div>
     )
 
 }

@@ -25,5 +25,5 @@ export const Table = () => {
         grid.render(wrapperRef.current);
     });
   
-    return <div ref={wrapperRef} style={{width:'80%'}}/>;
+    return <div className="table" ><div ref={wrapperRef} style={{width:'80%'}}/></div>;
 }
