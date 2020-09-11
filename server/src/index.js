@@ -24,7 +24,7 @@ mongoose
         useUnifiedTopology: true,
         useCreateIndex: true,
     })
-    .then(console.log(`DB connection successful at ${process.env.DATABASE_URL}`))
+    .then(console.log('DB connection successful'))
     .catch((error) => console.log(error));
 
 // Perform basic logging of requests [could be disabled for perfect security after dev]
