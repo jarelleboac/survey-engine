@@ -1,7 +1,8 @@
 export const signup = user => (
-    fetch(`${process.env.REACT_APP_API_URL}/users`, {
+    fetch(`${process.env.REACT_APP_API_URL}/users/`, {
         method: "POST",
         body: JSON.stringify(user),
+        credentials: 'include',
         headers: {
             "Content-Type": "application/json"
         }
@@ -9,9 +10,10 @@ export const signup = user => (
 );
 
 export const login = user => (
-    fetch(`${process.env.REACT_APP_API_URL}/session`, {
+    fetch(`${process.env.REACT_APP_API_URL}/session/`, {
         method: "POST",
         body: JSON.stringify(user),
+        credentials: 'include',
         headers: {
             "Content-Type": "application/json"
         }
@@ -20,11 +22,11 @@ export const login = user => (
     
 
 export const logout = () => (
-    fetch("api/session", { method: "DELETE" })
+    fetch(`${process.env.REACT_APP_API_URL}/session/`, { method: "DELETE", credentials: 'include', })
 );
 
 export const checkLoggedIn = async () => {
-    const response = await fetch('/api/session');
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/session/`, {credentials: 'include',});
     const { user } = await response.json();
     let preloadedState = {};
     if (user) {

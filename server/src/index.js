@@ -44,6 +44,7 @@ app.use(helmet());
 // Allow CORS from the frontend
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
+    credentials: true,
 }));
 
 // Parse body of HTTP requests

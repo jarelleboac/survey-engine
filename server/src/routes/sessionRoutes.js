@@ -28,11 +28,12 @@ sessionRouter.post('/', async (req, res) => {
 });
 
 // Handles logging out
-sessionRouter.delete('', ({ session }, res) => {
+sessionRouter.delete('/', (req, res) => {
+    console.log(req);
     try {
-        const { user } = session;
+        const { user } = req.session;
         if (user) {
-            session.destroy((err) => {
+            req.session.destroy((err) => {
                 if (err) throw (err);
                 res.clearCookie(SESS_NAME);
                 res.send(user);
@@ -46,7 +47,7 @@ sessionRouter.delete('', ({ session }, res) => {
 });
 
 // This checks if a user is logged in or not. It will either be the user or undefined.
-sessionRouter.get('', ({ session: { user } }, res) => {
+sessionRouter.get('/', ({ session: { user } }, res) => {
     res.send({ user });
 });
 

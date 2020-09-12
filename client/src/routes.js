@@ -5,8 +5,10 @@ import Signup from './scenes/Signup'
 import { SchoolAdminPanel } from './scenes/SchoolAdmin/AdminPanel'
 import { PercentAdminPanel } from './scenes/PercentAdmin/AdminPanel'
 import { roles } from '../../common/schema';
-import {useSelector} from 'react-redux'
-import {jsx} from 'theme-ui'
+import {useSelector, useDispatch} from 'react-redux'
+import {jsx, Button} from 'theme-ui'
+import {logout} from './actions/session'
+
 
 import {
     Switch,
@@ -70,6 +72,7 @@ export const PageSwitches = () => {
 
 const Frame = () => {
     const session = useSelector(state => state.session)
+    const dispatch = useDispatch()
     
     if (window.location.pathname.startsWith('/login')) {
         return <Redirect to="/dashboard" />;
@@ -108,6 +111,7 @@ const Frame = () => {
                     }}>
     About
                 </Link>
+                <Button onClick={() => dispatch(logout())}>Log out</Button>
             </header>
             <PageSwitches />
 
