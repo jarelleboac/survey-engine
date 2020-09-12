@@ -113,8 +113,6 @@ const Frame = () => {
                 <Button onClick={() => dispatch(logoutAction())}>Log out</Button>
             </header>
             <PageSwitches />
-
-
         </div>)
 };
 

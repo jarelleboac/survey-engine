@@ -32,7 +32,7 @@ body,
     width: auto; 
 }
 
-.survey, .table {
+.survey, .table, .login {
     grid-area: main;
 }
 
