@@ -1,15 +1,12 @@
 import React from "react";
-import { connect, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginAction } from "../actions/session";
-import { Heading,  Label,
-    Input, Box, Button } from 'theme-ui'
+import { Heading,  Label, Input, Box, Button } from 'theme-ui'
 
-const mapStateToProps = ({ errors }) => ({
-    errors
-});
 
-const Login = ({ errors, login }) => {
+export const Login = () => {
+    const errors = useSelector(state => state.errors)
     const dispatch = useDispatch()
     const handleSubmit = e => {
         e.preventDefault();
@@ -31,10 +28,11 @@ const Login = ({ errors, login }) => {
                     className="login"
                 >
                     <Heading>Login</Heading>
-                    <Label htmlFor='username'>Username</Label>
+                    <Label htmlFor='email'>Email</Label>
                     <Input
-                        name='username'
-                        id='username'
+                        name='email'
+                        type='email'
+                        id='email'
                         mb={3}
                     />
                     <Label htmlFor='password'>Password</Label>
@@ -53,7 +51,3 @@ const Login = ({ errors, login }) => {
         </>
     );
 };
-
-export default connect(
-    mapStateToProps,
-)(Login);

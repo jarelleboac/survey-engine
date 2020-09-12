@@ -1,45 +1,52 @@
 import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { signupAction } from "../actions/session";
+import { Heading,  Label, Input, Box, Button } from 'theme-ui'
 
-const mapStateToProps = ({ errors }) => ({
-    errors
-});
-const mapDispatchToProps = dispatch => ({
-    signupAction: user => dispatch(signupAction(user))
-});
-
-export const Signup = ({ errors, signupAction }) => {
+export const Signup = () => {
+    const errors = useSelector(state => state.errors)
+    const dispatch = useDispatch()
     const handleSubmit = e => {
         e.preventDefault();
         const user = {
             email: e.target[0].value,
-            password: e.target[1].value
+            password: e.target[1].value,
         };
-        signupAction(user);
-    };
+        dispatch(signupAction(user));
+    }
+
     return (
         <>
-            <h1>Signup</h1>
-            <p>{errors}</p>
-            <form onSubmit={handleSubmit}>
-                <label>
-          Email:
-                    <input type="email" name="email" />
-                </label>
-                <label>
-          Password:
-                    <input type="password" name="password" />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
-            <Link to="/login">Login</Link>
+            <div className="container">
+                <div id="logo-container">
+                    <img src="logo.png" id="logo" alt="% project logo"/>
+                </div>
+                <Box
+                    as='form'
+                    onSubmit={e => handleSubmit(e)}
+                    className="login"
+                >
+                    <Heading>Signup</Heading>
+                    <Label htmlFor='email'>Email</Label>
+                    <Input
+                        name='email'
+                        type='email'
+                        id='email'
+                        mb={3}
+                    />
+                    <Label htmlFor='password'>Password</Label>
+                    <Input
+                        type='password'
+                        name='password'
+                        id='password'
+                        mb={3}
+                    />
+                    <p>{errors}</p>
+
+                    <Button>Submit</Button>
+                </Box>
+                
+            </div>
         </>
     );
 };
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Signup);

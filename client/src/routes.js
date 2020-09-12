@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { Survey } from './scenes/Survey'
-import Login from './scenes/Login'
-import Signup from './scenes/Signup'
+import { Login } from './scenes/Login'
+import { Signup}  from './scenes/Signup'
 import { SchoolAdminPanel } from './scenes/SchoolAdmin/AdminPanel'
 import { PercentAdminPanel } from './scenes/PercentAdmin/AdminPanel'
+import { Dashboard } from './scenes/Dashboard'
 import { roles } from '../../common/schema';
 import {useSelector, useDispatch} from 'react-redux'
 import {jsx, Button} from 'theme-ui'
@@ -17,10 +18,6 @@ import {
     Link
 } from "react-router-dom";
 
-
-const AuthorizedRoute = () => {
-    
-}
 
 export const routes = [
     {
@@ -45,31 +42,35 @@ export const routes = [
 
 
 export const PageSwitches = () => {
-    let currentUser = {userType: roles.schoolAdmin}
+    const session = useSelector(state => state.session)
     return (
         <Switch>
             {routes.map(route => {
-                return route.authLevel.includes(currentUser.userType) ? (
+                return route.authLevel.includes(session.role) ? (
                     <Route key={route.path} path={route.path} render={() => <route.component />} />
                 ) : null;
             })}
+            <Route path="/login" component={Login} />
+            {/* <Route path="/signup" component={Signup} /> */}
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/">
                 {() => {
-                    switch (currentUser.userType) {
+                    switch (session.role) {
                     case roles.schoolAdmin:
                         return <SchoolAdminPanel />;
                     case roles.percentAdmin:
                         return <PercentAdminPanel />;
                     default:
-                        return <div>Navigate to /login, /signup, or please use the survey link in your email to access your email.</div>;
+                        return <div className="default">Navigate to /login, /signup, or please use the survey link in your email to access your email.</div>;
                     }
                 }}
-            </Route>  
+            </Route>
+
         </Switch>)
 }
 
 const Frame = () => {
-    const session = useSelector(state => state.session)
+    
     const dispatch = useDispatch()
     
     if (window.location.pathname.startsWith('/login')) {
@@ -87,31 +88,15 @@ const Frame = () => {
                     alignItems: 'center',
                     variant: 'styles.header',
                 }}
-                className="menu">
-                <Link to='/'
-                    sx={{
-                        variant: 'styles.navlink',
-                        p: 2,
-                    }}>
-    Hello
-                </Link>
-                <div sx={{ mx: 'auto' }} />
-                <Link to='/blog'
-                    sx={{
-                        variant: 'styles.navlink',
-                        p: 2,
-                    }}>
-    Blog
-                </Link>
-                <Link to='/about'
-                    sx={{
-                        variant: 'styles.navlink',
-                        p: 2,
-                    }}>
-    About
-                </Link>
+                className="header">
+                <Link to="/dashboard" sx={{
+                    variant: 'styles.navlink',
+                    p: 2,
+                }}>Dashboard</Link>
                 <Button onClick={() => dispatch(logoutAction())}>Log out</Button>
             </header>
+           
+
             <PageSwitches />
         </div>)
 };

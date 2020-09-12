@@ -29,7 +29,7 @@ export const CSVUpload = () => {
         // Ready to dispatch emails to API
         // POST request using fetch with error handling
         console.log(emails)
-        fetch(`${process.env.REACT_APP_API_URL}/emails/${school}`, 
+        fetch(`${process.env.REACT_APP_API_URL}/email/${school}`, 
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

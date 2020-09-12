@@ -81,9 +81,9 @@ app.get('/', (req, res) => {
 // import and define our apis
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
-apiRouter.use('/users', userRoutes);
-apiRouter.use('/emails', emailRoutes);
-apiRouter.use('/surveys', surveyRoutes);
+apiRouter.use('/user', userRoutes);
+apiRouter.use('/email', emailRoutes);
+apiRouter.use('/survey', surveyRoutes);
 apiRouter.use('/session', sessionRoutes);
 
 app.use(middlewares.notFound);

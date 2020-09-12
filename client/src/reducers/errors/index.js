@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER } from "../../actions/session";
+import { RECEIVE_CURRENT_USER, RESET_PASSWORD } from "../../actions/session";
 import { CLEAR_ERRORS, RECEIVE_ERRORS } from "../../actions/error";
 
 export default (state = "", { message, type }) => {
@@ -8,6 +8,7 @@ export default (state = "", { message, type }) => {
         return message;
     case RECEIVE_CURRENT_USER:
     case CLEAR_ERRORS:
+    case RESET_PASSWORD:
         return "";
     default:
         return state;

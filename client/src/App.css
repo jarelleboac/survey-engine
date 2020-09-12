@@ -32,11 +32,11 @@ body,
     width: auto; 
 }
 
-.survey, .table, .login {
+.survey, .table, .login, .default {
     grid-area: main;
 }
 
-.menu {
+.header {
   grid-area: head;
 }
 

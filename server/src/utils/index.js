@@ -11,6 +11,7 @@ export const questionSchemaToMongooseModel = (questions) => {
 };
 
 export const parseError = (err) => {
+    console.log(err.isJoi);
     if (err.isJoi) return err.details[0];
     return JSON.stringify(err, Object.getOwnPropertyNames(err));
 };

@@ -4,6 +4,8 @@ import { receiveErrors } from "./error";
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const CHECK_LOGGED_IN = 'CHECK_LOGGED_IN'
+export const RESET_PASSWORD = 'RESET_PASSWORD'
+export const CLEAR_MESSAGE = 'CLEAR_MESSAGE'
 
 const receiveCurrentUser = user => ({
     type: RECEIVE_CURRENT_USER,
@@ -17,6 +19,15 @@ const logoutCurrentUser = () => ({
 const checkLoggedIn = user => ({
     type: CHECK_LOGGED_IN,
     user
+})
+
+const resetPassword = data => ({
+    type: RESET_PASSWORD,
+    data
+})
+
+const clearMessage = () => ({
+    type: CLEAR_MESSAGE
 })
 
 export const loginAction = user => async dispatch => {
@@ -59,3 +70,17 @@ export const checkLoggedInAction = () => async dispatch => {
     return dispatch(receiveErrors(data));
 }
 
+export const resetPasswordAction = user => async dispatch => {
+    try {
+        dispatch(clearMessage())
+        const response = await apiUtil.resetPassword(user);
+        const data = await response.json();
+        if (response.ok) {
+            return dispatch(resetPassword(data))
+        }
+        
+        return dispatch(receiveErrors(data));
+    } catch(err) {
+        return dispatch(receiveErrors(err))
+    }
+}

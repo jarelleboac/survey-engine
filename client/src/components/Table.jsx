@@ -1,6 +1,7 @@
 import { Grid } from "gridjs";
 import "gridjs/dist/theme/mermaid.css";
 import React, {useRef, useState, useEffect} from 'react'
+import {useSelector} from 'react-redux'
 
 
 export const fetchOptions = {
@@ -11,12 +12,13 @@ export const fetchOptions = {
 
 export const Table = () => {
     const wrapperRef = useRef(null);
+    const session = useSelector(state => state.session)
 
     const grid = new Grid({
         search: true,
         columns: ['Email', 'School', 'Status'],
         server: {
-            url: `${process.env.REACT_APP_API_URL}/emails/BROWN`,
+            url: `${process.env.REACT_APP_API_URL}/email/${session.school}`,
             then: data => data.map(email => [email.email, email.school, email.status])
         },
     });
