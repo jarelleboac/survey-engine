@@ -7,6 +7,7 @@ export const CHECK_LOGGED_IN = 'CHECK_LOGGED_IN'
 export const RESET_PASSWORD = 'RESET_PASSWORD'
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE'
 
+
 const receiveCurrentUser = user => ({
     type: RECEIVE_CURRENT_USER,
     user
@@ -30,11 +31,14 @@ const clearMessage = () => ({
     type: CLEAR_MESSAGE
 })
 
+
 export const loginAction = user => async dispatch => {
     const response = await apiUtil.login(user);
     const data = await response.json();
     if (response.ok) {
-        return dispatch(receiveCurrentUser(data));
+        console.log(data)
+        localStorage.setItem('jwtToken', `Bearer ${data.token}`)
+        return dispatch(receiveCurrentUser(data.session));
     }
     return dispatch(receiveErrors(data));
 };
@@ -53,6 +57,7 @@ export const logoutAction = () => async dispatch => {
     const response = await apiUtil.logout();
     const data = await response.json();
     if (response.ok) {
+        localStorage.removeItem('jwtToken')
         return dispatch(logoutCurrentUser());
     }
     return dispatch(receiveErrors(data));

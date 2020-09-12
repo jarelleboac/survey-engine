@@ -7,6 +7,9 @@ import {useSelector} from 'react-redux'
 export const fetchOptions = {
     headers: {
         'Content-Type': 'application/json',
+        credentials: 'include',
+        withCredentials: true,
+        Authorization: `${localStorage.jwtToken}`
     },
 };
 
@@ -18,7 +21,7 @@ export const Table = () => {
         search: true,
         columns: ['Email', 'School', 'Status'],
         server: {
-            url: `${process.env.REACT_APP_API_URL}/email/${session.school}`,
+            url: `${process.env.REACT_APP_API_URL}/email/${session.school}`, ...fetchOptions,
             then: data => data.map(email => [email.email, email.school, email.status])
         },
     });

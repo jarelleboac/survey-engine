@@ -1,5 +1,5 @@
 import express from 'express';
-
+import jwt from 'jsonwebtoken';
 import User from '../models/User';
 import { signIn } from '../utils/validation';
 import { parseError, sessionizeUser } from '../utils';
@@ -13,15 +13,34 @@ sessionRouter.post('/', async (req, res) => {
     try {
         const { email, password } = req.body;
         await signIn.validateAsync({ email, password });
-        const user = await User.findOne({ email });
+        User.findOne({ email }).then((user) => {
+            // Check if user exists
+            if (!user) {
+                throw new Error('Email not found');
+            }
 
-        if (user && user.comparePasswords(password)) {
-            const sessionUser = sessionizeUser(user);
-            req.session.user = sessionUser;
-            res.send(JSON.stringify(sessionUser));
-        } else {
-            throw new Error('Invalid login credentials');
-        }
+            if (user.comparePasswords(password)) {
+                const sessionUser = sessionizeUser(user);
+                req.session.user = sessionUser;
+
+                const payload = {
+                    id: user.userId,
+                };
+
+                jwt.sign(
+                    payload,
+                    process.env.JWT_SECRET,
+                    {
+                        expiresIn: 900, // 15 mins
+                    },
+                    (err, token) => {
+                        res.send(JSON.stringify({ session: sessionUser, token: `${token}` }));
+                    },
+                );
+            } else {
+                throw new Error('Invalid login credentials');
+            }
+        });
     } catch (err) {
         res.status(401).send(parseError(err));
     }

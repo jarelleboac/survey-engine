@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errors';
 import session from './session';
 import {
-    RESET_PASSWORD,
+    RESET_PASSWORD
 } from "../actions/session";
 import {
     RECEIVE_ERRORS
@@ -19,8 +19,10 @@ const messages = (state = "", { data, type }) => {
     }
 }
 
+
 export default combineReducers({
     session,
     errors,
-    messages
+    messages,
+
 });

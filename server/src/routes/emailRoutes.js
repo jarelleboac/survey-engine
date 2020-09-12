@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { submissionStatus } from '../schema';
+import passport from 'passport';
+import { submissionStatus, roles } from '../schema';
 import Email from '../models/Email';
 import { encrypt, decrypt, isEmail } from '../utils';
 
@@ -8,7 +9,7 @@ const router = Router();
 /**
  * Update a single email's status. Expects the emailToken and status in the body.
  */
-router.post('/updateEmailStatus', async (req, res) => {
+router.post('/updateEmailStatus', passport.authenticate('jwt'), async (req, res) => {
     const { emailToken, status } = req.body;
 
     // Should validate email before continuing
@@ -34,10 +35,15 @@ router.post('/updateEmailStatus', async (req, res) => {
 //     });
 // });
 
-// TODO: this really needs to be admin-only for the specific school
-router.get('/:school', async (req, res) => {
-    const emails = await Email.find({ school: req.params.school });
-    res.send(JSON.stringify(emails));
+router.get('/:school', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const { role, school } = req.user;
+
+    if (role === roles.schoolAdmin && school === req.params.school) {
+        console.log('hi');
+        Email.find({ school: req.params.school })
+            .then((emails) => res.send(JSON.stringify(emails)))
+            .catch((err) => res.status(400).send(JSON.stringify({ error: err.message })));
+    }
 });
 
 // Expects email to be an array of valid emails. Allows adding emails to that school
