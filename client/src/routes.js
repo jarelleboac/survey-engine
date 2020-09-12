@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Survey } from './scenes/Survey'
 import Login from './scenes/Login'
 import Signup from './scenes/Signup'
@@ -7,7 +7,7 @@ import { PercentAdminPanel } from './scenes/PercentAdmin/AdminPanel'
 import { roles } from '../../common/schema';
 import {useSelector, useDispatch} from 'react-redux'
 import {jsx, Button} from 'theme-ui'
-import {logout} from './actions/session'
+import {logoutAction, checkLoggedInAction} from './actions/session'
 
 
 import {
@@ -16,6 +16,7 @@ import {
     Redirect,
     Link
 } from "react-router-dom";
+
 
 const AuthorizedRoute = () => {
     
@@ -52,9 +53,6 @@ export const PageSwitches = () => {
                     <Route key={route.path} path={route.path} render={() => <route.component />} />
                 ) : null;
             })}
-            <Route path="/login">
-                <Login />
-            </Route>
             <Route path="/">
                 {() => {
                     switch (currentUser.userType) {
@@ -88,7 +86,8 @@ const Frame = () => {
                     display: 'flex',
                     alignItems: 'center',
                     variant: 'styles.header',
-                }}>
+                }}
+                className="menu">
                 <Link to='/'
                     sx={{
                         variant: 'styles.navlink',
@@ -111,73 +110,38 @@ const Frame = () => {
                     }}>
     About
                 </Link>
-                <Button onClick={() => dispatch(logout())}>Log out</Button>
+                <Button onClick={() => dispatch(logoutAction())}>Log out</Button>
             </header>
             <PageSwitches />
 
 
         </div>)
-    // <ActionButtonContext.Provider value={{ ActionButton, update: setActionButton }}>
-    //     <Layout onFocus={resetScroll} sidebar={menuOpen}>
-    //         <div className="header">
-    //             <SpaceBetweenRow>
-    //                 <MenuIcon open={menuOpen} setOpen={setMenuOpen} />
-    //                 <Title color={STRINGS.ACCENT_COLOR} margin="1.5rem 0rem 0rem">
-    //                     <Switch>
-    //                         {routes.map(route => {
-    //                             return route.authLevel.includes(currentUser.userType) ? (
-    //                                 <Route key={route.path} path={route.path} render={() => route.displayText} />
-    //                             ) : null;
-    //                         })}
-    //                         <Route path="/">Dashboard</Route>
-    //                     </Switch>
-    //                 </Title>
-    //                 {ActionButton || null}
-    //             </SpaceBetweenRow>
-    //             <Rectangle />
-    //         </div>
-    //         <Sidebar setMenuOpen={setMenuOpen} />
-    //         <OverflowContainer className="content">
-    //             <Suspense fallback={<div>Loading...</div>}>
-    //                 <Switch>
-    //                     {routes.map(route => {
-    //                         return route.authLevel.includes(currentUser.userType) ? (
-    //                             <Route key={route.path} path={route.path} render={() => <route.component />} />
-    //                         ) : null;
-    //                     })}
-    //                     <Route path="/">
-    //                         {() => {
-    //                             switch (currentUser.userType) {
-    //                             case UserType.Organizer:
-    //                                 return <OrganizerDash />;
-    //                             case UserType.Sponsor:
-    //                                 return <SponsorDash />;
-    //                             case UserType.Hacker:
-    //                                 return <HackerDash />;
-    //                             default:
-    //                                 return <div>Dash not implemented for this user type.</div>;
-    //                             }
-    //                         }}
-    //                     </Route>
-    //                 </Switch>
-    //             </Suspense>
-    //         </OverflowContainer>
-    //     </Layout>
-    // </ActionButtonContext.Provider>
-    
 };
 
 
-export const StateMachine = () => {
-    const session = useSelector(state => state.session)
-    return session.userId && session.role && session.school ? 
-        (
-            <Frame />
-        ) : (
-            <Login />
-        )
-}
+
 
 export const Routes = () => {
+    const [ready, setReady] = useState(false);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        async function fetchData() {
+            await dispatch(checkLoggedInAction())
+            setReady(true)
+        }
+        fetchData()
+
+    },[])
+    
+    const StateMachine = () => {
+        const session = useSelector(state => state.session)
+        if (!ready) return null;
+        return session.userId && session.role && session.school ? 
+            (
+                <Frame />
+            ) : (
+                <Login />
+            )
+    }
     return(<StateMachine />)
 }

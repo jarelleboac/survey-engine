@@ -25,14 +25,17 @@ export const logout = () => (
     fetch(`${process.env.REACT_APP_API_URL}/session/`, { method: "DELETE", credentials: 'include', })
 );
 
-export const checkLoggedIn = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/session/`, {credentials: 'include',});
-    const { user } = await response.json();
-    let preloadedState = {};
-    if (user) {
-        preloadedState = {
-            session: user
-        };
-    }
-    return preloadedState;
-};
+// export const checkLoggedIn = async () => {
+//     const response = await fetch(`${process.env.REACT_APP_API_URL}/session/`, {credentials: 'include'});
+//     const { user } = await response.json();
+//     let preloadedState = {};
+//     if (user) {
+//         preloadedState = {
+//             session: user
+//         };
+//     }
+//     return preloadedState;
+// };
+
+export const checkLoggedIn = () => (
+    fetch(`${process.env.REACT_APP_API_URL}/session/`, {credentials: 'include'}))

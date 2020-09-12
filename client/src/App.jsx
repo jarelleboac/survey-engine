@@ -1,6 +1,5 @@
 import React from 'react';
 import Theme from './Theme'
-import { Survey } from './scenes/Survey';
 import {BrowserRouter} from 'react-router-dom'
 import {Routes} from "./routes"
 import { ToastContainer } from 'react-toastify';
@@ -12,10 +11,8 @@ function App() {
     return (
         <Theme>
             <BrowserRouter>
-                <div className="App">
-                    <Routes />
-                    <ToastContainer />
-                </div>
+                <Routes />
+                <ToastContainer />
             </BrowserRouter>
         </Theme>
     );

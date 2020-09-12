@@ -1,23 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { signup } from "../actions/session";
+import { signupAction } from "../actions/session";
 
 const mapStateToProps = ({ errors }) => ({
     errors
 });
 const mapDispatchToProps = dispatch => ({
-    signup: user => dispatch(signup(user))
+    signupAction: user => dispatch(signupAction(user))
 });
 
-export const Signup = ({ errors, signup }) => {
+export const Signup = ({ errors, signupAction }) => {
     const handleSubmit = e => {
         e.preventDefault();
         const user = {
             email: e.target[0].value,
             password: e.target[1].value
         };
-        signup(user);
+        signupAction(user);
     };
     return (
         <>

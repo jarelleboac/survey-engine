@@ -1,9 +1,21 @@
 html,
 body,
-#root,
-.App {
+#root {
   height: 100%;
   width: 100%;
+}
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 10% auto 10%;
+
+    grid-template-areas:
+          "logo head head head"
+          "side1 main main side2"
+          "footer footer footer footer";
+    grid-gap: 1rem;
 }
 
 #logo-container {
@@ -20,24 +32,11 @@ body,
     width: auto; 
 }
 
-.container {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 10% auto 10%;
-
-    grid-template-areas:
-          "logo head head head"
-          "side1 main main side2"
-          "footer footer footer footer";
-    grid-gap: 1rem;
-}
-
 .survey, .table {
     grid-area: main;
 }
 
-.header {
+.menu {
   grid-area: head;
 }
 

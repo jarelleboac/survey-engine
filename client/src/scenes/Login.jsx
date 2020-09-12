@@ -1,21 +1,20 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { login } from "../actions/session";
+import { loginAction } from "../actions/session";
 const mapStateToProps = ({ errors }) => ({
     errors
 });
-const mapDispatchToProps = dispatch => ({
-    login: user => dispatch(login(user))
-});
+
 const Login = ({ errors, login }) => {
+    const dispatch = useDispatch()
     const handleSubmit = e => {
         e.preventDefault();
         const user = {
             email: e.target[0].value,
             password: e.target[1].value,
         };
-        login(user);
+        dispatch(loginAction(user));
     }
     return (
         <>
@@ -39,5 +38,4 @@ const Login = ({ errors, login }) => {
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
 )(Login);
