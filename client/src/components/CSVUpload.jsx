@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-
+import {useSelector} from 'react-redux'
 
 import CSVReader from 'react-csv-reader'
 import { Button } from 'theme-ui'
@@ -11,8 +11,7 @@ export const CSVUpload = () => {
     const [emails, setEmails] = useState([])
     const [uploaded, setUploaded] = useState(false)
     const [message, setMessage] = useState("")
-    // TODO: NEEDS TO GET SCHOOL FROM THE CONTEXT AND AUTHED USER
-    const school = "BROWN"
+    const state = useSelector(state => state)
 
     useEffect(() => {
         if (message) triggerToast(message)
@@ -29,7 +28,7 @@ export const CSVUpload = () => {
         // Ready to dispatch emails to API
         // POST request using fetch with error handling
         console.log(emails)
-        fetch(`${process.env.REACT_APP_API_URL}/email/${school}`, 
+        fetch(`${process.env.REACT_APP_API_URL}/email/${state.session.school}`, 
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -48,7 +47,7 @@ export const CSVUpload = () => {
 
     return(
         <div className="csv-upload">
-            <CSVReader onFileLoaded={(data, fileInfo) => {
+            <CSVReader onFileLoaded={(data) => {
                 setUploaded(true)
                 setEmails(data.flat())
             }

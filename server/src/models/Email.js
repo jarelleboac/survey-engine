@@ -8,6 +8,7 @@ const emailSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Email is required'],
         unique: true,
+
     },
     school: {
         type: String,

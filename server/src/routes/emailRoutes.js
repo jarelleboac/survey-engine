@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { submissionStatus } from '../schema';
 import Email from '../models/Email';
+import { encrypt, decrypt, isEmail } from '../utils';
 
 const router = Router();
 
@@ -25,6 +26,14 @@ router.post('/updateEmailStatus', async (req, res) => {
     return res.status(400).send(`This email is already listed as ${submissionStatus.completed}.`);
 });
 
+// router.get('/decrypt', async (req, res) => {
+//     const allEmails = await Email.find();
+//     allEmails.forEach((email) => {
+//         console.log(email.email);
+//         console.log(decrypt(email.email));
+//     });
+// });
+
 // TODO: this really needs to be admin-only for the specific school
 router.get('/:school', async (req, res) => {
     const emails = await Email.find({ school: req.params.school });
@@ -33,28 +42,37 @@ router.get('/:school', async (req, res) => {
 
 // Expects email to be an array of valid emails. Allows adding emails to that school
 router.post('/:school', async (req, res) => {
-    console.log(req);
     const { emails } = req.body;
     // need to validate emails as well
     const { school } = req.params;
     let count = 0;
+    let invalid = 0;
+    let duplicates = 0;
     try {
         for (let i = 0; i < emails.length; i += 1) {
-            // Only add the email if it doesn't exist already
-            if (!Email.findOne({ email: emails[i] })) {
-                const emailModel = new Email(
-                    { email: emails[i], school, status: submissionStatus.unsent },
-                );
-                // eslint-disable-next-line no-await-in-loop
-                await emailModel.save();
-                count += 1;
+            if (isEmail(emails[i])) {
+                // Only add the email if it doesn't exist already
+                const encrypted = encrypt(emails[i]);
+                if (!Email.exists({ email: encrypted })) {
+                    const emailModel = new Email(
+                        { email: encrypted, school, status: submissionStatus.unsent },
+                    );
+
+                    // eslint-disable-next-line no-await-in-loop
+                    await emailModel.save();
+                    count += 1;
+                } else {
+                    duplicates += 1;
+                }
+            } else {
+                invalid += 1;
             }
         }
     } catch (err) {
         return res.status(400).send({ error: err.message });
     }
 
-    return res.send({ message: `${count} successfully added to ${school}` });
+    return res.send({ message: `${count} successfully added to ${school}. ${invalid} were invalid. There were ${duplicates} duplicates.` });
 });
 
 // TODO: sendEmails route for a specific school
