@@ -37,6 +37,10 @@ body,
     grid-area: main;
 }
 
+.header {
+  grid-area: head;
+}
+
 .csv-upload {
   grid-area: side2;
 }

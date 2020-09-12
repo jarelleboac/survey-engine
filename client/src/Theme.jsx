@@ -1,16 +1,23 @@
 import React from 'react'
 import { ThemeProvider } from 'theme-ui'
 import { funk } from '@theme-ui/presets'
+import theme from '@theme-ui/preset-base'
 
+// // example theme.js
+// const funkTheme = {
+//     ...funk,
+//     styles: {
+//         ...funk.styles,
+//     },
+// }
 
-// example theme.js
-const theme = {
-    ...funk,
+const themeObj = {
+    ...theme, 
     styles: {
-        ...funk.styles,
-    },
+        ...theme,
+    }
 }
 
 export default props => (
-    <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
+    <ThemeProvider theme={themeObj}>{props.children}</ThemeProvider>
 )
