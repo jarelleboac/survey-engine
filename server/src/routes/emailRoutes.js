@@ -39,46 +39,51 @@ router.get('/:school', passport.authenticate('jwt', { session: false }), (req, r
     const { role, school } = req.user;
 
     if (role === roles.schoolAdmin && school === req.params.school) {
-        console.log('hi');
         Email.find({ school: req.params.school })
             .then((emails) => res.send(JSON.stringify(emails)))
             .catch((err) => res.status(400).send(JSON.stringify({ error: err.message })));
+    } else {
+        res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
     }
 });
 
 // Expects email to be an array of valid emails. Allows adding emails to that school
-router.post('/:school', async (req, res) => {
+router.post('/:school', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const { role, school } = req.user;
+
     const { emails } = req.body;
     // need to validate emails as well
-    const { school } = req.params;
-    let count = 0;
-    let invalid = 0;
-    let duplicates = 0;
-    try {
-        for (let i = 0; i < emails.length; i += 1) {
-            if (isEmail(emails[i])) {
+    if (role === roles.schoolAdmin && school === req.params.school) {
+        let count = 0;
+        let invalid = 0;
+        let duplicates = 0;
+        try {
+            for (let i = 0; i < emails.length; i += 1) {
+                if (isEmail(emails[i])) {
                 // Only add the email if it doesn't exist already
-                const encrypted = encrypt(emails[i]);
-                if (!Email.exists({ email: encrypted })) {
-                    const emailModel = new Email(
-                        { email: encrypted, school, status: submissionStatus.unsent },
-                    );
+                    const encrypted = encrypt(emails[i]);
+                    if (!Email.exists({ email: encrypted })) {
+                        const emailModel = new Email(
+                            { email: encrypted, school, status: submissionStatus.unsent },
+                        );
 
-                    // eslint-disable-next-line no-await-in-loop
-                    await emailModel.save();
-                    count += 1;
+                        // eslint-disable-next-line no-await-in-loop
+                        await emailModel.save();
+                        count += 1;
+                    } else {
+                        duplicates += 1;
+                    }
                 } else {
-                    duplicates += 1;
+                    invalid += 1;
                 }
-            } else {
-                invalid += 1;
             }
+        } catch (err) {
+            return res.status(400).send({ error: err.message });
         }
-    } catch (err) {
-        return res.status(400).send({ error: err.message });
-    }
 
-    return res.send({ message: `${count} successfully added to ${school}. ${invalid} were invalid. There were ${duplicates} duplicates.` });
+        return res.send({ message: `${count} successfully added to ${school}. ${invalid} were invalid. There were ${duplicates} duplicates.` });
+    }
+    res.status(401).send({ error: 'Not authorized.' });
 });
 
 // TODO: sendEmails route for a specific school
