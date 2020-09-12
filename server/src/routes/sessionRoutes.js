@@ -18,7 +18,7 @@ sessionRouter.post('/', async (req, res) => {
         if (user && user.comparePasswords(password)) {
             const sessionUser = sessionizeUser(user);
             req.session.user = sessionUser;
-            res.send(sessionUser);
+            res.send(JSON.stringify(sessionUser));
         } else {
             throw new Error('Invalid login credentials');
         }

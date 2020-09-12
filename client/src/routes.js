@@ -10,8 +10,12 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Redirect
 } from "react-router-dom";
+
+const AuthorizedRoute = () => {
+    
+}
 
 export const routes = [
     {
@@ -39,20 +43,21 @@ export const PageRouter = () => {
     return (
         <Router>
             <Switch>
-                {routes.map(route => {
-                    // return route.authLevel.includes(currentUser.userType) ? (
-                    //     <Route key={route.path} path={route.path} render={() => <route.component />} />
-                    // ) : null;
-                    return route.authLevel.includes(currentUser.userType) ? (
-                        <Route key={route.path} path={route.path} render={() => <route.component />} />
-                    ) : null;
-                })}
+                
                 <Route path="/login">
                     <Login />
                 </Route>
                 <Route path="/signup">
                     <Signup />
                 </Route>
+                {routes.map(route => {
+                    // return route.authLevel.includes(currentUser.userType) ? (
+                    //     <Route key={route.path} path={route.path} render={() => <route.component />} />
+                    // ) : null;
+                    return route.authLevel.includes(currentUser.userType) ? (
+                        <Route key={route.path} path={route.path} render={() => <route.component />} />
+                    ) : <Redirect to='/login' />;
+                })}
                 <Route path="/">
                     {() => {
                         switch (currentUser.userType) {
