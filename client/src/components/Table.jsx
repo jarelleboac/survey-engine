@@ -20,9 +20,11 @@ export const Table = () => {
     const grid = new Grid({
         search: true,
         columns: ['Email', 'School', 'Status'],
+        fixedHeader: true,
+        authWidth: false,
         server: {
             url: `${process.env.REACT_APP_API_URL}/email/${session.school}`, ...fetchOptions,
-            then: data => data.map(email => [email.email, email.school, email.status])
+            then: data => data.map(val => [val.email.length > 9 ? `${val.email.slice(0,9)}...` : val.email, val.school, val.status])
         },
     });
   
@@ -30,5 +32,5 @@ export const Table = () => {
         grid.render(wrapperRef.current);
     });
   
-    return <div className="table" ref={wrapperRef}/>;
+    return <div className="table" style={{height: '100%' }} ref={wrapperRef}/>;
 }

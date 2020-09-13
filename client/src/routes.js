@@ -1,3 +1,5 @@
+/** @jsx jsx */
+
 import React, {useEffect, useState} from 'react';
 import { Survey } from './scenes/Survey'
 import { Login } from './scenes/Login'
@@ -7,7 +9,7 @@ import { PercentAdminPanel } from './scenes/PercentAdmin/AdminPanel'
 import { Dashboard } from './scenes/Dashboard'
 import { roles } from '../../common/schema';
 import {useSelector, useDispatch} from 'react-redux'
-import {jsx, Button} from 'theme-ui'
+import { jsx, Button} from 'theme-ui'
 import {logoutAction, checkLoggedInAction} from './actions/session'
 
 
@@ -80,7 +82,9 @@ const Frame = () => {
     return (
         <div className="container">
             <div id="logo-container">
-                <img src="logo.png" id="logo" alt="% project logo"/>
+                <Link to="/">
+                    <img src="logo.png" id="logo" alt="% project logo"/>
+                </Link>
             </div>
             <header
                 sx={{
@@ -89,11 +93,17 @@ const Frame = () => {
                     variant: 'styles.header',
                 }}
                 className="header">
+                <div sx={{ mx: 'auto' }} />
+                <Link to="/" sx={{
+                    variant: 'styles.navlink',
+                    p: 2,
+                }}>Data</Link>
                 <Link to="/dashboard" sx={{
                     variant: 'styles.navlink',
                     p: 2,
+                   
                 }}>Dashboard</Link>
-                <Button onClick={() => dispatch(logoutAction())}>Log out</Button>
+                <Button sx={{ marginRight: '20px'}} onClick={() => dispatch(logoutAction())}>Log out</Button>
             </header>
            
 

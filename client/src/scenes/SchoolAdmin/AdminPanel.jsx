@@ -4,7 +4,6 @@ import React from 'react'
 export const SchoolAdminPanel = () => {
     return(
         <>
-
             <CSVUpload/>
             <Table />
         </>)
