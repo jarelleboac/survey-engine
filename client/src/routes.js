@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import { Survey } from './scenes/Survey'
 import { Login } from './scenes/Login'
-import { Signup}  from './scenes/Signup'
+// import { Signup}  from './scenes/Signup'
 import { SchoolAdminPanel } from './scenes/SchoolAdmin/AdminPanel'
 import { PercentAdminPanel } from './scenes/PercentAdmin/AdminPanel'
 import { Dashboard } from './scenes/Dashboard'
@@ -124,7 +124,7 @@ export const Routes = () => {
         }
         fetchData()
 
-    },[])
+    },[dispatch])
     
     const StateMachine = () => {
         const session = useSelector(state => state.session)

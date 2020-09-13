@@ -1,14 +1,14 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import {
     Label,
     Input,
     Select,
     Textarea,
-    Radio,
+    // Radio,
     Checkbox,
-    Slider,
-    Box,
+    // Slider,
+    // Box,
     Flex,
     Button,
     Container,
@@ -67,28 +67,28 @@ const questionToComponent = (question) => {
  *
  */
 
-// The following component is an example of your existing Input Component
-const CustomInput = ({ label, register, required }) => (
-    <>
-        <label>{label}</label>
-        <input name={label} ref={register({ required })} />
-    </>
-);
+// // The following component is an example of your existing Input Component
+// const CustomInput = ({ label, register, required }) => (
+//     <>
+//         <label>{label}</label>
+//         <input name={label} ref={register({ required })} />
+//     </>
+// );
 
-// you can use React.forwardRef to pass the ref too
-const CustomSelect = React.forwardRef(({ label, register }, ref) => (
-    <>
-        <label>{label}</label>
-        <select name={label} ref={ref}>
-            <option value="20">20</option>
-            <option value="30">30</option>
-        </select>
-    </>
-));
+// // you can use React.forwardRef to pass the ref too
+// const CustomSelect = React.forwardRef(({ label, register }, ref) => (
+//     <>
+//         <label>{label}</label>
+//         <select name={label} ref={ref}>
+//             <option value="20">20</option>
+//             <option value="30">30</option>
+//         </select>
+//     </>
+// ));
 
 export function Survey() {
-    const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => console.log(data);
+    // const { register, handleSubmit } = useForm();
+    // const onSubmit = (data) => console.log(data);
 
     return (
         <>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ThemeProvider } from 'theme-ui'
 import { funk } from '@theme-ui/presets'
-import theme from '@theme-ui/preset-base'
+// import theme from '@theme-ui/preset-base'
 
 // example theme.js
 const funkTheme = {

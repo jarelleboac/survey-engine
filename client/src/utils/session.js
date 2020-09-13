@@ -19,7 +19,7 @@ export const login = user => (
         }
     })
 )
-    
+
 
 export const logout = () => (
     fetch(`${process.env.REACT_APP_API_URL}/session/`, { method: "DELETE", credentials: 'include', })

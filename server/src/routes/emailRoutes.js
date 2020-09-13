@@ -6,26 +6,26 @@ import { encrypt, decrypt, isEmail } from '../utils';
 
 const router = Router();
 
-/**
- * Update a single email's status. Expects the emailToken and status in the body.
- */
-router.post('/updateEmailStatus', passport.authenticate('jwt'), async (req, res) => {
-    const { emailToken, status } = req.body;
+// /**
+//  * Update a single email's status. Expects the emailToken and status in the body.
+//  */
+// router.post('/updateEmailStatus', passport.authenticate('jwt'), async (req, res) => {
+//     const { emailToken, status } = req.body;
 
-    // Should validate email before continuing
+//     // Should validate email before continuing
 
-    // Find the email by the token
-    const email = await Email.findOne({ token: emailToken });
+//     // Find the email by the token
+//     const email = await Email.findOne({ token: emailToken });
 
-    // Update status and save
-    if (email.status !== submissionStatus.completed) {
-        email.status = status;
-        await email.save();
+//     // Update status and save
+//     if (email.status !== submissionStatus.completed) {
+//         email.status = status;
+//         await email.save();
 
-        return res.json({ message: `${emailToken} successfully updated to ${status}`, status: email.status });
-    }
-    return res.status(400).send(`This email is already listed as ${submissionStatus.completed}.`);
-});
+//         return res.json({ message: `${emailToken} successfully updated to ${status}`, status: email.status });
+//     }
+//     return res.status(400).send(`This email is already listed as ${submissionStatus.completed}.`);
+// });
 
 // router.get('/decrypt', async (req, res) => {
 //     const allEmails = await Email.find();
@@ -48,13 +48,13 @@ router.get('/:school', passport.authenticate('jwt', { session: false }), (req, r
 });
 
 // Expects email to be an array of valid emails. Allows adding emails to that school
-router.post('/:school', passport.authenticate('jwt', { session: false }), async (req, res) => {
+router.post('/:school', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     const { role, school } = req.user;
 
     const { emails } = req.body;
     // need to validate emails as well
     if (role === roles.schoolAdmin && school === req.params.school) {
-        let count = 0;
+        const count = 0;
         let invalid = 0;
         let duplicates = 0;
         try {
@@ -67,9 +67,7 @@ router.post('/:school', passport.authenticate('jwt', { session: false }), async 
                             { email: encrypted, school, status: submissionStatus.unsent },
                         );
 
-                        // eslint-disable-next-line no-await-in-loop
-                        await emailModel.save();
-                        count += 1;
+                        emailModel.save();
                     } else {
                         duplicates += 1;
                     }
@@ -83,27 +81,27 @@ router.post('/:school', passport.authenticate('jwt', { session: false }), async 
 
         return res.send({ message: `${count} successfully added to ${school}. ${invalid} were invalid. There were ${duplicates} duplicates.` });
     }
-    res.status(401).send({ error: 'Not authorized.' });
+    // next({ message: 'Not authorized.' });
 });
 
-// TODO: sendEmails route for a specific school
-// Expects email to be an array of valid emails
-router.post('/:school/sendEmails', async (req, res) => {
-    const { emails } = req.body;
+// // TODO: sendEmails route for a specific school
+// // Expects email to be an array of valid emails
+// router.post('/:school/sendEmails', async (req, res) => {
+//     const { emails } = req.body;
 
-    // need to validate emails as well
-    const { school } = req.params;
-    res.send('Not yet implemented');
-});
+//     // need to validate emails as well
+//     const { school } = req.params;
+//     res.send('Not yet implemented');
+// });
 
-/**
- * TODO: sendAllEmails route for a specific school. Will send out reminders to all complete surveys
- *
- */
-router.post('/:school/sendAllEmails', async (req, res) => {
-    // need to validate emails as well
-    const { school } = req.params;
-    res.send('Not yet implemented');
-});
+// /**
+//  * TODO: sendAllEmails route for a specific school. Will send out reminders to all complete surveys
+//  *
+//  */
+// router.post('/:school/sendAllEmails', async (req, res) => {
+//     // need to validate emails as well
+//     const { school } = req.params;
+//     res.send('Not yet implemented');
+// });
 
 export default router;

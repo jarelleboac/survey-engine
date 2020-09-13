@@ -9,14 +9,15 @@ const { SESS_NAME } = process.env;
 const sessionRouter = express.Router();
 
 // Login route that will make the session for the user if login was successful
-sessionRouter.post('/', async (req, res) => {
+sessionRouter.post('/', async (req, res, next) => {
     try {
         const { email, password } = req.body;
         await signIn.validateAsync({ email, password });
         User.findOne({ email }).then((user) => {
             // Check if user exists
             if (!user) {
-                throw new Error('Email not found');
+                next({ message: 'Email not found' });
+                return;
             }
 
             if (user.comparePasswords(password)) {
@@ -38,16 +39,16 @@ sessionRouter.post('/', async (req, res) => {
                     },
                 );
             } else {
-                throw new Error('Invalid login credentials');
+                next({ message: 'Invalid login credentials' });
             }
         });
     } catch (err) {
-        res.status(401).send(parseError(err));
+        next(parseError(err));
     }
 });
 
 // Handles logging out
-sessionRouter.delete('/', (req, res) => {
+sessionRouter.delete('/', (req, res, next) => {
     try {
         const { user } = req.session;
         if (user) {
@@ -55,7 +56,8 @@ sessionRouter.delete('/', (req, res) => {
             res.clearCookie(SESS_NAME);
             res.send(user);
         } else {
-            throw new Error('Something went wrong');
+            next('Something went wrong logging out');
+            return;
         }
     } catch (err) {
         res.status(422).send(parseError(err));

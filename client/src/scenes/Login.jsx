@@ -1,12 +1,10 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { loginAction } from "../actions/session";
 import { Heading,  Label, Input, Box, Button } from 'theme-ui'
 
 
 export const Login = () => {
-    const errors = useSelector(state => state.errors)
     const dispatch = useDispatch()
     const handleSubmit = e => {
         e.preventDefault();

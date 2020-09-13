@@ -7,40 +7,32 @@ import User from '../models/User';
 
 const router = Router();
 
-router.get('/', async (req, res, next) => {
-    try {
-        const users = await User.find();
-        return res.json(users);
-    } catch (error) {
-        next(error);
-    }
-});
+// // Make a new user
+// router.post('/', async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
+//         await signUp.validateAsync({ email, password });
 
-// Make a new user
-router.post('/', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        await signUp.validateAsync({ email, password });
+//         const newUser = new User({
+//             email, password, role: roles.unset, school: schools.unset,
+//         });
+//         const sessionUser = sessionizeUser(newUser);
 
-        const newUser = new User({
-            email, password, role: roles.unset, school: schools.unset,
-        });
-        const sessionUser = sessionizeUser(newUser);
+//         await newUser.save();
 
-        await newUser.save();
-
-        req.session.user = sessionUser;
-        res.send(sessionUser);
-    } catch (err) {
-        res.status(400).send(parseError(err));
-    }
-});
+//         req.session.user = sessionUser;
+//         res.send(sessionUser);
+//     } catch (err) {
+//         res.status(400).send(parseError(err));
+//     }
+// });
 
 // Route that handles resetting password
-router.post('/reset', async (req, res) => {
+router.post('/reset', async (req, res, next) => {
     try {
         if (req.body.email === '' || req.body.password === '' || req.body.newPassword === '') {
-            throw new Error('Please provide all parameters.');
+            next({ message: 'Please provide all parameters.' });
+            return;
         }
         const { email, password, newPassword } = req.body;
 
@@ -56,19 +48,20 @@ router.post('/reset', async (req, res) => {
 
             res.send(JSON.stringify({ message: 'Password successfully updated.' }));
         } else {
-            throw new Error('Invalid login credentials');
+            next({ message: 'Invalid login credentials.' });
+            return;
         }
     } catch (err) {
         res.status(401).send(parseError(err));
     }
 });
 
-router.get('/:userId', async (req, res) => {
-    const user = await User.findById(
-        req.params.userId,
-    );
-    return res.send(user);
-});
+// router.get('/:userId', async (req, res) => {
+//     const user = await User.findById(
+//         req.params.userId,
+//     );
+//     return res.send(user);
+// });
 
 // router.post('/', async (req, res, next) => {
 //     try {

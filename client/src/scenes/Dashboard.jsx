@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Heading,  Label, Input, Box, Button } from 'theme-ui'
 import { resetPasswordAction } from "../actions/session";
 
