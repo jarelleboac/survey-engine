@@ -20,7 +20,7 @@ import {
 import middlewares from './middlewares';
 
 const {
-    NODE_ENV, PORT, DATABASE_URL, SESS_NAME, SESS_SECRET, SESS_LIFETIME,
+    NODE_ENV, PORT, DATABASE_URL, SESS_NAME, SESS_SECRET,
 } = process.env;
 
 // Connect to our database

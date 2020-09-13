@@ -16,7 +16,7 @@
 		"watch:dev": "nodemon",
 		"test": "jest",
 		"schema": "cp ../common/schema.js ./src/schema.js",
-		"heroku": "npm run schema && git push heroku master"
+		"heroku": "npm run schema && git push heroku production"
 	},
 	"nodemonConfig": {
 		"exec": "npm run dev",
