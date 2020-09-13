@@ -48,21 +48,33 @@ router.get('/:school', passport.authenticate('jwt', { session: false }), (req, r
 });
 
 // Expects email to be an array of valid emails. Allows adding emails to that school
-router.post('/:school', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+router.post('/:school', passport.authenticate('jwt', { session: false }), async (req, res, next) => {
     const { role, school } = req.user;
 
     const { emails } = req.body;
-    // need to validate emails as well
+
     if (role === roles.schoolAdmin && school === req.params.school) {
         const count = 0;
         let invalid = 0;
         let duplicates = 0;
         try {
+            // Try to get all emails
+            const allSchoolEmails = await Email.find({ school }, (err, docs) => {
+                if (!err) {
+                    return docs;
+                }
+                res.status(400).send(JSON.stringify({ error: err.message }));
+                next();
+            });
+
+            // Decrypt all emails
+            const decryptedEmails = allSchoolEmails.map((model) => decrypt(model.email));
+
             for (let i = 0; i < emails.length; i += 1) {
                 if (isEmail(emails[i])) {
-                // Only add the email if it doesn't exist already
-                    const encrypted = encrypt(emails[i]);
-                    if (!Email.exists({ email: encrypted })) {
+                    // Only add the email if it doesn't exist already in decrypted email
+                    if (decryptedEmails.indexOf(emails[i]) === -1) {
+                        const encrypted = encrypt(emails[i]);
                         const emailModel = new Email(
                             { email: encrypted, school, status: submissionStatus.unsent },
                         );
