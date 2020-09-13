@@ -42,7 +42,6 @@ export const Login = () => {
                         id='password'
                         mb={3}
                     />
-                    <p>{errors}</p>
 
                     <Button>Submit</Button>
                 </Box>

@@ -5,7 +5,7 @@ import { resetPasswordAction } from "../actions/session";
 
 export const Dashboard = () => {
     const dispatch = useDispatch()
-    const state = useSelector(state => state);
+
     const handleSubmit = e => {
         e.preventDefault();
         const user = {
@@ -43,8 +43,7 @@ export const Dashboard = () => {
                     id='newPassword'
                     mb={3}
                 />
-                <p>{state.errors}</p>
-                <p>{state.messages}</p>
+
 
                 <Button>Reset Password</Button>
             </Box>

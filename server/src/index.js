@@ -85,6 +85,13 @@ const {
 
     const MongoStore = connectStore(session);
     const cookieAge = 1000 * 60 * 60;
+    const cookie = { sameSite: true, maxAge: cookieAge };
+
+    if (NODE_ENV === 'production') {
+        app.set('trust proxy', 1); // trust first proxy
+        cookie.secure = true; // serve secure cookies
+    }
+
     app.use(session({
         name: SESS_NAME,
         secret: SESS_SECRET,
@@ -95,11 +102,7 @@ const {
             collection: 'session',
             ttl: cookieAge / 1000,
         }),
-        cookie: {
-            sameSite: true,
-            secure: NODE_ENV === 'production',
-            maxAge: cookieAge,
-        },
+        cookie,
     }));
 
     app.get('/', (req, res) => {

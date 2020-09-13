@@ -7,11 +7,13 @@ import {
 import {
     RECEIVE_ERRORS
 } from "../actions/error"
+import { triggerToast } from '../utils';
 
 const messages = (state = "", { data, type }) => {
     Object.freeze(state);
     switch (type) {
     case RESET_PASSWORD:
+        triggerToast(data.message);
         return data.message;
     case RECEIVE_ERRORS:
     default:
