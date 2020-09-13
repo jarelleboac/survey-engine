@@ -17,7 +17,9 @@ export const parseError = (err) => {
     return JSON.stringify(err, Object.getOwnPropertyNames(err));
 };
 
-export const sessionizeUser = (user) => ({ userId: user.id, role: user.role, school: user.school });
+export const sessionizeUser = (user) => (
+    { userId: user.userId, role: user.role, school: user.school }
+);
 
 const { ENCRYPTION_KEY } = process.env; // Must be 256 bits (32 characters)
 const IV_LENGTH = 16; // For AES, this is always 16

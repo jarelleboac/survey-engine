@@ -51,11 +51,9 @@ sessionRouter.delete('/', (req, res) => {
     try {
         const { user } = req.session;
         if (user) {
-            req.session.destroy((err) => {
-                if (err) throw (err);
-                res.clearCookie(SESS_NAME);
-                res.send(user);
-            });
+            req.session = null;
+            res.clearCookie(SESS_NAME);
+            res.send(user);
         } else {
             throw new Error('Something went wrong');
         }
