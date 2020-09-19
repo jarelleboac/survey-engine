@@ -54,7 +54,7 @@ router.post('/:school', passport.authenticate('jwt', { session: false }), async 
     const { emails } = req.body;
 
     if (role === roles.schoolAdmin && school === req.params.school) {
-        const count = 0;
+        let count = 0;
         let invalid = 0;
         let duplicates = 0;
         try {
@@ -80,6 +80,7 @@ router.post('/:school', passport.authenticate('jwt', { session: false }), async 
                         );
 
                         emailModel.save();
+                        count += 1;
                     } else {
                         duplicates += 1;
                     }
