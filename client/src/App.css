@@ -32,17 +32,36 @@ body,
     width: auto; 
 }
 
-.survey, .table, .login, .default {
+.survey, .login, .default, .admin-container {
     grid-area: main;
+}
+
+.admin-container {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 25% 75%;
+
+    grid-template-areas:
+          "table"
+          "upload";
+    grid-gap: 1rem;
+}
+
+.table {
+  grid-area: table;
+}
+
+.csv-upload {
+  grid-area: upload;
 }
 
 .header {
   grid-area: head;
 }
 
-.csv-upload {
+ /* {
   grid-area: side2;
-}
+} */
 /* 
 .App-logo {
   height: 40vmin;

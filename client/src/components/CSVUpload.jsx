@@ -6,7 +6,6 @@ import { Button } from 'theme-ui'
 import {triggerToast, filterEmails} from '../utils'
 
 
-
 export const CSVUpload = () => {
     const [emails, setEmails] = useState([])
     const [uploaded, setUploaded] = useState(false)
@@ -57,7 +56,6 @@ export const CSVUpload = () => {
         <div className="csv-upload">
             <CSVReader onFileLoaded={(data) => {
                 setUploaded(true)
-                console.log(data)
                 setEmails(data.flat())
             }
             } />

@@ -40,7 +40,35 @@ router.get('/:school', passport.authenticate('jwt', { session: false }), (req, r
 
     if (role === roles.schoolAdmin && school === req.params.school) {
         Email.find({ school: req.params.school })
-            .then((emails) => res.send(JSON.stringify(emails)))
+            .then((emails) => {
+                let unsent = 0;
+                let sent = 0;
+                let inprogress = 0;
+                let completed = 0;
+                for (let i = 0; i < emails.length; i += 1) {
+                    switch (emails[i].status) {
+                    case submissionStatus.unsent:
+                        unsent += 1;
+                        break;
+                    case submissionStatus.sent:
+                        sent += 1;
+                        break;
+                    case submissionStatus.inProgress:
+                        inprogress += 1;
+                        break;
+                    case submissionStatus.completed:
+                        completed += 1;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                const total = unsent + sent + inprogress + completed;
+                const counts = {
+                    total, unsent, sent, inprogress, completed,
+                };
+                res.send(JSON.stringify(counts));
+            })
             .catch((err) => res.status(400).send(JSON.stringify({ error: err.message })));
     } else {
         res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
