@@ -22,6 +22,9 @@ export const CSVUpload = ({setFreshData}) => {
             setMessage("")
             return;
         } 
+        // Get rid of whitespace on every email
+        emailsRef.current = emailsRef.current.map(email => email.trim())
+
         const [validEmails, invalidEmails] = filterEmails(emailsRef.current)
         if (invalidEmails.length !== 0) {
             setMessage("Please make sure your emails are valid emails.")
@@ -53,6 +56,7 @@ export const CSVUpload = ({setFreshData}) => {
             });
     }
 
+    // Handler for the text input region
     const handleTextSubmit = (e) => {
         const results = readString(e.target[0].value).data.flat()
         emailsRef.current = results
