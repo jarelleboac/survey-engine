@@ -4,7 +4,9 @@ import {useSelector} from 'react-redux'
 import CSVReader from 'react-csv-reader'
 import { Button } from 'theme-ui'
 import {triggerToast, filterEmails} from '../utils'
+import {setCounts} from '../actions/email'
 
+// ${process.env.REACT_APP_API_URL}/email/${state.session.school}
 
 export const CSVUpload = () => {
     const [emails, setEmails] = useState([])

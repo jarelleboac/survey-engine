@@ -24,10 +24,10 @@ const messages = (state = "", { data, type }) => {
     }
 }
 
-const emails = (state = {total: 0, unsent: 0, sent: 0, inprogress: 0, completed: 0}, {data, type}) => {
+const emails = (state = {total: 0, unsent: 0, sent: 0, inprogress: 0, completed: 0}, {counts, type}) => {
     switch (type) {
     case SET_COUNTS:
-        return data;
+        return counts;
     default:
         return state;
     }

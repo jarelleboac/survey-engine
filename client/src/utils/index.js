@@ -12,3 +12,11 @@ export const validEmail = (email) => {
 export const getInvalidEmails = (emails) => emails.filter(email => !validEmail(email))
 
 export const filterEmails = (emails) => [emails.filter(email => validEmail(email)), emails.filter(email => !validEmail(email))]
+
+// Gets counts for the school
+export const getCounts = (school) => (fetch(`${process.env.REACT_APP_API_URL}/email/${school}`, 
+    {
+        headers: { 'Content-Type': 'application/json', credentials: 'include',
+            Authorization: `${localStorage.jwtToken}`,
+            withCredentials: true, }
+    }))

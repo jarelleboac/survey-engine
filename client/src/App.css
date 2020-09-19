@@ -32,11 +32,11 @@ body,
     width: auto; 
 }
 
-.survey, .login, .default, .admin-container {
+.survey, .login, .default, .admin-container, .csv-upload {
     grid-area: main;
 }
 
-.admin-container {
+/* .admin-container {
     height: 100%;
     display: grid;
     grid-template-rows: 25% 75%;
@@ -45,14 +45,15 @@ body,
           "table"
           "upload";
     grid-gap: 1rem;
-}
+} */
 
 .table {
   grid-area: table;
 }
 
 .csv-upload {
-  grid-area: upload;
+  margin-top: 20px;
+  grid-area: main;
 }
 
 .header {
