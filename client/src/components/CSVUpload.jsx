@@ -8,7 +8,7 @@ import {setCounts} from '../actions/email'
 
 // ${process.env.REACT_APP_API_URL}/email/${state.session.school}
 
-export const CSVUpload = () => {
+export const CSVUpload = ({setFreshData}) => {
     const [emails, setEmails] = useState([])
     const [uploaded, setUploaded] = useState(false)
     const [message, setMessage] = useState("")
@@ -45,6 +45,7 @@ export const CSVUpload = () => {
             })
             .then(res => {
                 setMessage(res.message)
+                setFreshData(false)
                 setMessage("")
             })
             .catch(error => {

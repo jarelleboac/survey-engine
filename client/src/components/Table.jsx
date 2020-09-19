@@ -4,7 +4,6 @@ import {useSelector} from 'react-redux'
 
 export const Table = () => {
     const emails = useSelector(state => state.emails)
-    console.log(emails)
     return (
         <div className="table">
             <Text>
