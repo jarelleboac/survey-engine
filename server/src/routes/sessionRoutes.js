@@ -32,7 +32,7 @@ sessionRouter.post('/', async (req, res, next) => {
                     payload,
                     process.env.JWT_SECRET,
                     {
-                        expiresIn: 900, // 15 mins
+                        expiresIn: 60 * 60, // 60 mins
                     },
                     (err, token) => {
                         res.send(JSON.stringify({ session: sessionUser, token: `${token}` }));
