@@ -9,9 +9,9 @@ import { PercentAdminPanel } from './scenes/PercentAdmin/AdminPanel'
 import { Dashboard } from './scenes/Dashboard'
 import { roles } from '../../common/schema';
 import {useSelector, useDispatch} from 'react-redux'
-import { jsx, Button} from 'theme-ui'
+import { jsx, Button } from 'theme-ui'
 import {logoutAction, checkLoggedInAction} from './actions/session'
-
+import {Heading} from 'theme-ui'
 
 import {
     Switch,
@@ -74,6 +74,7 @@ export const PageSwitches = () => {
 const Frame = () => {
     
     const dispatch = useDispatch()
+    const session = useSelector(state => state.session)
     
     if (window.location.pathname.startsWith('/login')) {
         return <Redirect to="/dashboard" />;
@@ -93,6 +94,7 @@ const Frame = () => {
                     variant: 'styles.header',
                 }}
                 className="header">
+                <Heading>{session.school}</Heading>
                 <div sx={{ mx: 'auto' }} />
                 <Link to="/" sx={{
                     variant: 'styles.navlink',
