@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import passport from 'passport';
 import { signUp, signIn } from '../utils/validation';
 import { roles, schools } from '../schema';
 import { parseError, sessionizeUser } from '../utils';
@@ -7,25 +8,54 @@ import User from '../models/User';
 
 const router = Router();
 
-// // Make a new user
-// router.post('/', async (req, res) => {
-//     try {
-//         const { email, password } = req.body;
-//         await signUp.validateAsync({ email, password });
+// For testing purposes only: Uncomment to create any type of user
+// Make a new user
+router.post('/test', async (req, res) => {
+    try {
+        const {
+            email, password, role, school,
+        } = req.body;
+        await signUp.validateAsync({ email, password });
 
-//         const newUser = new User({
-//             email, password, role: roles.unset, school: schools.unset,
-//         });
-//         const sessionUser = sessionizeUser(newUser);
+        const newUser = new User({
+            email, password, role, school,
+        });
+        const sessionUser = sessionizeUser(newUser);
 
-//         await newUser.save();
+        await newUser.save();
 
-//         req.session.user = sessionUser;
-//         res.send(sessionUser);
-//     } catch (err) {
-//         res.status(400).send(parseError(err));
-//     }
-// });
+        req.session.user = sessionUser;
+        res.send(sessionUser);
+    } catch (err) {
+        res.status(400).send(parseError(err));
+    }
+});
+
+// Make a new user
+router.post('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const currRole = req.user.role;
+
+    if (currRole === roles.percentAdmin) {
+        try {
+            const { email, password, role, school } = req.body;
+            await signUp.validateAsync({ email, password });
+
+            const newUser = new User({
+                email, password, role, school,
+            });
+            const sessionUser = sessionizeUser(newUser);
+
+            await newUser.save();
+
+            req.session.user = sessionUser;
+            res.send(JSON.stringify({ message: `User: ${email} successfully created` }));
+        } catch (err) {
+            res.status(400).send(parseError(err));
+        }
+    } else {
+        res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+});
 
 // Route that handles resetting password
 router.post('/reset', async (req, res, next) => {

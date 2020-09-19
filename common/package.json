@@ -8,7 +8,9 @@
     "transpile": "babel schema-raw.js --out-file schema.js"
   },
   "babel": {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "author": "Gabriel Ting <gabrielfting@gmail.com>",
   "license": "MIT",

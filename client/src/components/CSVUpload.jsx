@@ -87,7 +87,7 @@ export const CSVUpload = ({setFreshData}) => {
                     mb={3}
                 />
                 <Button>
-    Submit
+                    Submit
                 </Button>
             </Box>
         </>)
