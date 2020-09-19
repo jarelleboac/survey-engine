@@ -8,5 +8,7 @@ export const validEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
-// Checks to see if the entire list of values 
-export const validEmails = (emails) => emails.every((email) => validEmail(email))
+// Checks to see if the entire list of values are valid emails, returning the invalid emails
+export const getInvalidEmails = (emails) => emails.filter(email => !validEmail(email))
+
+export const filterEmails = (emails) => [emails.filter(email => validEmail(email)), emails.filter(email => !validEmail(email))]
