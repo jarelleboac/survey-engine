@@ -54,6 +54,7 @@ body,
 .csv-upload {
   margin-top: 20px;
   grid-area: main;
+  margin-bottom: 20px;
 }
 
 .header {
