@@ -25,7 +25,7 @@ export const Login = () => {
                     onSubmit={e => handleSubmit(e)}
                     className="login"
                 >
-                    <Heading>Login</Heading>
+                    <Heading className="section-header">Login</Heading>
                     <Label htmlFor='email'>Email</Label>
                     <Input
                         name='email'

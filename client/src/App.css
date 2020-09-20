@@ -61,6 +61,11 @@ body,
   grid-area: head;
 }
 
+.section-header {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
  /* {
   grid-area: side2;
 } */
