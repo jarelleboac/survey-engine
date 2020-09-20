@@ -10,26 +10,26 @@ const router = Router();
 
 // For testing purposes only: Uncomment to create any type of user
 // Make a new user
-router.post('/test', async (req, res) => {
-    try {
-        const {
-            email, password, role, school,
-        } = req.body;
-        await signUp.validateAsync({ email, password });
+// router.post('/test', async (req, res) => {
+//     try {
+//         const {
+//             email, password, role, school,
+//         } = req.body;
+//         await signUp.validateAsync({ email, password });
 
-        const newUser = new User({
-            email, password, role, school,
-        });
-        const sessionUser = sessionizeUser(newUser);
+//         const newUser = new User({
+//             email, password, role, school,
+//         });
+//         const sessionUser = sessionizeUser(newUser);
 
-        await newUser.save();
+//         await newUser.save();
 
-        req.session.user = sessionUser;
-        res.send(sessionUser);
-    } catch (err) {
-        res.status(400).send(parseError(err));
-    }
-});
+//         req.session.user = sessionUser;
+//         res.send(sessionUser);
+//     } catch (err) {
+//         res.status(400).send(parseError(err));
+//     }
+// });
 
 // Make a new user
 router.post('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
@@ -37,7 +37,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), async (req, r
 
     if (currRole === roles.percentAdmin) {
         try {
-            const { email, password, role, school } = req.body;
+            const {
+                email, password, role, school,
+            } = req.body;
             await signUp.validateAsync({ email, password });
 
             const newUser = new User({
