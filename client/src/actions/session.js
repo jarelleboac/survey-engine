@@ -5,6 +5,7 @@ export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const CHECK_LOGGED_IN = 'CHECK_LOGGED_IN'
 export const RESET_PASSWORD = 'RESET_PASSWORD'
+export const CREATE_USER = 'CREATE_USER'
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE'
 
 
@@ -27,10 +28,14 @@ const resetPassword = data => ({
     data
 })
 
+const createUser = ({ data }) => ({
+    type: CREATE_USER,
+    data
+})
+
 const clearMessage = () => ({
     type: CLEAR_MESSAGE
 })
-
 
 export const loginAction = user => async dispatch => {
     const response = await apiUtil.login(user);
@@ -83,6 +88,21 @@ export const resetPasswordAction = user => async dispatch => {
             return dispatch(resetPassword(data))
         }
         
+        return dispatch(receiveErrors(data));
+    } catch(err) {
+        return dispatch(receiveErrors(err))
+    }
+}
+
+export const createUserAction = user => async dispatch => {
+    try {
+        dispatch(clearMessage())
+        const response = await apiUtil.createUser(user);
+        const data = await response.json();
+        if (response.ok) {
+            return dispatch(receiveErrors(data)) //TODO: Change to createUser when it can trigger Toast
+        }
+
         return dispatch(receiveErrors(data));
     } catch(err) {
         return dispatch(receiveErrors(err))

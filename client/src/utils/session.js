@@ -39,3 +39,15 @@ export const resetPassword = user => (
         }
     })
 )
+
+export const createUser = user => (
+    fetch(`${process.env.REACT_APP_API_URL}/user/`, {
+        method: "POST",
+        body: JSON.stringify(user),
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json',
+            credentials: 'include',
+            Authorization: `${localStorage.jwtToken}`,
+            withCredentials: true, }
+    })
+)
