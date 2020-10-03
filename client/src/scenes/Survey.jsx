@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import {
     Label,
     Input,
@@ -50,18 +50,32 @@ const CustomRadio = ({question}) => {
     </>)
 }
 
+const CustomMultiCheckbox = ({ question }) => {
+    return (
+        <>  
+            <Text
+                sx={{
+                    fontSize: 4,
+                    fontWeight: 'bold',
+                }}>
+                {question.question}
+            </Text>
+            <MappedOptions options={question.options} />
+        </>)
+}
+
 const questionToComponent = (question) => {
     if (question.component === "Checkbox") {
         return (<CustomCheckbox question={question} />)
     } else if (question.component === "Radio") {
         return (<CustomRadio question={question} />)
+    } else if (question.component === 'MultiCheckbox') {
+        return (<CustomMultiCheckbox question={question} />)
     }
     return (<></>)
 }
 
-/**
- * Progress bar that shows how far we are in the survey
- */
+
 
 /**
  *
@@ -97,7 +111,7 @@ export function Survey() {
                 onSubmit={e => e.preventDefault()}
                 sx={{width: '80%', height: '80%', top: '50%'}}
                 className="survey">
-                <Label htmlFor='firstName'>First name</Label>
+                {/* <Label htmlFor='firstName'>First name</Label>
                 <Input
                     name='firstName'
                     id='firstName'
@@ -110,12 +124,6 @@ export function Survey() {
                     id='lastName'
                     mb={3}
                 />
-                {/* <Box>
-                    <Label mb={3}>
-                        <Checkbox />
-      Remember me
-                    </Label>
-                </Box> */}
                 <Label htmlFor='major'>Major</Label>
                 <Select name='major' id='major' mb={3}>
                     <option>CS</option>
@@ -128,7 +136,7 @@ export function Survey() {
                     id='comment'
                     rows='6'
                     mb={3}
-                />
+                /> */}
                 {/* <Flex mb={3}>
                         <Label>
                             <Radio name='letter' /> Alpha
@@ -153,3 +161,8 @@ export function Survey() {
         </>
     );
 }
+
+
+/**
+ * Progress bar that shows how far we are in the survey
+ */

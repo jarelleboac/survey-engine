@@ -3,8 +3,11 @@ import passport from 'passport';
 import { submissionStatus, roles } from '../schema';
 import Email from '../models/Email';
 import { encrypt, decrypt, isEmail } from '../utils';
+import { sendStatusEmail } from '../utils/aws';
 
 const router = Router();
+
+const { CORS_ORIGIN } = process.env;
 
 // /**
 //  * Update a single email's status. Expects the emailToken and status in the body.
@@ -135,14 +138,54 @@ router.post('/:school', passport.authenticate('jwt', { session: false }), async 
 //     res.send('Not yet implemented');
 // });
 
-// /**
-//  * TODO: sendAllEmails route for a specific school. Will send out reminders to all complete surveys
-//  *
-//  */
-// router.post('/:school/sendAllEmails', async (req, res) => {
-//     // need to validate emails as well
-//     const { school } = req.params;
-//     res.send('Not yet implemented');
-// });
+/**
+ * TODO: sendAllEmails route for a specific school. Should include the requestType in the body
+ *
+ */
+router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false }), (req, res) => {
+    // need to validate emails as well
+    const { reqSchool } = req.params;
+
+    const { role, school } = req.user;
+
+    const { requestType } = req.body;
+
+    let count = 0;
+    let error = 0;
+
+    if (role === roles.schoolAdmin && school === req.params.school) {
+        // Find emails e.g. type school: BROWN, status: UNSENT
+        Email.find({ school: reqSchool, status: requestType })
+            .then((emails) => {
+                // count = emails.length;
+                // Should only be decrypting emails that are of queried type
+
+                // const decryptedEmails = emails.reduce((emailAccumulator, email) => {
+                //     if (email.)
+                //     return emailAccumulator
+                // , []}
+                const decryptedEmails = emails.map((model) => ({ token: model.token, email: decrypt(model.email) }));
+
+                // await Promise.all(decryptedEmails.map(async (email) => {
+                //     // Make a survey URL for the thing that we need
+                //     const surveyUrl = `${CORS_ORIGIN}/survey/${email.token}`;
+                //     await sendStatusEmail(email, requestType, surveyUrl);
+                // }));
+
+                // TODO: Error checking is very sus here, not actually sure if this works properly.
+                decryptedEmails.forEach((email) => {
+                    // Make a survey URL for the thing that we need
+                    const surveyUrl = `${CORS_ORIGIN}/survey/${email.token}`;
+                    sendStatusEmail(email, requestType, surveyUrl).then((data) => {
+                        count += 1;
+                    }).catch((err) => { console.log(err); error += 1; });
+                });
+            });
+    } else {
+        res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+
+    return res.send({ message: `${count} emails were successfully sent. ${error} emails had an error.` });
+});
 
 export default router;

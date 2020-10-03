@@ -71,13 +71,18 @@ export const PageSwitches = () => {
         </Switch>)
 }
 
+// FIXME: Once survey routes are done, this will need to be routing users to the survey
 const Frame = () => {
     
     const dispatch = useDispatch()
     const session = useSelector(state => state.session)
     
     if (window.location.pathname.startsWith('/login')) {
-        return <Redirect to="/dashboard" />;
+        if (session.userId && session.role && session.school) {
+            return <Redirect to="/dashboard" />;
+        } else {
+            return <Redirect to="/login" />;
+        }
     }
 
     return (
@@ -114,13 +119,12 @@ const Frame = () => {
 };
 
 
-
-
 export const Routes = () => {
     const [ready, setReady] = useState(false);
     const dispatch = useDispatch()
     useEffect(() => {
         async function fetchData() {
+            // Check if there's a logged in user here
             await dispatch(checkLoggedInAction())
             setReady(true)
         }
@@ -130,15 +134,18 @@ export const Routes = () => {
     
     const StateMachine = () => {
         const session = useSelector(state => state.session)
+        const survey = {}
         if (!ready) {
             return (<div className="default">Lost connection with the server. Please contact the % project.</div>)
         }
-        return session.userId && session.role && session.school ? 
-            (
-                <Frame />
-            ) : (
-                <Login />
-            )
+        
+        if (session.userId && session.role && session.school) {
+            return <Frame />
+        } else if (survey.token) {
+            return <Survey />
+        } else {
+            return (<Login />)
+        }
     }
     return(<StateMachine />)
 }
