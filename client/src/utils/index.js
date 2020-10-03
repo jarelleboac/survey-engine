@@ -20,3 +20,14 @@ export const getCounts = (school) => (fetch(`${process.env.REACT_APP_API_URL}/em
             Authorization: `${localStorage.jwtToken}`,
             withCredentials: true, }
     }))
+
+// Gets counts for the school
+export const sendEmail = (school, status) => (fetch(`${process.env.REACT_APP_API_URL}/${school}/sendEmails`, 
+    {
+        headers: { 'Content-Type': 'application/json', credentials: 'include',
+            Authorization: `${localStorage.jwtToken}`,
+            withCredentials: true, },
+        body: JSON.stringify({requestType: status})
+    }))
+
+    
