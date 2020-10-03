@@ -130,7 +130,9 @@ export const Routes = () => {
     
     const StateMachine = () => {
         const session = useSelector(state => state.session)
-        if (!ready) return null;
+        if (!ready) {
+            return (<div className="default">Lost connection with the server. Please contact the % project.</div>)
+        }
         return session.userId && session.role && session.school ? 
             (
                 <Frame />
