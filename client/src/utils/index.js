@@ -34,4 +34,3 @@ export const sendEmails = (school, status) => (fetch(`${process.env.REACT_APP_AP
         body: JSON.stringify({requestType: status})
     }))
 
-    

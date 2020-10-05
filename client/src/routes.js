@@ -5,7 +5,7 @@ import { Survey } from './scenes/Survey'
 import { Login } from './scenes/Login'
 // import { Signup}  from './scenes/Signup'
 import { SchoolAdminPanel } from './scenes/SchoolAdmin/AdminPanel'
-import { PercentAdminPanel } from './scenes/PercentAdmin/AdminPanel'
+import { PercentAdminPanel } from './scenes/PercentAdmin/PercentAdminPanel'
 import { Dashboard } from './scenes/Dashboard'
 import { roles } from '../../common/schema';
 import {useSelector, useDispatch} from 'react-redux'
@@ -151,6 +151,7 @@ export const Routes = () => {
     return(<StateMachine />)
 }
 
+// Handles grabbing location of the current route
 export const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 }

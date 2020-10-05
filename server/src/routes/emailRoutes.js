@@ -150,13 +150,9 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
 
     const { requestType } = req.body;
 
+    // Counts success and failure emails
     let count = 0;
     let error = 0;
-
-    console.log(school);
-    console.log(role);
-    console.log(userSchool);
-    console.log(requestType);
 
     if (role === roles.schoolAdmin && userSchool === school) {
         // Find emails e.g. type school: BROWN, status: UNSENT
@@ -178,17 +174,6 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
                     error += 1;
                 });
         }));
-        // decryptedEmails.forEach((email) => {
-        //     // Make a survey URL for the thing that we need
-        //     const surveyUrl = `${CORS_ORIGIN}/survey/${email.token}`;
-        //     sendStatusEmail(email, requestType, surveyUrl)
-        //         .then((data) => {
-        //             count += 1;
-        //         })
-        //         .catch((err) => {
-        //             console.log(err); error += 1;
-        //         });
-        // });
     } else {
         return res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
     }
