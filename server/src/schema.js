@@ -59,7 +59,7 @@ const demographicQuestions = [
       'Other (please specify)',
     ],
     required: true,
-    type: String,
+    type: [String],
   },
   {
     id: 'studyingFeeling',
@@ -70,12 +70,12 @@ const demographicQuestions = [
       'I feel pressure at Penn to find internships, job opportunities, extracurricular activities', 'I have been/felt judged or micro-aggressed by someone.',
     ],
     required: true,
-    type: String,
+    type: [String],
   },
   {
     id: 'ethnicity',
     question: 'What is your ethnicity?',
-    component: 'Radio',
+    component: 'MultiCheckbox',
     options: ['American Indian or Alaskan Native',
       'Asian',
       'Black or African American',
@@ -85,20 +85,20 @@ const demographicQuestions = [
       'Prefer not to say',
     ],
     required: true,
-    type: String,
+    type: [String],
   },
 ];
 
 // TODO: make this a function that can take custom params
 const commonQuestions = [
   ...demographicQuestions,
-  {
-    id: 'food',
-    question: 'What is your favorite food?',
-    component: '',
-    required: true,
-    type: String,
-  },
+  // {
+  //   id: 'food',
+  //   question: 'What is your favorite food?',
+  //   component: '',
+  //   required: true,
+  //   type: String,
+  // },
 ];
 
 /**

@@ -16,16 +16,18 @@ const router = Router();
  *
  */
 router.post('/', async (req, res) => {
+    console.log(req.body);
     const { school, token, responses } = req.body;
 
     // Should validate email before continuing
     try {
         // Find the email by the token
         const email = await Email.findOne({ school, token });
+        console.log(email);
         if (email) {
             // Only proceed if email is not yet marked as complete
             if (email.status !== submissionStatus.completed) {
-            // Attempt to save the survey response
+                // Attempt to save the survey response
                 try {
                 // Get the school's appropriate survey model
                     const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
@@ -33,29 +35,34 @@ router.post('/', async (req, res) => {
                     if (!SurveyModel) {
                         return res.status(400).send(JSON.stringify({ error: 'This school\'s model has not been implemented.' }));
                     }
+                    console.log(SurveyModel);
                     // Save that model
                     const builtModel = new SurveyModel(
                         { ...responses, status: submissionStatus.completed, school },
                     );
 
+                    console.log('here');
                     // Save the model to DB
                     await builtModel.save();
+                    console.log('saved');
 
                     // Mark email as completed and then save it
                     email.status = submissionStatus.completed;
                     await email.save();
-                    return res.send(`Successfully wrote a new response to ${school}.`);
+                    console.log(email);
+                    return res.send(JSON.stringify({ message: `Successfully wrote a new response to ${school}.` }));
                 } catch (err) {
-                    return res.status(400).send(err.message);
+                    console.log(err);
+                    return res.status(400).send(JSON.stringify({ error: err }));
                 }
             } else {
-                return res.status(400).send(`This email is already listed as ${email.status}.`);
+                return res.status(400).send(JSON.stringify({ error: `This email is already listed as ${email.status}.` }));
             }
         } else {
             return res.status(400).send(JSON.stringify({ error: 'This token does not exist in the DB.' }));
         }
     } catch (err) {
-        return res.status(400).send(err.message);
+        return res.status(400).send(JSON.stringify({ error: err.message }));
     }
 });
 
