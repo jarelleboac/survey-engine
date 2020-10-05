@@ -35,7 +35,7 @@ const demographicQuestions = [
   {
     id: 'grade',
     question: 'What is your grade?',
-    component: 'Checkbox',
+    component: 'Radio',
     options: ['Freshman',
       'Sophomore',
       'Junior',
@@ -109,10 +109,37 @@ const commonQuestions = [
  * Note: please make the ID field different from any other questions
  */
 const brownQuestions = [
-  ...commonQuestions,
 ];
 
-const uPennQuestions = [
+const pennQuestions = [
+
+];
+
+const drexelQuestions = [
+
+];
+
+const dukeQuestions = [
+
+];
+
+const rutgersQuestions = [
+
+];
+
+const columbiaQuestions = [
+
+];
+
+const cmuQuestions = [
+
+];
+
+const uiucQuestions = [
+
+];
+
+const nyuQuestions = [
 
 ];
 
@@ -120,9 +147,16 @@ const harvardQuestions = [
 
 ];
 
+const vanderbiltQuestions = [
+
+];
+
 export {
   schools, schoolsArray, roles, rolesArray, submissionStatus, submissionStatusArray,
-  demographicQuestions, commonQuestions, brownQuestions, uPennQuestions, harvardQuestions,
+  demographicQuestions, commonQuestions,
+  brownQuestions, pennQuestions, harvardQuestions, vanderbiltQuestions,
+  drexelQuestions, dukeQuestions, rutgersQuestions,
+  columbiaQuestions, cmuQuestions, uiucQuestions, nyuQuestions,
 };
 
 // /**
