@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux'
 import { readString } from 'react-papaparse'
 
 import CSVReader from 'react-csv-reader'
-import { Button, Label, Textarea, Box } from 'theme-ui'
+import { Button, Label, Textarea, Box, Heading } from 'theme-ui'
 import {triggerToast, filterEmails} from '../utils'
 
 export const CSVUpload = ({setFreshData}) => {
@@ -65,6 +65,7 @@ export const CSVUpload = ({setFreshData}) => {
 
     return(
         <>
+            <Heading mt='20px'>Upload Emails</Heading>
             <div className="csv-upload">
                 <CSVReader onFileLoaded={(data) => {
                     emailsRef.current = data.flat()
