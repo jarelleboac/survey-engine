@@ -8,6 +8,15 @@ export const validEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
+/**
+ * Transforms strings into where the first value is capitalized, remaining are lowercase
+ * 
+ * @param {string} input – input string to be converted 
+ */
+export const capitalizeString = (input) => (
+    input.charAt(0).toUpperCase() + input.slice(1).toLowerCase()
+)
+
 // Checks to see if the entire list of values are valid emails, returning the invalid emails
 export const getInvalidEmails = (emails) => emails.filter(email => !validEmail(email))
 

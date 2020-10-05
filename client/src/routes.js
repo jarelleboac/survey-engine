@@ -8,6 +8,7 @@ import { SchoolAdminPanel } from './scenes/SchoolAdmin/AdminPanel'
 import { PercentAdminPanel } from './scenes/PercentAdmin/PercentAdminPanel'
 import { Dashboard } from './scenes/Dashboard'
 import { roles } from '../../common/schema';
+
 import {useSelector, useDispatch} from 'react-redux'
 import { jsx, Button } from 'theme-ui'
 import {logoutAction, checkLoggedInAction} from './actions/session'
@@ -20,15 +21,10 @@ import {
     Link,
     useLocation
 } from "react-router-dom";
+import { capitalizeString } from './utils';
 
 
 export const routes = [
-    {
-        authLevel: [roles.schoolAdmin, roles.percentAdmin],
-        component: Survey,
-        displayText: 'Survey',
-        path: '/survey',
-    },
     {
         authLevel: [roles.schoolAdmin],
         component: SchoolAdminPanel,
@@ -54,6 +50,7 @@ export const PageSwitches = () => {
                 ) : null;
             })}
             <Route path="/login" component={Login} />
+            <Route path="/survey" component={Survey} />
             {/* <Route path="/signup" component={Signup} /> */}
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/">
@@ -119,6 +116,37 @@ const Frame = () => {
         </div>)
 };
 
+/**
+ * Version of the Survey component for external sight
+ * 
+ * @param {string} school – the school that this survey belongs to
+ * @param {string} token – the UUID of the survey
+ */
+const WrappedSurvey = ({school, token}) => {
+    const lowercaseSchool = capitalizeString(school)
+
+    return(
+        <div className="container">
+            <div id="logo-container">
+                <Link to="/">
+                    <img src="logo.png" id="logo" alt="% project logo"/>
+                </Link>
+            </div>
+            <header
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    variant: 'styles.header',
+                }}
+                className="header">
+                <Heading>Survey at {lowercaseSchool}</Heading>
+            </header>
+           
+
+            <Survey school={school} token={token} />
+        </div>)
+}
+
 
 export const Routes = () => {
     const [ready, setReady] = useState(false);
@@ -134,16 +162,20 @@ export const Routes = () => {
     },[dispatch])
     
     const StateMachine = () => {
+        const query = useQuery();
+
+        const token = query.get("token")
+        const school = query.get("school")
         const session = useSelector(state => state.session)
-        const survey = {}
+
         if (!ready) {
             return (<div className="default">Lost connection with the server. Please contact the % project.</div>)
         }
         
         if (session.userId && session.role && session.school) {
             return <Frame />
-        } else if (survey.token) {
-            return <Survey />
+        } else if (token) {
+            return <WrappedSurvey school={school} token={token}/>
         } else {
             return (<Login />)
         }
