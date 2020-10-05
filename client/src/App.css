@@ -76,9 +76,6 @@ p::before {
   content: "⚠ ";
 }
 
-.submit-button {
-  margin-top: 3rem;
-}
  /* {
   grid-area: side2;
 } */
