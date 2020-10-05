@@ -34,3 +34,40 @@ export const sendEmails = (school, status) => (fetch(`${process.env.REACT_APP_AP
         body: JSON.stringify({requestType: status})
     }))
 
+/**
+ * Submits a single completed survey
+ * 
+ * @param {string} school – the school to write to
+ * @param {string} token – UUID for the survey
+ * @param {JSON} responses – survey responses matching the schema
+ */
+export const submitSurvey = (school, token, responses) => (
+    fetch(`${process.env.REACT_APP_API_URL}/survey`, 
+        {
+            headers: { 
+                'Content-Type': 'application/json', 
+                credentials: 'include',
+                Authorization: `${localStorage.jwtToken}`,
+                withCredentials: true, 
+            },
+            method: "POST",
+            body: JSON.stringify({school, token, responses})
+        })
+)
+
+/**
+ * Handles getting all survey responses for a certain school
+ * 
+ * @param {string} school – user school 
+ */
+export const getSurveyResponses = (school) => (
+    fetch(`${process.env.REACT_APP_API_URL}/survey/${school}`, 
+        {
+            headers: { 
+                'Content-Type': 'application/json', 
+                credentials: 'include',
+                Authorization: `${localStorage.jwtToken}`,
+                withCredentials: true, 
+            },
+        })
+)

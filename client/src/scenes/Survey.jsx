@@ -103,15 +103,17 @@ const questionToComponent = (question) => {
 // ));
 
 export function Survey() {
-    const { register, handleSubmit, errors } = useForm();
-    const onSubmit = (data) => console.log(data);
-
     // Get basic query parameters
     const query = useQuery();
+    
     const token = query.get("token")
     const school = query.get("school")
     console.log(token)
     console.log(school)
+    const { register, handleSubmit, errors } = useForm();
+    const onSubmit = (data) => console.log(data);
+
+
 
     return (
         <>

@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
 });
 
 /**
- * Handles getting all responses.
+ * Handles getting all responses. Limited to only the % project admins
  *
  */
 router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
