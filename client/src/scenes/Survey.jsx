@@ -50,18 +50,32 @@ const CustomRadio = ({question}) => {
     </>)
 }
 
+const CustomMultiCheckbox = ({ question }) => {
+    return (
+        <>  
+            <Text
+                sx={{
+                    fontSize: 4,
+                    fontWeight: 'bold',
+                }}>
+                {question.question}
+            </Text>
+            <MappedOptions options={question.options} />
+        </>)
+}
+
 const questionToComponent = (question) => {
     if (question.component === "Checkbox") {
         return (<CustomCheckbox question={question} />)
     } else if (question.component === "Radio") {
         return (<CustomRadio question={question} />)
+    } else if (question.component === 'MultiCheckbox') {
+        return (<CustomMultiCheckbox question={question} />)
     }
     return (<></>)
 }
 
-/**
- * Progress bar that shows how far we are in the survey
- */
+
 
 /**
  *
@@ -97,7 +111,7 @@ export function Survey() {
                 onSubmit={handleSubmit(onSubmit)}
                 sx={{width: '80%', height: '80%', top: '50%'}}
                 className="survey">
-                <Label htmlFor='firstName'>First name</Label>
+                {/* <Label htmlFor='firstName'>First name</Label>
                 <Input
                     name='firstName'
                     id='firstName'
@@ -121,6 +135,7 @@ export function Survey() {
       Remember me
                     </Label>
                 </Box> */}
+
                 <Label htmlFor='major'>Major</Label>
                 <Select name='major' id='major' mb={3} ref={register}>
                     <option>CS</option>
@@ -159,3 +174,8 @@ export function Survey() {
         </>
     );
 }
+
+
+/**
+ * Progress bar that shows how far we are in the survey
+ */
