@@ -50,11 +50,12 @@ const CustomRadio = ({question}) => {
     </>)
 }
 
-consquestionToComponent = (question) => {
+const questionToComponent = (question) => {
+    console.log(question)
     if (question.component === "Checkbox") {
-        return (<CustomCheckbox question={question} />)
+        return (<CustomCheckbox question={question} key={question.id} />)
     } else if (question.component === "Radio") {
-        return (<CustomRadio question={question} />)
+        return (<CustomRadio question={question} key={question.id} />)
     }
     return (<></>)
 }
