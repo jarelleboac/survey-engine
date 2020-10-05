@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import {
     Label,
     Input,
@@ -18,7 +18,7 @@ import {
 import { commonQuestions } from '../../../common/schema.js'
 
 const MappedOptions = ({options}) => options.map(option => <>  
-    <Label mb={3}>
+    <Label mb={3} key={option}>
         <Checkbox />
         {option}
     </Label>
@@ -87,14 +87,14 @@ const questionToComponent = (question) => {
 // ));
 
 export function Survey() {
-    // const { register, handleSubmit } = useForm();
-    // const onSubmit = (data) => console.log(data);
+    const { register, handleSubmit, errors } = useForm();
+    const onSubmit = (data) => console.log(data);
 
     return (
         <>
             <Container
                 as='form'
-                onSubmit={e => e.preventDefault()}
+                onSubmit={handleSubmit(onSubmit)}
                 sx={{width: '80%', height: '80%', top: '50%'}}
                 className="survey">
                 <Label htmlFor='firstName'>First name</Label>
@@ -102,14 +102,19 @@ export function Survey() {
                     name='firstName'
                     id='firstName'
                     mb={3}
+                    ref={register({required: true})}
                 />
+                {errors.firstName && <p>This field is required</p>}
                 <Label htmlFor='lastName'>Last name</Label>
                 <Input
                     type='lastName'
                     name='lastName'
                     id='lastName'
                     mb={3}
+                    ref={register({required: true})}
                 />
+                {errors.lastName && <p>This field is required</p>}
+
                 {/* <Box>
                     <Label mb={3}>
                         <Checkbox />
@@ -117,7 +122,7 @@ export function Survey() {
                     </Label>
                 </Box> */}
                 <Label htmlFor='major'>Major</Label>
-                <Select name='major' id='major' mb={3}>
+                <Select name='major' id='major' mb={3} ref={register}>
                     <option>CS</option>
                     <option>Math</option>
                     <option>Physics</option>
@@ -128,6 +133,7 @@ export function Survey() {
                     id='comment'
                     rows='6'
                     mb={3}
+                    ref={register}
                 />
                 {/* <Flex mb={3}>
                         <Label>
