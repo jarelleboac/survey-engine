@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import {
     Label,
     Input,
-    Select,
+    // Select,
     Textarea,
-    // Radio,
+    Radio,
     Checkbox,
     // Slider,
     // Box,
-    Flex,
+    // Flex,
     Button,
     Container,
     Text
@@ -17,94 +17,116 @@ import {
 
 import { commonQuestions } from '../../../common/schema.js'
 
-const MappedOptions = ({options}) => options.map(option => <>  
-    <Label mb={3} key={option}>
-        <Checkbox />
-        {option}
-    </Label>
-</>)
+// keyword for user input question in checkbox/radio
+const specify_question_keyword = "please specify"; 
 
-const CustomCheckbox = ({ question }) => {
-    return (
-        <>  
-            <Text
-                sx={{
-                    fontSize: 4,
-                    fontWeight: 'bold',
-                }}>
-                {question.question}
-            </Text>
-            <MappedOptions options={question.options} />
-        </>)
-}
+// an array of keywords of the identifiers in custom input form for checkbox/radio (such that we can remove it later )
+const specify_keyword_arrays = [];
 
-const CustomRadio = ({question}) => {
+const MappedOptions = ({question, register, watch}) => question.options.map(option => {
+    // choose check boc based on if we need user to specify
+    if(option.includes(specify_question_keyword)) { 
+        let identifier = question.id+' '+specify_question_keyword
+        specify_keyword_arrays.push(identifier)
+        return (
+            <>  
+                <Label mb={2} key={option} >
+                    <Checkbox ref={register({required: true})} value={watch(identifier)} name={question.id}/>
+                    {option}
+                    <Input name={identifier} ref={register}/>
+                </Label>
+            </>
+        )
+    } else {
+        return (
+            <>  
+                <Label mb={2} key={option} >
+                    <Checkbox ref={register({required: true})} value={option} name={question.id}/>
+                    {option}
+                </Label>
+            </>
+        )
+    }
+}) 
+
+
+const CustomRadio = ({question, register, watch, errors}) => {
+    // get radio contents based on if we need custom input
+    const radioContents = question.options.map(option => {
+        if(option.includes(specify_question_keyword)) {
+            let identifier = question.id+' '+specify_question_keyword
+            specify_keyword_arrays.push(identifier)
+            return (
+                <Label mb={2}>
+                    <Radio value={option} ref={register({required: true})} value={watch(identifier)} name={question.id}/>{option} 
+                    <Input name={identifier} ref={register}/>
+                </Label>
+            )
+        } else {
+            return (
+                <Label mb={2}>
+                    <Radio value={option} ref={register({required: true})} name={question.id}/>{option} 
+                </Label>
+            )
+        }
+    })
 
     return (<>
-        <Flex mb={1}>
-            {/* {question.options.map(option => <Label>
-                <Radio name={question.id} />{option}
-            </Label>)} */}
-
-        </Flex>
+        <Text
+            sx={{
+                fontSize: 4,
+                fontWeight: 'bold',
+                marginTop: '3rem',
+            }}>
+            {question.question}
+        </Text>
+        {radioContents}
+        {errors[question.id] && <p>This field is required</p>}
     </>)
 }
 
-const CustomMultiCheckbox = ({ question }) => {
+const CustomMultiCheckbox = ({ question, register, watch, errors}) => {
     return (
         <>  
             <Text
                 sx={{
                     fontSize: 4,
                     fontWeight: 'bold',
+                    marginTop: '3rem',
                 }}>
                 {question.question}
             </Text>
-            <MappedOptions options={question.options} />
+            <MappedOptions question={question} register={register} watch={watch}/>
+            {errors[question.id] && <p>This field is required</p>}
         </>)
 }
 
-const questionToComponent = (question) => {
-    if (question.component === "Checkbox") {
-        return (<CustomCheckbox question={question} />)
+const questionToComponent = (question, register, watch, errors) => {
+    if (question.component === "MultiCheckbox") {
+        return (<CustomMultiCheckbox question={question} register={register} watch={watch} errors={errors}/>)
     } else if (question.component === "Radio") {
-        return (<CustomRadio question={question} />)
-    } else if (question.component === 'MultiCheckbox') {
-        return (<CustomMultiCheckbox question={question} />)
-    }
+        return (<CustomRadio question={question}  register={register} watch={watch} errors={errors}/>)
+    } 
     return (<></>)
 }
 
-
-
 /**
- *
+ * Progress bar that shows how far we are in the survey
  */
 
-// // The following component is an example of your existing Input Component
-// const CustomInput = ({ label, register, required }) => (
-//     <>
-//         <label>{label}</label>
-//         <input name={label} ref={register({ required })} />
-//     </>
-// );
+export function Survey({school, token}) {
 
-// // you can use React.forwardRef to pass the ref too
-// const CustomSelect = React.forwardRef(({ label, register }, ref) => (
-//     <>
-//         <label>{label}</label>
-//         <select name={label} ref={ref}>
-//             <option value="20">20</option>
-//             <option value="30">30</option>
-//         </select>
-//     </>
-// ));
+    const { register, handleSubmit, errors, watch } = useForm();
 
-export function Survey(school, token) {
-    console.log(token)
-    console.log(school)
-    const { register, handleSubmit, errors } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        // remove the keywords for custom input form
+        specify_keyword_arrays.forEach(name => {
+            delete data[name]
+        });
+        // log the data for now will connect to backend here
+        console.log(data)
+    };
+
 
 
 
@@ -115,7 +137,8 @@ export function Survey(school, token) {
                 onSubmit={handleSubmit(onSubmit)}
                 sx={{width: '80%', height: '80%', top: '50%'}}
                 className="survey">
-                {/* <Label htmlFor='firstName'>First name</Label>
+
+                <Label htmlFor='firstName'>First name</Label>
                 <Input
                     name='firstName'
                     id='firstName'
@@ -123,6 +146,7 @@ export function Survey(school, token) {
                     ref={register({required: true})}
                 />
                 {errors.firstName && <p>This field is required</p>}
+
                 <Label htmlFor='lastName'>Last name</Label>
                 <Input
                     type='lastName'
@@ -133,19 +157,6 @@ export function Survey(school, token) {
                 />
                 {errors.lastName && <p>This field is required</p>}
 
-                {/* <Box>
-                    <Label mb={3}>
-                        <Checkbox />
-      Remember me
-                    </Label>
-                </Box> */}
-
-                <Label htmlFor='major'>Major</Label>
-                <Select name='major' id='major' mb={3} ref={register}>
-                    <option>CS</option>
-                    <option>Math</option>
-                    <option>Physics</option>
-                </Select>
                 <Label htmlFor='comment'>Comment</Label>
                 <Textarea
                     name='comment'
@@ -154,32 +165,15 @@ export function Survey(school, token) {
                     mb={3}
                     ref={register}
                 />
-                {/* <Flex mb={3}>
-                        <Label>
-                            <Radio name='letter' /> Alpha
-                        </Label>
-                        <Label>
-                            <Radio name='letter' /> Bravo
-                        </Label>
-                        <Label>
-                            <Radio name='letter' /> Charlie
-                        </Label>
-                    </Flex> */}
-                {commonQuestions.map(question => { return(questionToComponent(question))})}
-                <Button>Submit</Button>
+
+                {commonQuestions.map(question => { return(questionToComponent(question, register, watch, errors))})}
+                
+                <Button sx={{mt: '3rem'}}>Submit</Button>
                 
             </Container>
 
-            {/* <form onSubmit={handleSubmit(onSubmit)}>
-                <CustomInput label="First Name" register={register} required />
-                <CustomSelect label="Age" ref={register} />
-                <input type="submit" />
-            </form> */}
         </>
     );
+    // TODO styling wise line height styling of checkboxes (white space in front)
 }
-
-
-/**
- * Progress bar that shows how far we are in the survey
- */
+console.log(commonQuestions)
