@@ -2,7 +2,7 @@
  * Exports shared schemas between client and server. Holds information specific to certain
  * universities.
  */
-export const schools = {
+const schools = {
   unset: 'UNSET',
   brown: 'BROWN',
   penn: 'PENN',
@@ -17,21 +17,21 @@ export const schools = {
   vanderbilt: 'VANDERBILT',
   percentProj: 'PERCENTAGE_PROJECT',
 };
-export const schoolsArray = Object.values(schools);
+const schoolsArray = Object.values(schools);
 
 // Defines roles that are particular to admins. Vanilla users have no roles.
-export const roles = { unset: 'UNSET', schoolAdmin: 'SCHOOL_ADMIN', percentAdmin: 'PERCENTAGE_PROJECT_ADMIN' };
-export const rolesArray = Object.values(roles);
+const roles = { unset: 'UNSET', schoolAdmin: 'SCHOOL_ADMIN', percentAdmin: 'PERCENTAGE_PROJECT_ADMIN' };
+const rolesArray = Object.values(roles);
 
-export const submissionStatus = {
+const submissionStatus = {
   unsent: 'UNSENT', sent: 'SENT', inProgress: 'IN-PROGRESS', completed: 'COMPLETED',
 };
-export const submissionStatusArray = Object.values(submissionStatus);
+const submissionStatusArray = Object.values(submissionStatus);
 
 /**
  * Schema for questions. Note that the "type" field should be for Mongoose
  */
-export const demographicQuestions = [
+const demographicQuestions = [
   {
     id: 'grade',
     question: 'What is your grade?',
@@ -46,16 +46,29 @@ export const demographicQuestions = [
     type: String,
   },
   {
-    id: 'firstName',
-    question: 'First name',
-    component: '',
+    id: 'major',
+    question: 'Please select which fits you the best. If you are in a dual degree program, please select based on your affiliation with SEAS or CIS in the College.',
+    component: 'MultiCheckbox',
+    options: [
+      'CIS Major in SEAS (including NETS, DMD)',
+      'CIS Major in College',
+      'ESE Major in SEAS (including EE, CMPE, SE)',
+      'CIS Minor in SEAS (including NETS, DMD)',
+      'CIS Minor in College',
+      'ESE Minor in SEAS (including EE, CMPE, SE)',
+      'Other (please specify)',
+    ],
     required: true,
     type: String,
   },
   {
-    id: 'lastName',
-    question: 'Last name',
-    component: '',
+    id: 'studyingFeeling',
+    question: 'Check all of the following that apply to you:',
+    component: 'MultiCheckbox',
+    options: [
+      'I feel intimidated studying Computer Science and related fields.',
+      'I feel pressure at Penn to find internships, job opportunities, extracurricular activities', 'I have been/felt judged or micro-aggressed by someone.',
+    ],
     required: true,
     type: String,
   },
@@ -77,7 +90,7 @@ export const demographicQuestions = [
 ];
 
 // TODO: make this a function that can take custom params
-export const commonQuestions = [
+const commonQuestions = [
   ...demographicQuestions,
   {
     id: 'food',
@@ -91,19 +104,26 @@ export const commonQuestions = [
 /**
  * QUESTIONS SPECIFIC TO SCHOOLS
  *
+ * The easiest overload is to instead modify the fields after nanoing on it, and then
+ *
  * Note: please make the ID field different from any other questions
  */
-export const brownQuestions = [
+const brownQuestions = [
+  ...commonQuestions,
+];
+
+const uPennQuestions = [
 
 ];
 
-export const uPennQuestions = [
+const harvardQuestions = [
 
 ];
 
-export const harvardQuestions = [
-
-];
+export {
+  schools, schoolsArray, roles, rolesArray, submissionStatus, submissionStatusArray,
+  demographicQuestions, commonQuestions, brownQuestions, uPennQuestions, harvardQuestions,
+};
 
 // /**
 //  * Builds an object mapping the school dict to the different questions. Actually probably don't need to use this yet
