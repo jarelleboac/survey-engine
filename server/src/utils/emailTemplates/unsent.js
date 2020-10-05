@@ -256,15 +256,14 @@ export default (user, surveyUrl) => ({
 																		<tr>
 																			<td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 																				<div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;"> 
-																				Congratulations! You’re invited to be a part of <b>VandyHacks VII: Retro Edition</b>! We enjoyed reading your application and would love to see your ideas come to life during our virtual event on <b>October 2nd-4th</b>! 
+																				Hello! We're reaching out to give you your unique survey link for The Percentage Project.
 																				</div>
 																			</td>
 																		</tr>
 																		<tr>
 																			<td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 																				<div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;"> 
-																					Head over to the application portal <a href="https://apply.vandyhacks.org">here</a> and confirm your attendance by October 2nd, 12:00 PM CDT.
-																					<b>Make sure you’ve read and checked “agree” to our hackathon waiver</b> under the hacker application. 
+																					Head on over to Survey url: ${escape(surveyUrl)}!
 																				</div>
 																			</td>
 																		</tr>
