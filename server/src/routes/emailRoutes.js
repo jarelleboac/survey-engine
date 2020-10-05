@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import passport from 'passport';
+import { model } from 'mongoose';
 import { submissionStatus, roles } from '../schema';
 import Email from '../models/Email';
 import { encrypt, decrypt, isEmail } from '../utils';
@@ -159,7 +160,7 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
         const emails = await Email.find({ school, status: requestType });
 
         const decryptedEmails = emails.map((model) => (
-            { token: model.token, email: decrypt(model.email) }
+            { model, token: model.token, email: decrypt(model.email) }
         ));
 
         await Promise.all(decryptedEmails.map((email) => {
@@ -167,7 +168,12 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
             const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
             console.log(surveyUrl);
             return sendStatusEmail(email, requestType, surveyUrl)
-                .then((data) => {
+                .then(async (data) => {
+                    if (email.model.status !== submissionStatus.sent) {
+                        // eslint-disable-next-line no-param-reassign
+                        email.model.status = submissionStatus.sent;
+                        await email.model.save();
+                    }
                     count += 1;
                 })
                 .catch((err) => {
