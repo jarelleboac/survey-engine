@@ -46,6 +46,7 @@ export const SchoolAdminPanel = () => {
     return(
         <div className="admin-container">
             <Table />
+            <Divider />
             <CSVUpload setFreshData={setFreshData} />
             <Divider />
             <Heading mt='20px'>Send Surveys</Heading>
