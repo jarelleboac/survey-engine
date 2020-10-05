@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import { CSVUpload } from '../../components/CSVUpload'
 import { getCounts, sendEmails} from '../../utils'
 import {setCountsAction} from  '../../actions/email'
-import { Button } from 'theme-ui'
+import { Button, Flex, Heading, Divider } from 'theme-ui'
 import {submissionStatus} from '../../../../common/schema'
 
 
@@ -46,9 +46,17 @@ export const SchoolAdminPanel = () => {
     return(
         <div className="admin-container">
             <Table />
+            <Divider />
             <CSVUpload setFreshData={setFreshData} />
-            <Button sx={{ marginRight: '20px'}} onClick={() => {
-                sendEmailsFetch(submissionStatus.unsent)
-            }}>Send unsent</Button>
+            <Divider />
+            <Heading mt='20px'>Send Surveys</Heading>
+            <Flex>
+                <Button mt='15px' mr='20px' onClick={() => {
+                    sendEmailsFetch(submissionStatus.unsent)
+                }}>Send to Unsent</Button>
+                <Button mt='15px' mr='20px' onClick={() => {
+                    sendEmailsFetch(submissionStatus.sent)
+                }}>Send Reminders</Button>
+            </Flex>
         </div>)
 }

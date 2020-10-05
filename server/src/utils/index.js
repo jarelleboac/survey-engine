@@ -24,6 +24,7 @@ export const sessionizeUser = (user) => (
 const { ENCRYPTION_KEY } = process.env; // Must be 256 bits (32 characters)
 const IV_LENGTH = 16; // For AES, this is always 16
 
+// Simple handling of encryption
 export const encrypt = (text) => {
     const iv = crypto.randomBytes(IV_LENGTH);
     const cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(ENCRYPTION_KEY), iv);
@@ -34,6 +35,7 @@ export const encrypt = (text) => {
     return `${iv.toString('hex')}:${encrypted.toString('hex')}`;
 };
 
+// Simple handling of decryption
 export const decrypt = (text) => {
     const textParts = text.split(':');
     const iv = Buffer.from(textParts.shift(), 'hex');
@@ -46,4 +48,5 @@ export const decrypt = (text) => {
     return decrypted.toString();
 };
 
+// Simple regex of if is email
 export const isEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

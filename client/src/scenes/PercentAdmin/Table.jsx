@@ -20,7 +20,7 @@ export const Table = () => {
                 <Text>
                  Completed: {emails.completed}
                 </Text>
-                <Text sx={{fontWeight: 'bold'}}>
+                <Text>
                  Total: {emails.total}
                 </Text>
             </div>

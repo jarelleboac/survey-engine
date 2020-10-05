@@ -114,7 +114,7 @@ const questionToComponent = (question, register, watch, errors) => {
  * Progress bar that shows how far we are in the survey
  */
 
-export function Survey() {
+export function Survey({school, token}) {
 
     const { register, handleSubmit, errors, watch } = useForm();
 
@@ -126,6 +126,9 @@ export function Survey() {
         // log the data for now will connect to backend here
         console.log(data)
     };
+
+
+
 
     return (
         <>

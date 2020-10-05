@@ -2,7 +2,7 @@
  * Exports shared schemas between client and server. Holds information specific to certain
  * universities.
  */
-export const schools = {
+const schools = {
   unset: 'UNSET',
   brown: 'BROWN',
   penn: 'PENN',
@@ -17,25 +17,25 @@ export const schools = {
   vanderbilt: 'VANDERBILT',
   percentProj: 'PERCENTAGE_PROJECT',
 };
-export const schoolsArray = Object.values(schools);
+const schoolsArray = Object.values(schools);
 
 // Defines roles that are particular to admins. Vanilla users have no roles.
-export const roles = { unset: 'UNSET', schoolAdmin: 'SCHOOL_ADMIN', percentAdmin: 'PERCENTAGE_PROJECT_ADMIN' };
-export const rolesArray = Object.values(roles);
+const roles = { unset: 'UNSET', schoolAdmin: 'SCHOOL_ADMIN', percentAdmin: 'PERCENTAGE_PROJECT_ADMIN' };
+const rolesArray = Object.values(roles);
 
-export const submissionStatus = {
+const submissionStatus = {
   unsent: 'UNSENT', sent: 'SENT', inProgress: 'IN-PROGRESS', completed: 'COMPLETED',
 };
-export const submissionStatusArray = Object.values(submissionStatus);
+const submissionStatusArray = Object.values(submissionStatus);
 
 /**
  * Schema for questions. Note that the "type" field should be for Mongoose
  */
-export const demographicQuestions = [
+const demographicQuestions = [
   {
     id: 'grade',
     question: 'What is your grade?',
-    component: 'Checkbox',
+    component: 'Radio',
     options: ['Freshman',
       'Sophomore',
       'Junior',
@@ -90,7 +90,7 @@ export const demographicQuestions = [
 ];
 
 // TODO: make this a function that can take custom params
-export const commonQuestions = [
+const commonQuestions = [
   ...demographicQuestions,
   {
     id: 'food',
@@ -104,19 +104,60 @@ export const commonQuestions = [
 /**
  * QUESTIONS SPECIFIC TO SCHOOLS
  *
+ * The easiest overload is to instead modify the fields after nanoing on it, and then
+ *
  * Note: please make the ID field different from any other questions
  */
-export const brownQuestions = [
+const brownQuestions = [
+];
+
+const pennQuestions = [
 
 ];
 
-export const uPennQuestions = [
+const drexelQuestions = [
 
 ];
 
-export const harvardQuestions = [
+const dukeQuestions = [
 
 ];
+
+const rutgersQuestions = [
+
+];
+
+const columbiaQuestions = [
+
+];
+
+const cmuQuestions = [
+
+];
+
+const uiucQuestions = [
+
+];
+
+const nyuQuestions = [
+
+];
+
+const harvardQuestions = [
+
+];
+
+const vanderbiltQuestions = [
+
+];
+
+export {
+  schools, schoolsArray, roles, rolesArray, submissionStatus, submissionStatusArray,
+  demographicQuestions, commonQuestions,
+  brownQuestions, pennQuestions, harvardQuestions, vanderbiltQuestions,
+  drexelQuestions, dukeQuestions, rutgersQuestions,
+  columbiaQuestions, cmuQuestions, uiucQuestions, nyuQuestions,
+};
 
 // /**
 //  * Builds an object mapping the school dict to the different questions. Actually probably don't need to use this yet
