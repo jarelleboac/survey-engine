@@ -22,14 +22,17 @@ router.post('/', async (req, res) => {
     try {
         // Find the email by the token
         const email = await Email.findOne({ school, token });
-
-        // Only proceed if email is not yet marked as complete
-        if (email.status !== submissionStatus.completed) {
+        if (email) {
+            // Only proceed if email is not yet marked as complete
+            if (email.status !== submissionStatus.completed) {
             // Attempt to save the survey response
-            try {
+                try {
                 // Get the school's appropriate survey model
-                const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
-                if (SurveyModel) {
+                    const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
+
+                    if (!SurveyModel) {
+                        return res.status(400).send(JSON.stringify({ error: 'This school\'s model has not been implemented.' }));
+                    }
                     // Save that model
                     const builtModel = new SurveyModel(
                         { ...responses, status: submissionStatus.completed, school },
@@ -42,12 +45,14 @@ router.post('/', async (req, res) => {
                     email.status = submissionStatus.completed;
                     await email.save();
                     return res.send(`Successfully wrote a new response to ${school}.`);
+                } catch (err) {
+                    return res.status(400).send(err.message);
                 }
-            } catch (err) {
-                return res.status(400).send(err.message);
+            } else {
+                return res.status(400).send(`This email is already listed as ${email.status}.`);
             }
         } else {
-            return res.status(400).send(`This email is already listed as ${email.status}.`);
+            return res.status(400).send(JSON.stringify({ error: 'This token does not exist in the DB.' }));
         }
     } catch (err) {
         return res.status(400).send(err.message);
@@ -74,13 +79,12 @@ router.get('/', passport.authenticate('jwt', { session: false }), async (req, re
 });
 
 /**
- * Handles getting all responses
+ * Handles getting all responses for a certain school
  *
  * @param {req.params.school} – Expects the school to be loaded
  *
  */
 router.get('/:school', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    // TODO: this needs school admin perms
     const { school: reqSchool } = req.params;
 
     const { role, school } = req.user;
