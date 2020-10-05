@@ -17,7 +17,8 @@ import {
     Switch,
     Route,
     Redirect,
-    Link
+    Link,
+    useLocation
 } from "react-router-dom";
 
 
@@ -42,7 +43,7 @@ export const routes = [
     },
 ];
 
-
+// Auth spreading here
 export const PageSwitches = () => {
     const session = useSelector(state => state.session)
     return (
@@ -148,4 +149,8 @@ export const Routes = () => {
         }
     }
     return(<StateMachine />)
+}
+
+export const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
 }

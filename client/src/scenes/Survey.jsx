@@ -15,6 +15,8 @@ import {
     Text
 } from 'theme-ui'
 
+import { useQuery } from "../routes"
+
 import { commonQuestions } from '../../../common/schema.js'
 
 const MappedOptions = ({options}) => options.map(option => <>  
@@ -103,6 +105,13 @@ const questionToComponent = (question) => {
 export function Survey() {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = (data) => console.log(data);
+
+    // Get basic query parameters
+    const query = useQuery();
+    const token = query.get("token")
+    const school = query.get("school")
+    console.log(token)
+    console.log(school)
 
     return (
         <>
