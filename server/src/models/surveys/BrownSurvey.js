@@ -11,6 +11,4 @@ const brownSurveySchema = new mongoose.Schema({
 });
 
 // Inherit the SurveyCommon model
-const BrownSurvey = SurveyCommon.discriminator('BrownSurvey', brownSurveySchema);
-
-export default BrownSurvey;
+export const BrownSurvey = SurveyCommon.discriminator('BrownSurvey', brownSurveySchema);
