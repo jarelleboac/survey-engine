@@ -122,6 +122,10 @@ export function Survey() {
       Remember me
                     </Label>
                 </Box> */}
+<<<<<<< HEAD
+=======
+
+>>>>>>> staging
                 <Label htmlFor='major'>Major</Label>
                 <Select name='major' id='major' mb={3} ref={register}>
                     <option>CS</option>

@@ -168,7 +168,8 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
 
         await Promise.all(decryptedEmails.map((email) => {
             // Make a survey URL for the thing that we need
-            const surveyUrl = `${CORS_ORIGIN}/survey/${email.token}`;
+            const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
+            console.log(surveyUrl);
             return sendStatusEmail(email, requestType, surveyUrl)
                 .then((data) => {
                     count += 1;
