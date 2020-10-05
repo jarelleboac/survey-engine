@@ -151,6 +151,12 @@ const vanderbiltQuestions = [
 
 ];
 
+const schoolToQuestion = {};
+schoolToQuestion[schools.brown] = brownQuestions;
+schoolToQuestion[schools.penn] = pennQuestions;
+schoolToQuestion[schools.harvard] = harvardQuestions;
+schoolToQuestion[schools.vanderbilt] = vanderbiltQuestions;
+
 export {
   schools, schoolsArray, roles, rolesArray, submissionStatus, submissionStatusArray,
   demographicQuestions, commonQuestions,

@@ -169,6 +169,7 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
             console.log(surveyUrl);
             return sendStatusEmail(email, requestType, surveyUrl)
                 .then(async (data) => {
+                    // Set it to sent if it hasn't already been sent
                     if (email.model.status !== submissionStatus.sent) {
                         // eslint-disable-next-line no-param-reassign
                         email.model.status = submissionStatus.sent;

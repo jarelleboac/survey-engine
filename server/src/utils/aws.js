@@ -2,6 +2,7 @@ import AWS from 'aws-sdk';
 import { submissionStatus } from '../schema';
 // IMPORT TEMPLATES HERE
 import unsent from './emailTemplates/unsent';
+import reminder from './emailTemplates/reminder';
 
 const { AWS_REGION } = process.env;
 
@@ -27,9 +28,9 @@ export function sendStatusEmail(user, status, surveyUrl) {
     // case submissionStatus.inProgress:
     //     email = accepted(user);
     //     break;
-    // case submissionStatus.sent:
-    //     email = confirmed(user);
-    //     break;
+    case submissionStatus.sent:
+        email = reminder(user, surveyUrl);
+        break;
     case submissionStatus.unsent:
         email = unsent(user, surveyUrl);
         break;
