@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import passport from 'passport';
-import { model } from 'mongoose';
 import { submissionStatus, roles } from '../schema';
 import Email from '../models/Email';
 import { encrypt, decrypt, isEmail } from '../utils';
