@@ -33,55 +33,109 @@ const submissionStatusArray = Object.values(submissionStatus);
  */
 const demographicQuestions = [
   {
-    id: 'grade',
-    question: 'What is your grade?',
+    id: 'gender',
+    question: 'What is your gender?',
     component: 'Radio',
-    options: ['Freshman',
-      'Sophomore',
-      'Junior',
-      'Senior',
-      'Super Senior',
-      'Graduate'],
-    required: true,
-    type: String,
-  },
-  {
-    id: 'major',
-    question: 'Please select which fits you the best. If you are in a dual degree program, please select based on your affiliation with SEAS or CIS in the College.',
-    component: 'MultiCheckbox',
     options: [
-      'CIS Major in SEAS (including NETS, DMD)',
-      'CIS Major in College',
-      'ESE Major in SEAS (including EE, CMPE, SE)',
-      'CIS Minor in SEAS (including NETS, DMD)',
-      'CIS Minor in College',
-      'ESE Minor in SEAS (including EE, CMPE, SE)',
-      'Other (please specify)',
+      'Woman',
+      'Man',
+      'Non-binary',
+      'Perfer to self-describe:',
+      'Prefer not to say',
     ],
     required: true,
     type: [String],
   },
   {
-    id: 'studyingFeeling',
-    question: 'Check all of the following that apply to you:',
-    component: 'MultiCheckbox',
+    id: 'transgender',
+    question: 'Are you transgender?',
+    component: 'Radio',
     options: [
-      'I feel intimidated studying Computer Science and related fields.',
-      'I feel pressure at Penn to find internships, job opportunities, extracurricular activities', 'I have been/felt judged or micro-aggressed by someone.',
+      'Yes',
+      'No',
+      'Prefer not to say',
     ],
     required: true,
     type: [String],
   },
   {
     id: 'ethnicity',
-    question: 'What is your ethnicity?',
+    question: 'Which categories best describe how you self-identify? Check all that apply.',
     component: 'MultiCheckbox',
-    options: ['American Indian or Alaskan Native',
+    options: [
+      'African American/Black',
       'Asian',
-      'Black or African American',
+      'Hispanic/Latinx',
+      'Middle Eastern/North African (MENA)',
+      'Native American/Alaska Native/First Nations',
       'Native Hawaiian or other Pacific Islander',
       'White',
-      'Other',
+      'Prefer to self-describe:',
+      'Prefer not to say',
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'lgbq',
+    question: 'Which of the following best describes your current sexual orientation? Check all that apply.',
+    component: 'MultiCheckbox',
+    options: [
+      'Asexual',
+      'Bisexual',
+      'Gay/lesbian',
+      'Heterosexual/straight',
+      'Pansexual',
+      'Queer',
+      'Prefer to self-describe:',
+      'Prefer not to say',
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'disability',
+    question: 'Do you have a disability, or have a history or record of having a disability?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Prefer not to say',
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'fg',
+    question: 'Are you a first generation student?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Prefer not to say',
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'li',
+    question: 'Are you a low-income student?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Prefer not to say',
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'international',
+    question: 'Are you an international student?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
       'Prefer not to say',
     ],
     required: true,
@@ -91,15 +145,282 @@ const demographicQuestions = [
 
 // TODO: make this a function that can take custom params
 const commonQuestions = [
-  ...demographicQuestions,
-  // {
-  //   id: 'food',
-  //   question: 'What is your favorite food?',
-  //   component: '',
-  //   required: true,
-  //   type: String,
-  // },
-];
+  {
+    id: 'q1',
+    question: 'What year are you in?',
+    component: 'Radio',
+    options: [
+      'First year',
+      'Sophomore',
+      'Junior',
+      'Senior',
+      'Super Senior',
+      'Graduate'
+    ],
+    required: true,
+    type: String,
+  },
+  {
+    id: 'q2',
+    question: 'Please select which fits you the best.',
+    component: 'Radio',
+    options: [
+      'CIS Major in SEAS (including NETS, DMD)',
+      'CIS Major in College',
+      'ESE Major in SEAS (including EE, CMPE, SE)',
+      'CIS Minor in SEAS (including NETS, DMD)',
+      'CIS Minor in College',
+      'ESE Minor in SEAS (including EE, CMPE, SE)',
+      'Other (Please specify)',
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q3',
+    question: 'Check all of the following that apply to you:',
+    component: 'MultiCheckbox',
+    options: [
+      'I feel pressure at Penn to find internships, job opportunities, extracurricular activities.',
+      'I feel confident studying computer science and related fields.', 
+      'I feel intimidated studying Computer Science and related fields.',
+      'None of the above'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q4',
+    question: 'Check all of the following that apply to you:',
+    component: 'MultiCheckbox',
+    options: [
+      'I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.',
+      'I have been interrupted or talked to condescendingly by someone who assumed they knew more.', 
+      'In a group project, my opinion is as respected as that of other group members.',
+      'None of the above'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q5',
+    question: 'Check all of the following that apply to you:',
+    component: 'MultiCheckbox',
+    options: [
+      'My peers respect me.',
+      'I would tell my peers if they made discriminatory or inappropriate comments.', 
+      'My professors and TAs respect me.',
+      'I have to prove myself before being taken seriously in academic settings.',
+      'I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.',
+      'None of the above'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q6',
+    question: 'Check all of the following that apply to you:',
+    component: 'MultiCheckbox',
+    options: [
+      'I generally feel comfortable asking questions during lecture.',
+      'I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.',
+      'I generally feel comfortable asking questions in office hours.',
+      'I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.',
+      'I ask questions on Piazza, anonymously or publicly.',
+      'If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.',
+      'None of the above'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q7',
+    question: 'Do you have a faculty whom you perceive as a role model?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Maybe'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q8',
+    question: 'Have you seriously considered leaving your computer science-related field of study?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Maybe'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q9',
+    question: 'Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Maybe'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q10',
+    question: 'At my university, students from every background have an equal chance to succeed.',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Maybe'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q11',
+    question: 'I feel adequately supported by the CS department and the resources offered by the department.',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Maybe'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q12',
+    question: 'Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Penn Engineering. Check all that apply to you.',
+    component: 'MultiCheckbox',
+    options: [
+      'my race/ethnicity',
+      'my gender identity',
+      'my sexual orientation',
+      'my disability',
+      'being a first generation student',
+      'my income status',
+      'None of the above'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q13',
+    question: 'Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.',
+    component: 'MultiCheckbox',
+    options: [
+      'my race/ethnicity',
+      'my gender identity',
+      'my sexual orientation',
+      'my disability',
+      'being a first generation student',
+      'my income status',
+      'None of the above'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q14',
+    question: 'Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.',
+    component: 'MultiCheckbox',
+    options: [
+      'race/ethnicity',
+      'gender identity',
+      'sexual orientation',
+      'disabilities',
+      'parental education',
+      'income status',
+      'None of the above'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q14',
+    question: 'Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.',
+    component: 'MultiCheckbox',
+    options: [
+      'race/ethnicity',
+      'gender identity',
+      'sexual orientation',
+      'disabilities',
+      'parental education',
+      'income status',
+      'None of the above'
+    ],
+    required: true,
+    type: [String],
+  },
+  {
+    id: 'q15',
+    question: 'Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Maybe'
+    ],
+    required: true,
+    type: [String],
+  },
+  // TODO: Insert Content warning here. 
+  // Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to continue, or “Skip” to skip these questions.
+  {
+    id: 'q16',
+    question: 'Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Maybe'
+    ],
+    required: false,
+    type: [String],
+  },
+  {
+    id: 'q17',
+    question: 'Have you or someone you know been affected by sexual harassment?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Maybe'
+    ],
+    required: false,
+    type: [String],
+  },
+  {
+    id: 'q18',
+    question: 'Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Maybe'
+    ],
+    required: false,
+    type: [String],
+  },
+  {
+    id: 'q19',
+    question: 'Have you or someone you know been affected by sexual assault?',
+    component: 'Radio',
+    options: [
+      'Yes',
+      'No',
+      'Maybe'
+    ],
+    required: false,
+    type: [String],
+  },
+  ...demographicQuestions
+]
 
 /**
  * QUESTIONS SPECIFIC TO SCHOOLS

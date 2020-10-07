@@ -19,15 +19,16 @@ import { commonQuestions } from '../../../common/schema.js'
 import { submitSurvey, triggerToast } from '../utils'
 
 // keyword for user input question in checkbox/radio
-const specify_question_keyword = "please specify"; 
+const specify_question_keywords = ['Please specify', 'Prefer to self-describe']; 
 
 // an array of keywords of the identifiers in custom input form for checkbox/radio (such that we can remove it later )
 const specify_keyword_arrays = [];
 
 const MappedOptions = ({question, register, watch}) => question.options.map(option => {
     // choose check boc based on if we need user to specify
-    if (option.includes(specify_question_keyword)) { 
-        let identifier = question.id+' '+specify_question_keyword
+    const specify_keyword = specify_question_keywords.find(keyword => option.includes(keyword));
+    if (specify_keyword) { 
+        let identifier = question.id + ' ' + specify_keyword
         specify_keyword_arrays.push(identifier)
         return (
             <Label mb={2} key={option} >
@@ -51,8 +52,9 @@ const CustomRadio = ({question, register, watch, errors}) => {
     // get radio contents based on if we need custom input
     const radioContents = question.options.map(option => {
         const uniqueKey = question.id
-        if (option.includes(specify_question_keyword)) {
-            let identifier = question.id+' '+specify_question_keyword
+        const specify_keyword = specify_question_keywords.find(keyword => option.includes(keyword));
+        if (specify_keyword) {
+            let identifier = question.id + ' ' + specify_keyword
             specify_keyword_arrays.push(identifier)
             return (
                 <Label key={`${uniqueKey}-${option}-label`} mb={2}>
