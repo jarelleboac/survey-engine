@@ -146,6 +146,23 @@ const demographicQuestions = [
 // TODO: make this a function that can take custom params
 const commonQuestions = [
   {
+    id: 'participation',
+    question: 
+      `I agree to participate in an anonymous survey conducted by the Percentage Project. I understand that all responses that I provide in the survey will remain anonymous and that no identifying information about me will be made public. In addition, my email address and all other personally identifiable information will be purged from the data file and replaced with a unique and anonymous identification number when the survey is submitted.
+      
+      In order to analyze the survey responses, my answers will be combined with those given by other survey respondents. All data from the survey will be stored in a secured location and retained indefinitely by the Percentage Project.
+      
+      I also understand that if I have any questions about the survey I can contact the Percentage Project by sending an email to hello@percentageproject.com. 
+      
+      This online survey should take approximately 5 minutes to complete. You can only take the survey once, and you will not be able to edit your responses once the survey is submitted. Questions marked with an asterisk (*) are required.
+      
+      By checking the box below I understand my rights and give my consent to participate in the survey.`,
+    component: 'MultiCheckbox',
+    options: ['I agree to participate.'],
+    required: true,
+    type: [String],
+  },
+  {
     id: 'q1',
     question: 'What year are you in?',
     component: 'Radio',
