@@ -44,7 +44,7 @@ const demographicQuestions = [
       'Prefer not to say',
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'transgender',
@@ -56,7 +56,7 @@ const demographicQuestions = [
       'Prefer not to say',
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'ethnicity',
@@ -103,7 +103,7 @@ const demographicQuestions = [
       'Prefer not to say',
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'fg',
@@ -115,7 +115,7 @@ const demographicQuestions = [
       'Prefer not to say',
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'li',
@@ -127,7 +127,7 @@ const demographicQuestions = [
       'Prefer not to say',
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'international',
@@ -139,7 +139,7 @@ const demographicQuestions = [
       'Prefer not to say',
     ],
     required: true,
-    type: [String],
+    type: String,
   },
 ];
 
@@ -174,7 +174,7 @@ const commonQuestions = [
       'Other (Please specify)',
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'q3',
@@ -243,7 +243,7 @@ const commonQuestions = [
       'Maybe'
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'q8',
@@ -255,7 +255,7 @@ const commonQuestions = [
       'Maybe'
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'q9',
@@ -267,7 +267,7 @@ const commonQuestions = [
       'Maybe'
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'q10',
@@ -279,7 +279,7 @@ const commonQuestions = [
       'Maybe'
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'q11',
@@ -291,7 +291,7 @@ const commonQuestions = [
       'Maybe'
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   {
     id: 'q12',
@@ -367,7 +367,7 @@ const commonQuestions = [
       'Maybe'
     ],
     required: true,
-    type: [String],
+    type: String,
   },
   // TODO: Insert Content warning here. 
   // Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to continue, or “Skip” to skip these questions.
@@ -381,7 +381,7 @@ const commonQuestions = [
       'Maybe'
     ],
     required: false,
-    type: [String],
+    type: String,
   },
   {
     id: 'q17',
@@ -393,7 +393,7 @@ const commonQuestions = [
       'Maybe'
     ],
     required: false,
-    type: [String],
+    type: String,
   },
   {
     id: 'q18',
@@ -405,7 +405,7 @@ const commonQuestions = [
       'Maybe'
     ],
     required: false,
-    type: [String],
+    type: String,
   },
   {
     id: 'q19',
@@ -417,7 +417,7 @@ const commonQuestions = [
       'Maybe'
     ],
     required: false,
-    type: [String],
+    type: String,
   },
   ...demographicQuestions
 ]
