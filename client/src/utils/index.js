@@ -120,3 +120,22 @@ export const getMasterSurveyResponses = () => (
             },
         })
 )
+
+/**
+ * Handles getting all survey responses for a certain school
+ * 
+ * @param {string} school – user school 
+ */
+export const changeSenderEmail = (data, school) => (
+    fetch(`${process.env.REACT_APP_API_URL}/email/${school}/changeSenderEmail`, 
+        {
+            headers: { 
+                'Content-Type': 'application/json', 
+                credentials: 'include',
+                Authorization: `${localStorage.jwtToken}`,
+                withCredentials: true, 
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+)

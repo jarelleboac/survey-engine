@@ -1,7 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { Heading,  Label, Input, Box, Button } from 'theme-ui'
+import { useDispatch, useSelector } from "react-redux";
+import { Heading, Label, Input, Box, Button, Divider } from 'theme-ui'
 import { resetPasswordAction } from "../actions/session";
+import { validEmail, triggerToast, changeSenderEmail } from "../utils";
 
 const ResetPassword = () => {
     const dispatch = useDispatch()
@@ -50,15 +51,31 @@ const ResetPassword = () => {
     );
 }
 
-const SetSenderEmail = () => {
-    const dispatch = useDispatch()
+const SetSenderEmail = ({school}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        const email = e.target[0].value;
+        if (!validEmail(email)) {
+            triggerToast("Please enter a valid email.")
+            return
+        }
+
         const data = {
-            email: e.target[0].value,
+            email: email,
         };
-        // dispatch(resetPasswordAction(email));
+
+        // Submit data and trigger toast
+        changeSenderEmail(data, school)
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) {
+                    triggerToast(res.error)
+                } else if (res.message) {
+                    triggerToast(res.message)
+                }
+            })
+            .catch(err => triggerToast(err.error))
     }
     return (
         <> 
@@ -75,7 +92,6 @@ const SetSenderEmail = () => {
                     mb={3}
                 />
 
-
                 <Button>Set Sender Email</Button>
             </Box>
         </>
@@ -84,10 +100,17 @@ const SetSenderEmail = () => {
 }
 
 export const Dashboard = () => {
+    const session = useSelector(state => state.session)
     return (
         <div className="default">
-            <Heading className="section-header">Dashboard</Heading>
+            <Heading>Dashboard</Heading>
+            <Divider />
+            <Heading>Reset Password</Heading>
             <ResetPassword />
+            
+            <Divider />
+            <Heading>Change AWS Sender Email</Heading>
+            <SetSenderEmail school={session.school}/>
         </div>
     )  
 };
