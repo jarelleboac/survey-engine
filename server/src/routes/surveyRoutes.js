@@ -16,14 +16,12 @@ const router = Router();
  *
  */
 router.post('/', async (req, res) => {
-    console.log(req.body);
     const { school, token, responses } = req.body;
 
     // Should validate email before continuing
     try {
         // Find the email by the token
         const email = await Email.findOne({ school, token });
-        console.log(email);
         if (email) {
             // Only proceed if email is not yet marked as complete
             if (email.status !== submissionStatus.completed) {
@@ -35,24 +33,20 @@ router.post('/', async (req, res) => {
                     if (!SurveyModel) {
                         return res.status(400).send(JSON.stringify({ error: 'This school\'s model has not been implemented.' }));
                     }
-                    console.log(SurveyModel);
                     // Save that model
                     const builtModel = new SurveyModel(
                         { ...responses, status: submissionStatus.completed, school },
                     );
 
-                    console.log('here');
                     // Save the model to DB
                     await builtModel.save();
-                    console.log('saved');
 
                     // Mark email as completed and then save it
                     email.status = submissionStatus.completed;
                     await email.save();
-                    console.log(email);
+
                     return res.send(JSON.stringify({ message: `Successfully wrote a new response to ${school}.` }));
                 } catch (err) {
-                    console.log(err);
                     return res.status(400).send(JSON.stringify({ error: err }));
                 }
             } else {
