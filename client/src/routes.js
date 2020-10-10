@@ -97,7 +97,7 @@ const Frame = () => {
                     variant: 'styles.header',
                 }}
                 className="header">
-                <Heading>{session.school}</Heading>
+                <Heading>{capitalizeString(session.school)}</Heading>
                 <div sx={{ mx: 'auto' }} />
                 <Link to="/" sx={{
                     variant: 'styles.navlink',
