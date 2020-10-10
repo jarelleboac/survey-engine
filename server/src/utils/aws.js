@@ -14,7 +14,7 @@ AWS.config.update({ region: AWS_REGION });
 
 const ses = new AWS.SES({ apiVersion: '2010-12-01' });
 
-export function sendStatusEmail(user, status, surveyUrl) {
+export function sendStatusEmail(user, status, surveyUrl, senderEmail) {
     // if (user.emailUnsubscribed) {
     //     logger.info('Skipping email to unsubscribed user', user);
     // }
@@ -29,10 +29,10 @@ export function sendStatusEmail(user, status, surveyUrl) {
     //     email = accepted(user);
     //     break;
     case submissionStatus.sent:
-        email = reminder(user, surveyUrl);
+        email = reminder(user, surveyUrl, senderEmail);
         break;
     case submissionStatus.unsent:
-        email = unsent(user, surveyUrl);
+        email = unsent(user, surveyUrl, senderEmail);
         break;
     default:
         throw new Error(`Unimplemented email for status "${status}" to user "${user.email}`);

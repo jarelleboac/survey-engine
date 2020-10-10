@@ -163,11 +163,19 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
             { model, token: model.token, email: decrypt(model.email) }
         ));
 
+        const senderEmail = await SenderEmail.findOne({ school })
+            .then((doc) => {
+                if (!doc) {
+                    return res.status(400).send(JSON.stringify({ error: 'Please set a sender email first.' }));
+                }
+                return doc.email;
+            });
+
         await Promise.all(decryptedEmails.map((email) => {
             // Make a survey URL for the thing that we need
             const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
 
-            return sendStatusEmail(email, requestType, surveyUrl)
+            return sendStatusEmail(email, requestType, surveyUrl, senderEmail)
                 .then(async (data) => {
                     // Set it to sent if it hasn't already been sent
                     if (email.model.status !== submissionStatus.sent) {
@@ -178,6 +186,7 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
                     count += 1;
                 })
                 .catch((err) => {
+                    console.log(err);
                     error += 1;
                 });
         }));
@@ -214,7 +223,6 @@ router.post('/:school/changeSenderEmail', passport.authenticate('jwt', { session
                 // eslint-disable-next-line no-param-reassign
                 document.email = email;
                 await document.save();
-                return req.send(JSON.stringify({ message: `Sender email successfully updated to ${email}` }));
             }
         });
     } else {

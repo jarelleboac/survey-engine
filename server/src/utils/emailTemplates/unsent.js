@@ -1,7 +1,7 @@
 import escape from 'escape-html';
 
 // Note that this sends for a single user at a time; not in batch emails
-export default (user, surveyUrl) => ({
+export default (user, surveyUrl, senderEmail) => ({
     Destination: {
         ToAddresses: [user.email], // Email address/addresses that you want to send your email
     },
@@ -39,8 +39,8 @@ export default (user, surveyUrl) => ({
             Data: 'Survey from The Percentage Project',
         },
     },
-    Source: 'The Percentage Project <noreply@percentageproject.com>',
+    Source: `The Percentage Project <${senderEmail}>`,
     ReplyToAddresses: [
-        'The Percentage Project <help@percentageproject.com>',
+        `The Percentage Project <${senderEmail}>`,
     ],
 });
