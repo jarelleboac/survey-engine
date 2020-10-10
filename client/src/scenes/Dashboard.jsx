@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Heading,  Label, Input, Box, Button } from 'theme-ui'
 import { resetPasswordAction } from "../actions/session";
 
-export const Dashboard = () => {
+const ResetPassword = () => {
     const dispatch = useDispatch()
 
     const handleSubmit = e => {
@@ -22,7 +22,6 @@ export const Dashboard = () => {
                 onSubmit={e => handleSubmit(e)}
                 className="login"
             >
-                <Heading className="section-header">Dashboard</Heading>
                 <Label htmlFor='email'>Email</Label>
                 <Input
                     name='email'
@@ -49,4 +48,46 @@ export const Dashboard = () => {
             </Box>
         </>
     );
+}
+
+const SetSenderEmail = () => {
+    const dispatch = useDispatch()
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        const data = {
+            email: e.target[0].value,
+        };
+        // dispatch(resetPasswordAction(email));
+    }
+    return (
+        <> 
+            <Box
+                as='form'
+                onSubmit={e => handleSubmit(e)}
+                className="default"
+            >
+                
+                <Label htmlFor='senderEmail'>New Sender Email</Label>
+                <Input
+                    name='senderEmail'
+                    id='senderEmail'
+                    mb={3}
+                />
+
+
+                <Button>Set Sender Email</Button>
+            </Box>
+        </>
+    );
+
+}
+
+export const Dashboard = () => {
+    return (
+        <div className="default">
+            <Heading className="section-header">Dashboard</Heading>
+            <ResetPassword />
+        </div>
+    )  
 };
