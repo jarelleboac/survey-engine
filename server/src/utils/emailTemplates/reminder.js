@@ -40,7 +40,7 @@ export default (user, surveyUrl) => ({
             Data: 'Survey from the Percentage Project',
         },
     },
-    Source: 'The Percentage Project <jake@percentageproject.com>',
+    Source: 'The Percentage Project <noreply@percentageproject.com>',
     ReplyToAddresses: [
         'The Percentage Project <help@percentageproject.com>',
     ],
