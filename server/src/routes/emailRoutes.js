@@ -4,6 +4,7 @@ import { submissionStatus, roles } from '../schema';
 import Email from '../models/Email';
 import { encrypt, decrypt, isEmail } from '../utils';
 import { sendStatusEmail } from '../utils/aws';
+import SenderEmail from '../models/SenderEmail';
 
 const router = Router();
 
@@ -139,7 +140,7 @@ router.post('/:school', passport.authenticate('jwt', { session: false }), async 
 // });
 
 /**
- * TODO: sendAllEmails route for a specific school. Should include the requestType in the body
+ * sendAllEmails route for a specific school. Should include the requestType in the body
  *
  */
 router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false }), async (req, res) => {
@@ -187,4 +188,39 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
     return res.send({ message: `${count} emails were successfully sent. ${error} emails had an error.` });
 });
 
+/**
+ * Changes the email from which emails will be sent for a certain school
+ *
+ */
+router.post('/:school/changeSenderEmail', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const { school } = req.params;
+
+    const { role, school: userSchool } = req.user;
+
+    const { email } = req.body;
+
+    if (role === roles.schoolAdmin && userSchool === school) {
+        // Makes sure email is valid before continuing
+        if (!isEmail(email)) {
+            return res.status(400).send(JSON.stringify({ error: 'Invalid email.' }));
+        }
+
+        SenderEmail.findOne({ school }).then(async (document) => {
+            // If the model didn't exist before, make a new model for this school
+            if (!document) {
+                const newSenderEmail = new SenderEmail({ email, school });
+                await newSenderEmail.save();
+            } else {
+                // eslint-disable-next-line no-param-reassign
+                document.email = email;
+                await document.save();
+                return req.send(JSON.stringify({ message: `Sender email successfully updated to ${email}` }));
+            }
+        });
+    } else {
+        return res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+
+    return res.send(JSON.stringify({ message: `Sender email successfully updated to ${email}` }));
+});
 export default router;
