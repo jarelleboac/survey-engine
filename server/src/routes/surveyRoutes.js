@@ -97,7 +97,7 @@ router.get('/:school', passport.authenticate('jwt', { session: false }), async (
 
             // Get all surveys from that model
             const surveys = await SurveyModel.find();
-            return res.send(surveys);
+            return res.send(JSON.stringify(surveys));
         } catch (err) {
             return res.status(400).send(err.message);
         }

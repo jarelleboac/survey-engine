@@ -151,6 +151,7 @@ const vanderbiltQuestions = [
 
 ];
 
+// This is used to map loading the appropriate frontend questions
 const schoolToQuestion = {};
 schoolToQuestion[schools.brown] = brownQuestions;
 schoolToQuestion[schools.penn] = pennQuestions;
