@@ -263,7 +263,7 @@ export default (user, surveyUrl) => ({
 																		<tr>
 																			<td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 																				<div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;"> 
-																					Head on over to Survey url: ${escape(surveyUrl)}!
+																					Head on over to the survey at your unique url: ${escape(surveyUrl)}
 																				</div>
 																			</td>
 																		</tr>
@@ -570,7 +570,12 @@ export default (user, surveyUrl) => ({
                 Charset: 'UTF-8',
                 Data: `Hello!
 				
-				Survey url: ${escape(surveyUrl)}
+				Just a quick reminder to fill out your survey! We're reaching out to give you your unique survey link for The Percentage Project.
+
+				Head on over to the survey at your unique url: ${escape(surveyUrl)}
+				
+				Best,
+				The Percentage Project Team
 				`,
             },
         },

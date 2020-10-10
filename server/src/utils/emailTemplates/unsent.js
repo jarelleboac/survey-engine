@@ -14,7 +14,7 @@ export default (user, surveyUrl) => ({
 				<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 				
 				<head>
-					<title> You've Been Accepted! </title>
+					<title> Survey from The Percentage Project! </title>
 					<!--[if !mso]><!-- -->
 					<meta http-equiv="X-UA-Compatible" content="IE=edge">
 					<!--<![endif]-->
@@ -256,14 +256,14 @@ export default (user, surveyUrl) => ({
 																		<tr>
 																			<td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 																				<div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;"> 
-																				Hello! We're reaching out to give you your unique survey link for The Percentage Project.
+																				We're reaching out to give you your unique survey link for The Percentage Project.
 																				</div>
 																			</td>
 																		</tr>
 																		<tr>
 																			<td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 																				<div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;"> 
-																					Head on over to Survey url: ${escape(surveyUrl)}!
+																					Head on over to the survey at your unique url: ${escape(surveyUrl)}
 																				</div>
 																			</td>
 																		</tr>
@@ -570,13 +570,18 @@ export default (user, surveyUrl) => ({
                 Charset: 'UTF-8',
                 Data: `Hello!
 				
-				Survey url: ${escape(surveyUrl)}
+				We're reaching out to give you your unique survey link for The Percentage Project.
+
+				Head on over to the survey at your unique url: ${escape(surveyUrl)}
+				
+				Best,
+				The Percentage Project Team
 				`,
             },
         },
         Subject: {
             Charset: 'UTF-8',
-            Data: 'Survey from the Percentage Project!',
+            Data: 'Survey from The Percentage Project!',
         },
     },
     Source: 'The Percentage Project <noreply@percentageproject.com>',
