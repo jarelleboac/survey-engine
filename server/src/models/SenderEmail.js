@@ -14,6 +14,7 @@ const emailSchema = new mongoose.Schema({
         type: String,
         required: [true, 'A school is required'],
         enum: schoolsArray,
+        unique: true,
     },
 });
 
