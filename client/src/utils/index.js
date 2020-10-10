@@ -80,3 +80,43 @@ export const getSurveyResponses = (school) => (
             },
         })
 )
+
+/**
+ * 
+ * @param {Function} fetchFunction – calls the fetching function then downloads the JSON
+ */
+export const downloadJSON = (fetchFunction) => {
+    fetchFunction()
+        .then(res => {
+            if (!res.ok) throw Error(res.statusText)
+            else return res.json()
+        }).then(res => {
+        // Create a temp link for downloading
+            const downloadLink = document.createElement("a");
+            const jsonString = JSON.stringify(res)
+            const file = new Blob([jsonString], { type: "application/json" });
+            downloadLink.href = URL.createObjectURL(file);
+            downloadLink.download = "responses.json";
+            document.body.appendChild(downloadLink)
+            downloadLink.click();
+            document.body.removeChild(downloadLink)
+        }).catch(err => {
+            console.error(err)
+        })
+}
+
+/**
+ * Handles getting all survey responses for a certain school
+ * 
+ */
+export const getMasterSurveyResponses = () => (
+    fetch(`${process.env.REACT_APP_API_URL}/survey/allResponses`, 
+        {
+            headers: { 
+                'Content-Type': 'application/json', 
+                credentials: 'include',
+                Authorization: `${localStorage.jwtToken}`,
+                withCredentials: true, 
+            },
+        })
+)
