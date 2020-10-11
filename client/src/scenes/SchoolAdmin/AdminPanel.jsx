@@ -2,7 +2,7 @@ import { Table } from '../../components/Table'
 import React, { useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { CSVUpload } from '../../components/CSVUpload'
-import { getCounts, sendEmails, getSurveyResponses } from '../../utils'
+import { getCounts, sendEmails, getSurveyResponses, triggerToast } from '../../utils'
 import {setCountsAction} from  '../../actions/email'
 import { Button, Flex, Heading, Divider } from 'theme-ui'
 import {submissionStatus} from '../../../../common/schema'
@@ -20,8 +20,9 @@ export const SchoolAdminPanel = () => {
                 if (!res.ok) throw Error(res.statusText)
                 else return res.json()
             }).then(res => {
-                console.log(res)
+                triggerToast(res.message)
             }).catch(err => {
+                triggerToast(err)
                 console.error(err)
             })
     }
