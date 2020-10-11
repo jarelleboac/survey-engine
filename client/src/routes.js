@@ -7,6 +7,7 @@ import { Login } from './scenes/Login'
 import { SchoolAdminPanel } from './scenes/SchoolAdmin/AdminPanel'
 import { PercentAdminPanel } from './scenes/PercentAdmin/PercentAdminPanel'
 import { Dashboard } from './scenes/Dashboard'
+import { Unsubscribe } from './scenes/Unsubscribe'
 import { roles } from '../../common/schema';
 
 import {useSelector, useDispatch} from 'react-redux'
@@ -147,6 +148,27 @@ const WrappedSurvey = ({school, token}) => {
         </div>)
 }
 
+const FallbackPage = () => {
+    return (
+        <div className="container">
+            <div id="logo-container">
+                <Link to="/">
+                    <img src="logo.png" id="logo" alt="% project logo"/>
+                </Link>
+            </div>
+            <header
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    variant: 'styles.header',
+                }}
+                className="header">
+                <Heading>Error</Heading>
+            </header>
+            <div className="default">Lost connection with the server. Please contact the % project.</div>
+        </div>)
+}
+
 
 export const Routes = () => {
     const [ready, setReady] = useState(false);
@@ -163,20 +185,26 @@ export const Routes = () => {
     
     const StateMachine = () => {
         const query = useQuery();
+        console.log(window.location.pathname)
+
+        const pathname = window.location.pathname
 
         const token = query.get("token")
         const school = query.get("school")
         const session = useSelector(state => state.session)
 
         if (!ready) {
-            return (<div className="default">Lost connection with the server. Please contact the % project.</div>)
+            return (<FallbackPage />)
         }
         
         if (session.userId && session.role && session.school) {
             return <Frame />
-        } else if (token) {
-            return <WrappedSurvey school={school} token={token}/>
-        } else {
+        } else if (pathname === "/survey" && token && school) {
+            return <WrappedSurvey school={school} token={token} />
+        } else if (pathname === "/unsubscribe" && token) {
+            return <Unsubscribe token={token} />
+        }
+        else {
             return (<Login />)
         }
     }

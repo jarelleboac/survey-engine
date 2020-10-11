@@ -139,3 +139,22 @@ export const changeSenderEmail = (data, school) => (
             body: JSON.stringify(data)
         })
 )
+
+/**
+ * Handles getting all survey responses for a certain school
+ * 
+ * @param {string} token – email token to unsubscribe 
+ */
+export const unsubscribe = (token) => (
+    fetch(`${process.env.REACT_APP_API_URL}/email/unsubscribe`, 
+        {
+            headers: { 
+                'Content-Type': 'application/json', 
+                credentials: 'include',
+                Authorization: `${localStorage.jwtToken}`,
+                withCredentials: true, 
+            },
+            method: "POST",
+            body: JSON.stringify({token: token})
+        })
+)
