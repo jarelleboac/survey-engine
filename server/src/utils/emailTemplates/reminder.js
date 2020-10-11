@@ -1,7 +1,7 @@
 import escape from 'escape-html';
 
 // Note that this sends for a single user at a time; not in batch emails
-export default (user, surveyUrl, senderEmail) => ({
+export default (user, surveyUrl, senderEmail, unsubscribeUrl) => ({
     Destination: {
         ToAddresses: [user.email], // Email address/addresses that you want to send your email
     },
@@ -18,7 +18,9 @@ export default (user, surveyUrl, senderEmail) => ({
 				Head on over to the survey at your unique url: ${escape(surveyUrl)}<br><br>
 				
 				Best,<br>
-				The Percentage Project Team
+                The Percentage Project Team
+                <br><br>
+                If you'd like to unsubscribe, please visit here: ${escape(unsubscribeUrl)}
 				</html>
 				`,
             },
@@ -31,7 +33,9 @@ export default (user, surveyUrl, senderEmail) => ({
 				Head on over to the survey at your unique url: ${escape(surveyUrl)}
 				
 				Best,
-				The Percentage Project Team
+                The Percentage Project Team
+                
+                If you'd like to unsubscribe, please visit here: ${escape(unsubscribeUrl)}
 				`,
             },
         },
