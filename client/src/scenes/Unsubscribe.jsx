@@ -7,7 +7,9 @@ export const Unsubscribe = ({token}) => {
 
     const unsubscribeHandler = () => {
         unsubscribe(token)
-            .then(res => res.json())
+            .then(res => 
+                res.json()
+            )
             .then(res => {
                 if (res.error) {
                     triggerToast(res.error)
@@ -27,7 +29,7 @@ export const Unsubscribe = ({token}) => {
                     <img src="logo.png" id="logo" alt="% project logo"/>
                 </div>
 
-                <header>
+                <header className="section-header">
                     <Heading>Unsubscribe</Heading>
                 </header>
                 <div className="default">

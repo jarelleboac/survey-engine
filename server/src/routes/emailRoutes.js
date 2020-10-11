@@ -50,6 +50,28 @@ router.get('/:school', passport.authenticate('jwt', { session: false }), (req, r
     }
 });
 
+/**
+ * Unsubscribes a user from future emails
+ *
+ * @param {req.body.token} – Expects the email token
+ *
+ */
+router.post('/unsubscribe', async (req, res) => {
+    const { token } = req.body;
+
+    try {
+        // Find the email by the token
+        const email = await Email.findOne({ token });
+        if (email) {
+            email.status = submissionStatus.unsubscribed;
+            return res.status(200).send(JSON.stringify({ message: 'You have been successfully unsubscribed.' }));
+        }
+        return res.status(400).send(JSON.stringify({ error: 'This token does not exist in the DB.' }));
+    } catch (err) {
+        return res.status(400).send(JSON.stringify({ error: err.message }));
+    }
+});
+
 // Expects email to be an array of valid emails. Allows adding emails to that school
 router.post('/:school', passport.authenticate('jwt', { session: false }), async (req, res, next) => {
     const { role, school } = req.user;
@@ -189,29 +211,6 @@ router.post('/:school/changeSenderEmail', passport.authenticate('jwt', { session
     }
 
     return res.send(JSON.stringify({ message: `Sender email successfully updated to ${email}` }));
-});
-
-/**
- * Unsubscribes a user from future emails
- *
- * @param {req.body.token} – Expects the email token
- *
- */
-router.post('/unsubscribe', async (req, res) => {
-    const { token } = req.body;
-
-    // Should validate email before continuing
-    try {
-        // Find the email by the token
-        const email = await Email.findOne({ token });
-        if (email) {
-            email.status = submissionStatus.unsubscribed;
-            return res.status(200).send(JSON.stringify({ message: 'You have been successfully unsubscribed.' }));
-        }
-        return res.status(400).send(JSON.stringify({ error: 'This token does not exist in the DB.' }));
-    } catch (err) {
-        return res.status(400).send(JSON.stringify({ error: err.message }));
-    }
 });
 
 export default router;

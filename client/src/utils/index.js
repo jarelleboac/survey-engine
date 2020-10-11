@@ -151,7 +151,6 @@ export const unsubscribe = (token) => (
             headers: { 
                 'Content-Type': 'application/json', 
                 credentials: 'include',
-                Authorization: `${localStorage.jwtToken}`,
                 withCredentials: true, 
             },
             method: "POST",

@@ -52,6 +52,7 @@ export const PageSwitches = () => {
             })}
             <Route path="/login" component={Login} />
             <Route path="/survey" component={Survey} />
+            <Route path="/unsubscribe" component={Unsubscribe} />
             {/* <Route path="/signup" component={Signup} /> */}
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/">
