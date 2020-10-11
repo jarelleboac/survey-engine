@@ -64,6 +64,7 @@ router.post('/unsubscribe', async (req, res) => {
         const email = await Email.findOne({ token });
         if (email) {
             email.status = submissionStatus.unsubscribed;
+            await email.save();
             return res.status(200).send(JSON.stringify({ message: 'You have been successfully unsubscribed.' }));
         }
         return res.status(400).send(JSON.stringify({ error: 'This token does not exist in the DB.' }));
