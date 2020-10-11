@@ -62,7 +62,7 @@ export const SchoolAdminPanel = () => {
             .catch(error => {
                 console.error(error)
             });
-    }, [freshData])
+    }, [freshData, dispatch, session.school])
 
     return(
         <div className="admin-container">
