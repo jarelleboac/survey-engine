@@ -1,7 +1,14 @@
 import escape from 'escape-html';
 
+const formatSchool = (school) => {
+    if (!['CMU', 'NYU', 'UMD', 'UIUC'].includes(school)) {
+        return school.charAt(0).toUpperCase() + school.slice(1).toLowerCase();
+    }
+    return school;
+};
+
 // Note that this sends for a single user at a time; not in batch emails
-export default (user, surveyUrl, senderEmail, unsubscribeUrl) => ({
+export default (user, surveyUrl, school, senderEmail, unsubscribeUrl) => ({
     Destination: {
         ToAddresses: [user.email], // Email address/addresses that you want to send your email
     },
@@ -10,38 +17,41 @@ export default (user, surveyUrl, senderEmail, unsubscribeUrl) => ({
             Html: {
                 // HTML Format of the email
                 Charset: 'UTF-8',
-                Data: `<!doctype html>Hello!<br><br>
+                Data: `<!doctype html>Hi there,<br><br>
 				
-				We're reaching out to give you your unique survey link for The Percentage Project.<br><br>
+                We're conducting a survey on experiences of students studying computer science and related fields at ${formatSchool(school)}. We'd love to hear about your experience! This will allow us to understand the current state of students from all backgrounds and follow metrics from year to year.<br><br>
+
+                Hearing about your unique experience is very important to us, and we'd appreciate your time in filling out this 5-minute survey.<br><br>
 
 				Head on over to the survey at your unique url: ${escape(surveyUrl)}<br><br>
 				
 				Best,<br>
                 The Percentage Project Team
                 <br><br>
-                If you'd like to unsubscribe, please visit here: ${escape(unsubscribeUrl)}
+                If you'd like to opt out, please unsubscribe here: ${escape(unsubscribeUrl)}
 				</html>
 				`,
             },
             Text: {
                 Charset: 'UTF-8',
-                Data: `Hello!
-				
-				We're reaching out to give you your unique survey link for The Percentage Project.
+                Data: `Hi there,
+                
+                We're conducting a survey on experiences of students studying computer science and related fields at ${formatSchool(school)}. We'd love to hear about your experience! This will allow us to understand the current state of students from all backgrounds and follow metrics from year to year.
 
-				Head on over to the survey at your unique url: ${escape(surveyUrl)}
-				
-				Best,
+                Hearing about your unique experience is very important to us, and we'd appreciate your time in filling out this 5-minute survey.
+                
+                Head on over to the survey at your unique url: ${escape(surveyUrl)}     
+            
+                Best,
                 The Percentage Project Team
-                
-                
-                If you'd like to unsubscribe, please visit here: ${escape(unsubscribeUrl)}
+
+                If you'd like to opt out, please unsubscribe here: ${escape(unsubscribeUrl)}
 				`,
             },
         },
         Subject: {
             Charset: 'UTF-8',
-            Data: 'Survey from The Percentage Project',
+            Data: `Invitation to ${formatSchool(school)} Computer Science Survey`,
         },
     },
     Source: `The Percentage Project <${senderEmail}>`,

@@ -157,7 +157,7 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
             const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
             const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
 
-            return sendStatusEmail(email, requestType, surveyUrl, senderEmail.email, unsubscribeUrl)
+            return sendStatusEmail(email, requestType, surveyUrl, school, senderEmail.email, unsubscribeUrl)
                 .then(async (data) => {
                     // Set it to sent if it hasn't already been sent
                     if (email.model.status !== submissionStatus.sent) {
