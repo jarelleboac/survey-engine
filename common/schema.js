@@ -147,15 +147,15 @@ const demographicQuestions = [
 const commonQuestions = [
   {
     id: 'participation',
-    question: 
+    question:
       `I agree to participate in an anonymous survey conducted by the Percentage Project. I understand that all responses that I provide in the survey will remain anonymous and that no identifying information about me will be made public. In addition, my email address and all other personally identifiable information will be purged from the data file and replaced with a unique and anonymous identification number when the survey is submitted.
-      
+      \n
       In order to analyze the survey responses, my answers will be combined with those given by other survey respondents. All data from the survey will be stored in a secured location and retained indefinitely by the Percentage Project.
-      
+      \n
       I also understand that if I have any questions about the survey I can contact the Percentage Project by sending an email to hello@percentageproject.com. 
-      
+      \n
       This online survey should take approximately 5 minutes to complete. You can only take the survey once, and you will not be able to edit your responses once the survey is submitted. Questions marked with an asterisk (*) are required.
-      
+      \n
       By checking the box below I understand my rights and give my consent to participate in the survey.`,
     component: 'MultiCheckbox',
     options: ['I agree to participate.'],
@@ -172,7 +172,7 @@ const commonQuestions = [
       'Junior',
       'Senior',
       'Super Senior',
-      'Graduate'
+      'Graduate',
     ],
     required: true,
     type: String,
@@ -199,9 +199,9 @@ const commonQuestions = [
     component: 'MultiCheckbox',
     options: [
       'I feel pressure at Penn to find internships, job opportunities, extracurricular activities.',
-      'I feel confident studying computer science and related fields.', 
+      'I feel confident studying computer science and related fields.',
       'I feel intimidated studying Computer Science and related fields.',
-      'None of the above'
+      'None of the above',
     ],
     required: true,
     type: [String],
@@ -212,9 +212,9 @@ const commonQuestions = [
     component: 'MultiCheckbox',
     options: [
       'I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.',
-      'I have been interrupted or talked to condescendingly by someone who assumed they knew more.', 
+      'I have been interrupted or talked to condescendingly by someone who assumed they knew more.',
       'In a group project, my opinion is as respected as that of other group members.',
-      'None of the above'
+      'None of the above',
     ],
     required: true,
     type: [String],
@@ -225,11 +225,11 @@ const commonQuestions = [
     component: 'MultiCheckbox',
     options: [
       'My peers respect me.',
-      'I would tell my peers if they made discriminatory or inappropriate comments.', 
+      'I would tell my peers if they made discriminatory or inappropriate comments.',
       'My professors and TAs respect me.',
       'I have to prove myself before being taken seriously in academic settings.',
       'I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.',
-      'None of the above'
+      'None of the above',
     ],
     required: true,
     type: [String],
@@ -245,7 +245,7 @@ const commonQuestions = [
       'I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.',
       'I ask questions on Piazza, anonymously or publicly.',
       'If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.',
-      'None of the above'
+      'None of the above',
     ],
     required: true,
     type: [String],
@@ -257,7 +257,7 @@ const commonQuestions = [
     options: [
       'Yes',
       'No',
-      'Maybe'
+      'Maybe',
     ],
     required: true,
     type: String,
@@ -269,7 +269,7 @@ const commonQuestions = [
     options: [
       'Yes',
       'No',
-      'Maybe'
+      'Maybe',
     ],
     required: true,
     type: String,
@@ -281,7 +281,7 @@ const commonQuestions = [
     options: [
       'Yes',
       'No',
-      'Maybe'
+      'Maybe',
     ],
     required: true,
     type: String,
@@ -293,7 +293,7 @@ const commonQuestions = [
     options: [
       'Yes',
       'No',
-      'Maybe'
+      'Maybe',
     ],
     required: true,
     type: String,
@@ -305,7 +305,7 @@ const commonQuestions = [
     options: [
       'Yes',
       'No',
-      'Maybe'
+      'Maybe',
     ],
     required: true,
     type: String,
@@ -321,7 +321,7 @@ const commonQuestions = [
       'my disability',
       'being a first generation student',
       'my income status',
-      'None of the above'
+      'None of the above',
     ],
     required: true,
     type: [String],
@@ -337,7 +337,7 @@ const commonQuestions = [
       'my disability',
       'being a first generation student',
       'my income status',
-      'None of the above'
+      'None of the above',
     ],
     required: true,
     type: [String],
@@ -353,7 +353,7 @@ const commonQuestions = [
       'disabilities',
       'parental education',
       'income status',
-      'None of the above'
+      'None of the above',
     ],
     required: true,
     type: [String],
@@ -365,13 +365,22 @@ const commonQuestions = [
     options: [
       'Yes',
       'No',
-      'Maybe'
+      'Maybe',
     ],
     required: true,
     type: String,
   },
-  // TODO: Insert Content warning here. 
-  // Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to continue, or “Skip” to skip these questions.
+  {
+    id: 'contentWarning',
+    question: 'Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to continue, or “Skip” to skip these questions.',
+    component: 'Radio',
+    options: [
+      'Continue',
+      'Skip',
+    ],
+    required: false,
+    type: String,
+  },
   {
     id: 'harassment1',
     question: 'Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?',
@@ -379,10 +388,11 @@ const commonQuestions = [
     options: [
       'Yes',
       'No',
-      'Maybe'
+      'Maybe',
     ],
     required: false,
     type: String,
+    contentWarning: true,
   },
   {
     id: 'harassment2',
@@ -391,10 +401,11 @@ const commonQuestions = [
     options: [
       'Yes',
       'No',
-      'Maybe'
+      'Maybe',
     ],
     required: false,
     type: String,
+    contentWarning: true,
   },
   {
     id: 'assault1',
@@ -403,10 +414,11 @@ const commonQuestions = [
     options: [
       'Yes',
       'No',
-      'Maybe'
+      'Maybe',
     ],
     required: false,
     type: String,
+    contentWarning: true,
   },
   {
     id: 'assault2',
@@ -415,13 +427,14 @@ const commonQuestions = [
     options: [
       'Yes',
       'No',
-      'Maybe'
+      'Maybe',
     ],
     required: false,
     type: String,
+    contentWarning: true,
   },
-  ...demographicQuestions
-]
+  ...demographicQuestions,
+];
 
 /**
  * QUESTIONS SPECIFIC TO SCHOOLS

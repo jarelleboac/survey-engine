@@ -108,12 +108,56 @@ const CustomMultiCheckbox = ({ question, register, watch, errors}) => {
         </>)
 }
 
-const questionToComponent = (question, register, watch, errors) => {
-    if (question.component === "MultiCheckbox") {
-        return (<CustomMultiCheckbox question={question} register={register} watch={watch} errors={errors} key={`${question.id}-component`} />)
-    } else if (question.component === "Radio") {
-        return (<CustomRadio question={question}  register={register} watch={watch} errors={errors} key={`${question.id}-component`} />)
-    } 
+const ContentWarning = ({question, register, errors, setContentAccept}) => {
+    // get radio contents based on if we need custom input
+    const radioContents = question.options.map(option => {
+        const uniqueKey = question.id
+        
+        return (
+            <Label key={`${uniqueKey}-${option}-label`}mb={2}>
+                <Radio 
+                    value={option} ref={register({required: question.required})} name={question.id}
+                    key={`${uniqueKey}-${option}-radio`}
+                    onChange={(e) => {
+                        setContentAccept(e.target.value === 'Continue')
+                    }
+                    }
+                />{option} 
+            </Label>
+        )
+    })
+
+    return (<>
+        <Text key={`${question.id}-text`}
+            sx={{
+                fontSize: 4,
+                fontWeight: 'bold',
+                marginTop: '3rem',
+            }}>
+            {question.question}
+        </Text>
+        {radioContents}
+        {errors[question.id] && question.required && <p>This field is required</p>}
+    </>)
+}
+
+const questionToComponent = (question, register, watch, errors, contentAccept, setContentAccept) => {
+    if (question.id === 'contentWarning') {
+        return <ContentWarning question={question} register={register} watch={watch} errors={errors} key={`${question.id}-component`} setContentAccept={setContentAccept} />
+    } else {
+        if (question.component === "MultiCheckbox") {
+            if (question.contentWarning) {
+                return contentAccept ? <CustomMultiCheckbox question={question} register={register} watch={watch} errors={errors} key={`${question.id}-component`} /> : null
+            }
+            return <CustomMultiCheckbox question={question} register={register} watch={watch} errors={errors} key={`${question.id}-component`} />
+        } else if (question.component === "Radio") {
+            if (question.contentWarning) {
+                return contentAccept ? <CustomRadio question={question}  register={register} watch={watch} errors={errors} key={`${question.id}-component`} /> : null
+            }
+            return <CustomRadio question={question}  register={register} watch={watch} errors={errors} key={`${question.id}-component`} />
+        } 
+    }
+  
     return (<></>)
 }
 
@@ -126,6 +170,8 @@ export function Survey({school, token}) {
     const { register, handleSubmit, errors, watch } = useForm();
 
     const [message, setMessage] = useState("")
+
+    const [contentAccept, setContentAccept] = useState(false)
 
     useEffect(() => {
         if (message !== "") {
@@ -152,9 +198,6 @@ export function Survey({school, token}) {
             })
             .catch(err => setMessage(err.error))
     };
-
-
-
 
     return (
         <>
@@ -193,7 +236,7 @@ export function Survey({school, token}) {
                 /> */}
 
                 {commonQuestions.map(question => { 
-                    return(questionToComponent(question, register, watch, errors))})
+                    return(questionToComponent(question, register, watch, errors, contentAccept, setContentAccept))})
                 }
                 
                 <Button mb='3rem' sx={{mt: '3rem'}}>Submit</Button>
