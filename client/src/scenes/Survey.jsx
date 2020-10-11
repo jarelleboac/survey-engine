@@ -9,10 +9,11 @@ import {
     Checkbox,
     // Slider,
     // Box,
-    // Flex,
+    Divider,
     Button,
     Container,
-    Text
+    Text,
+    Heading
 } from 'theme-ui'
 
 import { commonQuestions } from '../../../common/schema.js'
@@ -141,6 +142,16 @@ const ContentWarning = ({question, register, errors, setContentAccept}) => {
     </>)
 }
 
+const TextBlock = ({question}) => {
+    return (
+        <>
+            <Divider mt="30px"/>
+            <Heading>{question.heading}</Heading>
+            <Text>{question.text}</Text>
+        </>
+    )
+}
+
 const questionToComponent = (question, register, watch, errors, contentAccept, setContentAccept) => {
     if (question.id === 'contentWarning') {
         return <ContentWarning question={question} register={register} watch={watch} errors={errors} key={`${question.id}-component`} setContentAccept={setContentAccept} />
@@ -155,7 +166,9 @@ const questionToComponent = (question, register, watch, errors, contentAccept, s
                 return contentAccept ? <CustomRadio question={question}  register={register} watch={watch} errors={errors} key={`${question.id}-component`} /> : null
             }
             return <CustomRadio question={question}  register={register} watch={watch} errors={errors} key={`${question.id}-component`} />
-        } 
+        }  else if (question.component === "Text") {
+            return <TextBlock question={question} />
+        }
     }
   
     return (<></>)
