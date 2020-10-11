@@ -5,9 +5,11 @@ import { Survey } from './scenes/Survey'
 import { Login } from './scenes/Login'
 // import { Signup}  from './scenes/Signup'
 import { SchoolAdminPanel } from './scenes/SchoolAdmin/AdminPanel'
-import { PercentAdminPanel } from './scenes/PercentAdmin/AdminPanel'
+import { PercentAdminPanel } from './scenes/PercentAdmin/PercentAdminPanel'
 import { Dashboard } from './scenes/Dashboard'
+import { Unsubscribe } from './scenes/Unsubscribe'
 import { roles } from '../../common/schema';
+
 import {useSelector, useDispatch} from 'react-redux'
 import { jsx, Button } from 'theme-ui'
 import {logoutAction, checkLoggedInAction} from './actions/session'
@@ -17,17 +19,13 @@ import {
     Switch,
     Route,
     Redirect,
-    Link
+    Link,
+    useLocation
 } from "react-router-dom";
+import { capitalizeString } from './utils';
 
 
 export const routes = [
-    {
-        authLevel: [roles.schoolAdmin, roles.percentAdmin],
-        component: Survey,
-        displayText: 'Survey',
-        path: '/survey',
-    },
     {
         authLevel: [roles.schoolAdmin],
         component: SchoolAdminPanel,
@@ -42,7 +40,7 @@ export const routes = [
     },
 ];
 
-
+// Auth spreading here
 export const PageSwitches = () => {
     const session = useSelector(state => state.session)
     return (
@@ -53,6 +51,8 @@ export const PageSwitches = () => {
                 ) : null;
             })}
             <Route path="/login" component={Login} />
+            <Route path="/survey" component={Survey} />
+            <Route path="/unsubscribe" component={Unsubscribe} />
             {/* <Route path="/signup" component={Signup} /> */}
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/">
@@ -71,13 +71,18 @@ export const PageSwitches = () => {
         </Switch>)
 }
 
+// FIXME: Once survey routes are done, this will need to be routing users to the survey
 const Frame = () => {
     
     const dispatch = useDispatch()
     const session = useSelector(state => state.session)
     
     if (window.location.pathname.startsWith('/login')) {
-        return <Redirect to="/dashboard" />;
+        if (session.userId && session.role && session.school) {
+            return <Redirect to="/dashboard" />;
+        } else {
+            return <Redirect to="/login" />;
+        }
     }
 
     return (
@@ -94,7 +99,7 @@ const Frame = () => {
                     variant: 'styles.header',
                 }}
                 className="header">
-                <Heading>{session.school}</Heading>
+                <Heading>{capitalizeString(session.school)}</Heading>
                 <div sx={{ mx: 'auto' }} />
                 <Link to="/" sx={{
                     variant: 'styles.navlink',
@@ -113,7 +118,57 @@ const Frame = () => {
         </div>)
 };
 
+/**
+ * Version of the Survey component for external sight
+ * 
+ * @param {string} school – the school that this survey belongs to
+ * @param {string} token – the UUID of the survey
+ */
+const WrappedSurvey = ({school, token}) => {
+    const lowercaseSchool = capitalizeString(school)
 
+    return(
+        <div className="container">
+            <div id="logo-container">
+                <Link to="/">
+                    <img src="logo.png" id="logo" alt="% project logo"/>
+                </Link>
+            </div>
+            <header
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    variant: 'styles.header',
+                }}
+                className="header">
+                <Heading>Survey at {lowercaseSchool}</Heading>
+            </header>
+           
+
+            <Survey school={school} token={token} />
+        </div>)
+}
+
+const FallbackPage = () => {
+    return (
+        <div className="container">
+            <div id="logo-container">
+                <Link to="/">
+                    <img src="logo.png" id="logo" alt="% project logo"/>
+                </Link>
+            </div>
+            <header
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    variant: 'styles.header',
+                }}
+                className="header">
+                <Heading>Error</Heading>
+            </header>
+            <div className="default">Lost connection with the server. Please contact the % project.</div>
+        </div>)
+}
 
 
 export const Routes = () => {
@@ -121,6 +176,7 @@ export const Routes = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         async function fetchData() {
+            // Check if there's a logged in user here
             await dispatch(checkLoggedInAction())
             setReady(true)
         }
@@ -129,14 +185,34 @@ export const Routes = () => {
     },[dispatch])
     
     const StateMachine = () => {
+        const query = useQuery();
+        console.log(window.location.pathname)
+
+        const pathname = window.location.pathname
+
+        const token = query.get("token")
+        const school = query.get("school")
         const session = useSelector(state => state.session)
-        if (!ready) return null;
-        return session.userId && session.role && session.school ? 
-            (
-                <Frame />
-            ) : (
-                <Login />
-            )
+
+        if (!ready) {
+            return (<FallbackPage />)
+        }
+        
+        if (session.userId && session.role && session.school) {
+            return <Frame />
+        } else if (pathname === "/survey" && token && school) {
+            return <WrappedSurvey school={school} token={token} />
+        } else if (pathname === "/unsubscribe" && token) {
+            return <Unsubscribe token={token} />
+        }
+        else {
+            return (<Login />)
+        }
     }
     return(<StateMachine />)
+}
+
+// Handles grabbing location of the current route
+export const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
 }

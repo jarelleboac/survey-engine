@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 import SurveyCommon from './SurveyCommon';
-import { brownQuestions } from '../../schema';
+import { pennQuestions } from '../../schema';
 import { questionSchemaToMongooseModel } from '../../utils';
 
 // Generate a mongoose-compatible version of the question schema
-const mappedQuestions = questionSchemaToMongooseModel(brownQuestions);
+const mappedQuestions = questionSchemaToMongooseModel(pennQuestions);
 
-const brownSurveySchema = new mongoose.Schema({
+const pennSurveySchema = new mongoose.Schema({
     ...mappedQuestions,
 });
 
 // Inherit the SurveyCommon model
-export const BrownSurvey = SurveyCommon.discriminator('BrownSurvey', brownSurveySchema);
+export const PennSurvey = SurveyCommon.discriminator('PennSurvey', pennSurveySchema);

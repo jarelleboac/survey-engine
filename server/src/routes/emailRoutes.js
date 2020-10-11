@@ -3,37 +3,12 @@ import passport from 'passport';
 import { submissionStatus, roles } from '../schema';
 import Email from '../models/Email';
 import { encrypt, decrypt, isEmail } from '../utils';
+import { sendStatusEmail } from '../utils/aws';
+import SenderEmail from '../models/SenderEmail';
 
 const router = Router();
 
-// /**
-//  * Update a single email's status. Expects the emailToken and status in the body.
-//  */
-// router.post('/updateEmailStatus', passport.authenticate('jwt'), async (req, res) => {
-//     const { emailToken, status } = req.body;
-
-//     // Should validate email before continuing
-
-//     // Find the email by the token
-//     const email = await Email.findOne({ token: emailToken });
-
-//     // Update status and save
-//     if (email.status !== submissionStatus.completed) {
-//         email.status = status;
-//         await email.save();
-
-//         return res.json({ message: `${emailToken} successfully updated to ${status}`, status: email.status });
-//     }
-//     return res.status(400).send(`This email is already listed as ${submissionStatus.completed}.`);
-// });
-
-// router.get('/decrypt', async (req, res) => {
-//     const allEmails = await Email.find();
-//     allEmails.forEach((email) => {
-//         console.log(email.email);
-//         console.log(decrypt(email.email));
-//     });
-// });
+const { CORS_ORIGIN } = process.env;
 
 router.get('/:school', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { role, school } = req.user;
@@ -72,6 +47,29 @@ router.get('/:school', passport.authenticate('jwt', { session: false }), (req, r
             .catch((err) => res.status(400).send(JSON.stringify({ error: err.message })));
     } else {
         res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+});
+
+/**
+ * Unsubscribes a user from future emails
+ *
+ * @param {req.body.token} – Expects the email token
+ *
+ */
+router.post('/unsubscribe', async (req, res) => {
+    const { token } = req.body;
+
+    try {
+        // Find the email by the token
+        const email = await Email.findOne({ token });
+        if (email) {
+            email.status = submissionStatus.unsubscribed;
+            await email.save();
+            return res.status(200).send(JSON.stringify({ message: 'You have been successfully unsubscribed.' }));
+        }
+        return res.status(400).send(JSON.stringify({ error: 'This token does not exist in the DB.' }));
+    } catch (err) {
+        return res.status(400).send(JSON.stringify({ error: err.message }));
     }
 });
 
@@ -125,24 +123,124 @@ router.post('/:school', passport.authenticate('jwt', { session: false }), async 
     // next({ message: 'Not authorized.' });
 });
 
-// // TODO: sendEmails route for a specific school
-// // Expects email to be an array of valid emails
-// router.post('/:school/sendEmails', async (req, res) => {
-//     const { emails } = req.body;
+/**
+ * sendAllEmails route for a specific school. Should include the requestType in the body
+ *
+ */
+router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    // need to validate emails as well
+    const { school } = req.params;
 
-//     // need to validate emails as well
-//     const { school } = req.params;
-//     res.send('Not yet implemented');
-// });
+    const { role, school: userSchool } = req.user;
 
-// /**
-//  * TODO: sendAllEmails route for a specific school. Will send out reminders to all complete surveys
-//  *
-//  */
-// router.post('/:school/sendAllEmails', async (req, res) => {
-//     // need to validate emails as well
-//     const { school } = req.params;
-//     res.send('Not yet implemented');
-// });
+    const { requestType } = req.body;
+
+    // Counts success and failure emails
+    let count = 0;
+    let error = 0;
+
+    if (role === roles.schoolAdmin && userSchool === school) {
+        // Find emails e.g. type school: BROWN, status: UNSENT
+        const emails = await Email.find({ school, status: requestType });
+
+        const decryptedEmails = emails.map((model) => (
+            { model, token: model.token, email: decrypt(model.email) }
+        ));
+
+        const senderEmail = await SenderEmail.findOne({ school });
+        if (!senderEmail) {
+            return res.status(400).send(JSON.stringify({ error: 'Please set a sender email first.' }));
+        }
+
+        await Promise.all(decryptedEmails.map((email) => {
+            // Make a survey URL for the thing that we need
+            const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
+            const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
+
+            return sendStatusEmail(email, requestType, surveyUrl, school, senderEmail.email, unsubscribeUrl)
+                .then(async (data) => {
+                    // Set it to sent if it hasn't already been sent
+                    if (email.model.status !== submissionStatus.sent) {
+                        // eslint-disable-next-line no-param-reassign
+                        email.model.status = submissionStatus.sent;
+                        await email.model.save();
+                    }
+                    count += 1;
+                })
+                .catch((err) => {
+                    console.log(err);
+                    error += 1;
+                });
+        }));
+    } else {
+        return res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+
+    return res.send({ message: `${count} emails were successfully sent. ${error} emails had an error.` });
+});
+
+/**
+ * Changes the email from which emails will be sent for a certain school
+ *
+ */
+router.post('/:school/changeSenderEmail', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const { school } = req.params;
+
+    const { role, school: userSchool } = req.user;
+
+    const { email } = req.body;
+
+    if (role === roles.schoolAdmin && userSchool === school) {
+        // Makes sure email is valid before continuing
+        if (!isEmail(email)) {
+            return res.status(400).send(JSON.stringify({ error: 'Invalid email.' }));
+        }
+
+        SenderEmail.findOne({ school }).then(async (document) => {
+            // If the model didn't exist before, make a new model for this school
+            if (!document) {
+                const newSenderEmail = new SenderEmail({ email, school });
+                await newSenderEmail.save();
+            } else {
+                // eslint-disable-next-line no-param-reassign
+                document.email = email;
+                await document.save();
+            }
+        });
+    } else {
+        return res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+
+    return res.send(JSON.stringify({ message: `Sender email successfully updated to ${email}` }));
+});
 
 export default router;
+
+// /**
+//  * Update a single email's status. Expects the emailToken and status in the body.
+//  */
+// router.post('/updateEmailStatus', passport.authenticate('jwt'), async (req, res) => {
+//     const { emailToken, status } = req.body;
+
+//     // Should validate email before continuing
+
+//     // Find the email by the token
+//     const email = await Email.findOne({ token: emailToken });
+
+//     // Update status and save
+//     if (email.status !== submissionStatus.completed) {
+//         email.status = status;
+//         await email.save();
+
+//         return res.json({ message: `${emailToken} successfully updated to ${status}`, status: email.status });
+//     }
+//     return res.status(400).send(`This email is already listed as ${submissionStatus.completed}.`);
+// });
+
+// router.get('/decrypt', async (req, res) => {
+//     const allEmails = await Email.find();
+//     allEmails.forEach((email) => {
+//         console.log(email.email);
+//         console.log(decrypt(email.email));
+//     });
+// });
