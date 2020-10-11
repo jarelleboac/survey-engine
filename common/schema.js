@@ -24,7 +24,7 @@ const roles = { unset: 'UNSET', schoolAdmin: 'SCHOOL_ADMIN', percentAdmin: 'PERC
 const rolesArray = Object.values(roles);
 
 const submissionStatus = {
-  unsent: 'UNSENT', sent: 'SENT', inProgress: 'IN-PROGRESS', completed: 'COMPLETED',
+  unsent: 'UNSENT', sent: 'SENT', inProgress: 'IN-PROGRESS', completed: 'COMPLETED', unsubscribed: 'UNSUBSCRIBED',
 };
 const submissionStatusArray = Object.values(submissionStatus);
 

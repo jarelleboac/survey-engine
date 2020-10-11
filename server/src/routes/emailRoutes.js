@@ -10,35 +10,6 @@ const router = Router();
 
 const { CORS_ORIGIN } = process.env;
 
-// /**
-//  * Update a single email's status. Expects the emailToken and status in the body.
-//  */
-// router.post('/updateEmailStatus', passport.authenticate('jwt'), async (req, res) => {
-//     const { emailToken, status } = req.body;
-
-//     // Should validate email before continuing
-
-//     // Find the email by the token
-//     const email = await Email.findOne({ token: emailToken });
-
-//     // Update status and save
-//     if (email.status !== submissionStatus.completed) {
-//         email.status = status;
-//         await email.save();
-
-//         return res.json({ message: `${emailToken} successfully updated to ${status}`, status: email.status });
-//     }
-//     return res.status(400).send(`This email is already listed as ${submissionStatus.completed}.`);
-// });
-
-// router.get('/decrypt', async (req, res) => {
-//     const allEmails = await Email.find();
-//     allEmails.forEach((email) => {
-//         console.log(email.email);
-//         console.log(decrypt(email.email));
-//     });
-// });
-
 router.get('/:school', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { role, school } = req.user;
 
@@ -128,16 +99,6 @@ router.post('/:school', passport.authenticate('jwt', { session: false }), async 
     }
     // next({ message: 'Not authorized.' });
 });
-
-// // TODO: sendEmails route for a specific school
-// // Expects email to be an array of valid emails
-// router.post('/:school/sendEmails', async (req, res) => {
-//     const { emails } = req.body;
-
-//     // need to validate emails as well
-//     const { school } = req.params;
-//     res.send('Not yet implemented');
-// });
 
 /**
  * sendAllEmails route for a specific school. Should include the requestType in the body
@@ -231,4 +192,57 @@ router.post('/:school/changeSenderEmail', passport.authenticate('jwt', { session
 
     return res.send(JSON.stringify({ message: `Sender email successfully updated to ${email}` }));
 });
+
+/**
+ * Unsubscribes a user from future emails
+ *
+ * @param {req.body.token} – Expects the email token
+ *
+ */
+router.post('/unsubscribe', async (req, res) => {
+    const { token } = req.body;
+
+    // Should validate email before continuing
+    try {
+        // Find the email by the token
+        const email = await Email.findOne({ token });
+        if (email) {
+            email.status = submissionStatus.unsubscribed;
+            return res.status(200).send(JSON.stringify({ message: 'You have been successfully unsubscribed.' }));
+        }
+        return res.status(400).send(JSON.stringify({ error: 'This token does not exist in the DB.' }));
+    } catch (err) {
+        return res.status(400).send(JSON.stringify({ error: err.message }));
+    }
+});
+
 export default router;
+
+// /**
+//  * Update a single email's status. Expects the emailToken and status in the body.
+//  */
+// router.post('/updateEmailStatus', passport.authenticate('jwt'), async (req, res) => {
+//     const { emailToken, status } = req.body;
+
+//     // Should validate email before continuing
+
+//     // Find the email by the token
+//     const email = await Email.findOne({ token: emailToken });
+
+//     // Update status and save
+//     if (email.status !== submissionStatus.completed) {
+//         email.status = status;
+//         await email.save();
+
+//         return res.json({ message: `${emailToken} successfully updated to ${status}`, status: email.status });
+//     }
+//     return res.status(400).send(`This email is already listed as ${submissionStatus.completed}.`);
+// });
+
+// router.get('/decrypt', async (req, res) => {
+//     const allEmails = await Email.find();
+//     allEmails.forEach((email) => {
+//         console.log(email.email);
+//         console.log(decrypt(email.email));
+//     });
+// });

@@ -24,7 +24,7 @@ const roles = { unset: 'UNSET', schoolAdmin: 'SCHOOL_ADMIN', percentAdmin: 'PERC
 const rolesArray = Object.values(roles);
 
 const submissionStatus = {
-  unsent: 'UNSENT', sent: 'SENT', inProgress: 'IN-PROGRESS', completed: 'COMPLETED',
+  unsent: 'UNSENT', sent: 'SENT', inProgress: 'IN-PROGRESS', completed: 'COMPLETED', unsubscribed: 'UNSUBSCRIBED',
 };
 const submissionStatusArray = Object.values(submissionStatus);
 
@@ -151,12 +151,27 @@ const vanderbiltQuestions = [
 
 ];
 
+// This is used to map loading the appropriate frontend questions
+const schoolToQuestion = {};
+schoolToQuestion[schools.brown] = brownQuestions;
+schoolToQuestion[schools.penn] = pennQuestions;
+schoolToQuestion[schools.harvard] = harvardQuestions;
+schoolToQuestion[schools.vanderbilt] = vanderbiltQuestions;
+schoolToQuestion[schools.drexel] = drexelQuestions;
+schoolToQuestion[schools.duke] = uiucQuestions;
+schoolToQuestion[schools.rutgers] = rutgersQuestions;
+schoolToQuestion[schools.cmu] = cmuQuestions;
+schoolToQuestion[schools.columbia] = columbiaQuestions;
+schoolToQuestion[schools.nyu] = nyuQuestions;
+schoolToQuestion[schools.uiuc] = uiucQuestions;
+
 export {
   schools, schoolsArray, roles, rolesArray, submissionStatus, submissionStatusArray,
   demographicQuestions, commonQuestions,
   brownQuestions, pennQuestions, harvardQuestions, vanderbiltQuestions,
   drexelQuestions, dukeQuestions, rutgersQuestions,
   columbiaQuestions, cmuQuestions, uiucQuestions, nyuQuestions,
+  schoolToQuestion,
 };
 
 // /**
