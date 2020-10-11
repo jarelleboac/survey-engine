@@ -33,6 +33,12 @@ const submissionStatusArray = Object.values(submissionStatus);
  */
 const demographicQuestions = [
   {
+    id: 'idIntro',
+    heading: 'Identification Questions',
+    text: 'We do not discriminate on the basis of race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, income status, or nationality. In order to track the effectiveness of our diversity and inclusion efforts and ensure we consider the needs of all our students, please consider the following anonymous question(s):',
+    component: 'Text',
+  },
+  {
     id: 'gender',
     question: 'What is your gender?',
     component: 'Radio',
@@ -381,12 +387,6 @@ const commonQuestions = [
     required: false,
     type: String,
   },
-  // {
-  //   id: 'contentWarning',
-
-  // }
-  // TODO: Insert Content warning here.
-  // Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to continue, or “Skip” to skip these questions.
   {
     id: 'harassment1',
     question: 'Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?',

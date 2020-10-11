@@ -3,7 +3,12 @@ import crypto from 'crypto';
 // Creates a mapped version of the common questions schema particular to the
 export const questionSchemaToMongooseModel = (questions) => {
     const obj = {};
-    questions.forEach(({ id, required, type }) => {
+    questions.forEach((question) => {
+        // Ignore text component
+        if (question.component === 'Text') {
+            return;
+        }
+        const { id, required, type } = question;
         obj[id] = {
             required, type,
         };

@@ -33,6 +33,12 @@ const submissionStatusArray = Object.values(submissionStatus);
  */
 const demographicQuestions = [
   {
+    id: 'idIntro',
+    heading: 'Identification Questions',
+    text: 'We do not discriminate on the basis of race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, income status, or nationality. In order to track the effectiveness of our diversity and inclusion efforts and ensure we consider the needs of all our students, please consider the following anonymous question(s):',
+    component: 'Text',
+  },
+  {
     id: 'gender',
     question: 'What is your gender?',
     component: 'Radio',
