@@ -124,19 +124,16 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
             { model, token: model.token, email: decrypt(model.email) }
         ));
 
-        const senderEmail = await SenderEmail.findOne({ school })
-            .then((doc) => {
-                if (!doc) {
-                    return res.status(400).send(JSON.stringify({ error: 'Please set a sender email first.' }));
-                }
-                return doc.email;
-            });
+        const senderEmail = await SenderEmail.findOne({ school });
+        if (!senderEmail) {
+            return res.status(400).send(JSON.stringify({ error: 'Please set a sender email first.' }));
+        }
 
         await Promise.all(decryptedEmails.map((email) => {
             // Make a survey URL for the thing that we need
             const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
 
-            return sendStatusEmail(email, requestType, surveyUrl, senderEmail)
+            return sendStatusEmail(email, requestType, surveyUrl, senderEmail.email)
                 .then(async (data) => {
                     // Set it to sent if it hasn't already been sent
                     if (email.model.status !== submissionStatus.sent) {
