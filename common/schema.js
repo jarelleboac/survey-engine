@@ -163,7 +163,7 @@ const commonQuestions = [
     type: [String],
   },
   {
-    id: 'q1',
+    id: 'year',
     question: 'What year are you in?',
     component: 'Radio',
     options: [
@@ -178,7 +178,7 @@ const commonQuestions = [
     type: String,
   },
   {
-    id: 'q2',
+    id: 'major',
     question: 'Please select which fits you the best.',
     component: 'Radio',
     options: [
@@ -194,7 +194,7 @@ const commonQuestions = [
     type: String,
   },
   {
-    id: 'q3',
+    id: 'confidence',
     question: 'Check all of the following that apply to you:',
     component: 'MultiCheckbox',
     options: [
@@ -207,7 +207,7 @@ const commonQuestions = [
     type: [String],
   },
   {
-    id: 'q4',
+    id: 'microaggression',
     question: 'Check all of the following that apply to you:',
     component: 'MultiCheckbox',
     options: [
@@ -220,7 +220,7 @@ const commonQuestions = [
     type: [String],
   },
   {
-    id: 'q5',
+    id: 'respect',
     question: 'Check all of the following that apply to you:',
     component: 'MultiCheckbox',
     options: [
@@ -235,7 +235,7 @@ const commonQuestions = [
     type: [String],
   },
   {
-    id: 'q6',
+    id: 'comfort',
     question: 'Check all of the following that apply to you:',
     component: 'MultiCheckbox',
     options: [
@@ -251,7 +251,7 @@ const commonQuestions = [
     type: [String],
   },
   {
-    id: 'q7',
+    id: 'roleModel',
     question: 'Do you have a faculty whom you perceive as a role model?',
     component: 'Radio',
     options: [
@@ -263,7 +263,7 @@ const commonQuestions = [
     type: String,
   },
   {
-    id: 'q8',
+    id: 'leaving',
     question: 'Have you seriously considered leaving your computer science-related field of study?',
     component: 'Radio',
     options: [
@@ -275,7 +275,7 @@ const commonQuestions = [
     type: String,
   },
   {
-    id: 'q9',
+    id: 'dropOut',
     question: 'Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?',
     component: 'Radio',
     options: [
@@ -287,7 +287,7 @@ const commonQuestions = [
     type: String,
   },
   {
-    id: 'q10',
+    id: 'equal',
     question: 'At my university, students from every background have an equal chance to succeed.',
     component: 'Radio',
     options: [
@@ -299,7 +299,7 @@ const commonQuestions = [
     type: String,
   },
   {
-    id: 'q11',
+    id: 'department',
     question: 'I feel adequately supported by the CS department and the resources offered by the department.',
     component: 'Radio',
     options: [
@@ -311,7 +311,7 @@ const commonQuestions = [
     type: String,
   },
   {
-    id: 'q12',
+    id: 'acceptance',
     question: 'Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Penn Engineering. Check all that apply to you.',
     component: 'MultiCheckbox',
     options: [
@@ -327,7 +327,7 @@ const commonQuestions = [
     type: [String],
   },
   {
-    id: 'q13',
+    id: 'job',
     question: 'Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.',
     component: 'MultiCheckbox',
     options: [
@@ -343,7 +343,7 @@ const commonQuestions = [
     type: [String],
   },
   {
-    id: 'q14',
+    id: 'bias',
     question: 'Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.',
     component: 'MultiCheckbox',
     options: [
@@ -359,23 +359,7 @@ const commonQuestions = [
     type: [String],
   },
   {
-    id: 'q14',
-    question: 'Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.',
-    component: 'MultiCheckbox',
-    options: [
-      'race/ethnicity',
-      'gender identity',
-      'sexual orientation',
-      'disabilities',
-      'parental education',
-      'income status',
-      'None of the above'
-    ],
-    required: true,
-    type: [String],
-  },
-  {
-    id: 'q15',
+    id: 'groups',
     question: 'Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?',
     component: 'Radio',
     options: [
@@ -389,7 +373,7 @@ const commonQuestions = [
   // TODO: Insert Content warning here. 
   // Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to continue, or “Skip” to skip these questions.
   {
-    id: 'q16',
+    id: 'harassment1',
     question: 'Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?',
     component: 'Radio',
     options: [
@@ -401,7 +385,7 @@ const commonQuestions = [
     type: String,
   },
   {
-    id: 'q17',
+    id: 'harassment2',
     question: 'Have you or someone you know been affected by sexual harassment?',
     component: 'Radio',
     options: [
@@ -413,7 +397,7 @@ const commonQuestions = [
     type: String,
   },
   {
-    id: 'q18',
+    id: 'assault1',
     question: 'Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?',
     component: 'Radio',
     options: [
@@ -425,7 +409,7 @@ const commonQuestions = [
     type: String,
   },
   {
-    id: 'q19',
+    id: 'assault2',
     question: 'Have you or someone you know been affected by sexual assault?',
     component: 'Radio',
     options: [
