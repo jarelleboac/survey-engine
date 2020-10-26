@@ -4,7 +4,7 @@ import { drexelQuestions } from '../../schema';
 import { questionSchemaToMongooseModel } from '../../utils';
 
 // Generate a mongoose-compatible version of the question schema
-const mappedQuestions = questionSchemaToMongooseModel(drexelQuestions);
+const mappedQuestions = questionSchemaToMongooseModel(drexelQuestions.customQuestions);
 
 const drexelSurveySchema = new mongoose.Schema({
     ...mappedQuestions,
