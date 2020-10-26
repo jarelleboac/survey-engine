@@ -496,6 +496,11 @@ const vanderbiltQuestions = {
   customQuestions: {},
 };
 
+/**
+ * Builds an array of the survey questions in the desired order for the frontend.
+ * @param {Object} schoolQuestions – the school questions as from above. Should have questionOrder
+ * and customQuestions.
+ */
 const buildOrderedQuestions = (schoolQuestions) => {
   // Build based off the order. If there are custom questions in the school dictionary, choose that
   const orderedQuestions = [];
@@ -510,6 +515,8 @@ const buildOrderedQuestions = (schoolQuestions) => {
       console.error(`Error – the key ${questionId} doesn't exist.`);
     }
   });
+
+  return orderedQuestions;
 };
 
 // This is used to map loading the appropriate frontend questions
