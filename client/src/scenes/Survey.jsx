@@ -16,7 +16,7 @@ import {
     Heading
 } from 'theme-ui'
 
-import { commonQuestions } from '../../../common/schema.js'
+import { schoolToQuestions, schoolsArray } from '../../../common/schema.js'
 import { submitSurvey, triggerToast } from '../utils'
 
 // keyword for user input question in checkbox/radio
@@ -174,10 +174,6 @@ const questionToComponent = (question, register, watch, errors, contentAccept, s
     return (<></>)
 }
 
-/**
- * Progress bar that shows how far we are in the survey
- */
-
 export function Survey({school, token}) {
 
     const { register, handleSubmit, errors, watch } = useForm();
@@ -211,6 +207,21 @@ export function Survey({school, token}) {
             })
             .catch(err => setMessage(err.error))
     };
+
+    const SchoolQuestions = () => {
+        if (school && schoolsArray.includes(school) && schoolToQuestions[school]) {
+            return (
+                schoolToQuestions[school].map(question => { 
+                    return(questionToComponent(question, register, watch, errors, contentAccept, setContentAccept))})
+            )
+        } else {
+            return (
+                <>
+                    School is unset.
+                </>)
+        }
+        
+    }
 
     return (
         <>
@@ -248,9 +259,7 @@ export function Survey({school, token}) {
                     ref={register}
                 /> */}
 
-                {commonQuestions.map(question => { 
-                    return(questionToComponent(question, register, watch, errors, contentAccept, setContentAccept))})
-                }
+                <SchoolQuestions />
                 
                 <Button mb='3rem' sx={{mt: '3rem'}}>Submit</Button>
                 
@@ -260,4 +269,3 @@ export function Survey({school, token}) {
     );
     // TODO styling wise line height styling of checkboxes (white space in front)
 }
-console.log(commonQuestions)

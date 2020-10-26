@@ -513,18 +513,18 @@ const buildOrderedQuestions = (schoolQuestions) => {
 };
 
 // This is used to map loading the appropriate frontend questions
-const schoolToQuestion = {};
-schoolToQuestion[schools.brown] = buildOrderedQuestions(brownQuestions);
-schoolToQuestion[schools.penn] = buildOrderedQuestions(pennQuestions);
-schoolToQuestion[schools.harvard] = buildOrderedQuestions(harvardQuestions);
-schoolToQuestion[schools.vanderbilt] = buildOrderedQuestions(vanderbiltQuestions);
-schoolToQuestion[schools.drexel] = buildOrderedQuestions(drexelQuestions);
-schoolToQuestion[schools.duke] = buildOrderedQuestions(uiucQuestions);
-schoolToQuestion[schools.rutgers] = buildOrderedQuestions(rutgersQuestions);
-schoolToQuestion[schools.cmu] = buildOrderedQuestions(cmuQuestions);
-schoolToQuestion[schools.columbia] = buildOrderedQuestions(columbiaQuestions);
-schoolToQuestion[schools.nyu] = buildOrderedQuestions(nyuQuestions);
-schoolToQuestion[schools.uiuc] = buildOrderedQuestions(uiucQuestions);
+const schoolToQuestions = {};
+schoolToQuestions[schools.brown] = buildOrderedQuestions(brownQuestions);
+schoolToQuestions[schools.penn] = buildOrderedQuestions(pennQuestions);
+schoolToQuestions[schools.harvard] = buildOrderedQuestions(harvardQuestions);
+schoolToQuestions[schools.vanderbilt] = buildOrderedQuestions(vanderbiltQuestions);
+schoolToQuestions[schools.drexel] = buildOrderedQuestions(drexelQuestions);
+schoolToQuestions[schools.duke] = buildOrderedQuestions(uiucQuestions);
+schoolToQuestions[schools.rutgers] = buildOrderedQuestions(rutgersQuestions);
+schoolToQuestions[schools.cmu] = buildOrderedQuestions(cmuQuestions);
+schoolToQuestions[schools.columbia] = buildOrderedQuestions(columbiaQuestions);
+schoolToQuestions[schools.nyu] = buildOrderedQuestions(nyuQuestions);
+schoolToQuestions[schools.uiuc] = buildOrderedQuestions(uiucQuestions);
 
 export {
   schools, schoolsArray, roles, rolesArray, submissionStatus, submissionStatusArray,
@@ -532,5 +532,5 @@ export {
   brownQuestions, pennQuestions, harvardQuestions, vanderbiltQuestions,
   drexelQuestions, dukeQuestions, rutgersQuestions,
   columbiaQuestions, cmuQuestions, uiucQuestions, nyuQuestions,
-  schoolToQuestion,
+  schoolToQuestions,
 };
