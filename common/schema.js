@@ -31,14 +31,14 @@ const submissionStatusArray = Object.values(submissionStatus);
 /**
  * Schema for questions. Note that the "type" field should be for Mongoose
  */
-const demographicQuestions = [
-  {
+const demographicQuestions = {
+  idIntro: {
     id: 'idIntro',
     heading: 'Identification Questions',
     text: 'We do not discriminate on the basis of race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, income status, or nationality. In order to track the effectiveness of our diversity and inclusion efforts and ensure we consider the needs of all our students, please consider the following anonymous question(s):',
     component: 'Text',
   },
-  {
+  gender: {
     id: 'gender',
     question: 'What is your gender?',
     component: 'Radio',
@@ -52,7 +52,7 @@ const demographicQuestions = [
     required: true,
     type: String,
   },
-  {
+  transgender: {
     id: 'transgender',
     question: 'Are you transgender?',
     component: 'Radio',
@@ -64,7 +64,7 @@ const demographicQuestions = [
     required: true,
     type: String,
   },
-  {
+  ethnicity: {
     id: 'ethnicity',
     question: 'Which categories best describe how you self-identify? Check all that apply.',
     component: 'MultiCheckbox',
@@ -82,7 +82,7 @@ const demographicQuestions = [
     required: true,
     type: [String],
   },
-  {
+  lgbq: {
     id: 'lgbq',
     question: 'Which of the following best describes your current sexual orientation? Check all that apply.',
     component: 'MultiCheckbox',
@@ -99,7 +99,7 @@ const demographicQuestions = [
     required: true,
     type: [String],
   },
-  {
+  disability: {
     id: 'disability',
     question: 'Do you have a disability, or have a history or record of having a disability?',
     component: 'Radio',
@@ -111,7 +111,7 @@ const demographicQuestions = [
     required: true,
     type: String,
   },
-  {
+  fg: {
     id: 'fg',
     question: 'Are you a first generation student?',
     component: 'Radio',
@@ -123,7 +123,7 @@ const demographicQuestions = [
     required: true,
     type: String,
   },
-  {
+  li: {
     id: 'li',
     question: 'Are you a low-income student?',
     component: 'Radio',
@@ -135,7 +135,7 @@ const demographicQuestions = [
     required: true,
     type: String,
   },
-  {
+  international: {
     id: 'international',
     question: 'Are you an international student?',
     component: 'Radio',
@@ -147,11 +147,10 @@ const demographicQuestions = [
     required: true,
     type: String,
   },
-];
+};
 
-// TODO: make this a function that can take custom params
-const commonQuestions = [
-  {
+const commonQuestions = {
+  participation: {
     id: 'participation',
     question:
       `I agree to participate in an anonymous survey conducted by the Percentage Project. I understand that all responses that I provide in the survey will remain anonymous and that no identifying information about me will be made public. In addition, my email address and all other personally identifiable information will be purged from the data file and replaced with a unique and anonymous identification number when the survey is submitted.
@@ -168,7 +167,7 @@ const commonQuestions = [
     required: true,
     type: [String],
   },
-  {
+  year: {
     id: 'year',
     question: 'What year are you in?',
     component: 'Radio',
@@ -183,7 +182,7 @@ const commonQuestions = [
     required: true,
     type: String,
   },
-  {
+  major: {
     id: 'major',
     question: 'Please select which fits you the best.',
     component: 'Radio',
@@ -199,7 +198,7 @@ const commonQuestions = [
     required: true,
     type: String,
   },
-  {
+  confidence: {
     id: 'confidence',
     question: 'Check all of the following that apply to you:',
     component: 'MultiCheckbox',
@@ -212,7 +211,7 @@ const commonQuestions = [
     required: true,
     type: [String],
   },
-  {
+  microaggression: {
     id: 'microaggression',
     question: 'Check all of the following that apply to you:',
     component: 'MultiCheckbox',
@@ -225,7 +224,7 @@ const commonQuestions = [
     required: true,
     type: [String],
   },
-  {
+  respect: {
     id: 'respect',
     question: 'Check all of the following that apply to you:',
     component: 'MultiCheckbox',
@@ -240,7 +239,7 @@ const commonQuestions = [
     required: true,
     type: [String],
   },
-  {
+  comfort: {
     id: 'comfort',
     question: 'Check all of the following that apply to you:',
     component: 'MultiCheckbox',
@@ -256,7 +255,7 @@ const commonQuestions = [
     required: true,
     type: [String],
   },
-  {
+  roleModel: {
     id: 'roleModel',
     question: 'Do you have a faculty whom you perceive as a role model?',
     component: 'Radio',
@@ -268,7 +267,7 @@ const commonQuestions = [
     required: true,
     type: String,
   },
-  {
+  leaving: {
     id: 'leaving',
     question: 'Have you seriously considered leaving your computer science-related field of study?',
     component: 'Radio',
@@ -280,7 +279,7 @@ const commonQuestions = [
     required: true,
     type: String,
   },
-  {
+  dropOut: {
     id: 'dropOut',
     question: 'Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?',
     component: 'Radio',
@@ -292,7 +291,7 @@ const commonQuestions = [
     required: true,
     type: String,
   },
-  {
+  equal: {
     id: 'equal',
     question: 'At my university, students from every background have an equal chance to succeed.',
     component: 'Radio',
@@ -304,7 +303,7 @@ const commonQuestions = [
     required: true,
     type: String,
   },
-  {
+  department: {
     id: 'department',
     question: 'I feel adequately supported by the CS department and the resources offered by the department.',
     component: 'Radio',
@@ -316,7 +315,7 @@ const commonQuestions = [
     required: true,
     type: String,
   },
-  {
+  acceptance: {
     id: 'acceptance',
     question: 'Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Penn Engineering. Check all that apply to you.',
     component: 'MultiCheckbox',
@@ -332,7 +331,7 @@ const commonQuestions = [
     required: true,
     type: [String],
   },
-  {
+  job: {
     id: 'job',
     question: 'Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.',
     component: 'MultiCheckbox',
@@ -348,7 +347,7 @@ const commonQuestions = [
     required: true,
     type: [String],
   },
-  {
+  bias: {
     id: 'bias',
     question: 'Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.',
     component: 'MultiCheckbox',
@@ -364,7 +363,7 @@ const commonQuestions = [
     required: true,
     type: [String],
   },
-  {
+  groups: {
     id: 'groups',
     question: 'Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?',
     component: 'Radio',
@@ -376,7 +375,7 @@ const commonQuestions = [
     required: true,
     type: String,
   },
-  {
+  contentWarning: {
     id: 'contentWarning',
     question: 'Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to continue, or “Skip” to skip these questions.',
     component: 'Radio',
@@ -387,7 +386,7 @@ const commonQuestions = [
     required: false,
     type: String,
   },
-  {
+  harassment1: {
     id: 'harassment1',
     question: 'Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?',
     component: 'Radio',
@@ -400,7 +399,7 @@ const commonQuestions = [
     type: String,
     contentWarning: true,
   },
-  {
+  harassment2: {
     id: 'harassment2',
     question: 'Have you or someone you know been affected by sexual harassment?',
     component: 'Radio',
@@ -413,7 +412,7 @@ const commonQuestions = [
     type: String,
     contentWarning: true,
   },
-  {
+  assault1: {
     id: 'assault1',
     question: 'Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?',
     component: 'Radio',
@@ -426,7 +425,7 @@ const commonQuestions = [
     type: String,
     contentWarning: true,
   },
-  {
+  assault2: {
     id: 'assault2',
     question: 'Have you or someone you know been affected by sexual assault?',
     component: 'Radio',
@@ -440,12 +439,13 @@ const commonQuestions = [
     contentWarning: true,
   },
   ...demographicQuestions,
-];
+};
 
 /**
  * QUESTIONS SPECIFIC TO SCHOOLS
  *
- * The easiest overload is to instead modify the fields after nanoing on it, and then
+ * These replace options and text that are specific to schools.
+ * The questionOrder key handles what order the questions should appear in.
  *
  * Note: please make the ID field different from any other questions
  */
