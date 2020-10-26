@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import {
     Label,
@@ -208,21 +208,6 @@ export function Survey({school, token}) {
             .catch(err => setMessage(err.error))
     };
 
-    const SchoolQuestions = () => {
-        if (school && schoolsArray.includes(school) && schoolToQuestions[school]) {
-            return (
-                schoolToQuestions[school].map(question => { 
-                    return(questionToComponent(question, register, watch, errors, contentAccept, setContentAccept))})
-            )
-        } else {
-            return (
-                <>
-                    School is unset.
-                </>)
-        }
-        
-    }
-
     return (
         <>
             <Container
@@ -231,35 +216,15 @@ export function Survey({school, token}) {
                 sx={{width: '80%', height: '80%', top: '50%'}}
                 className="survey">
 
-                {/* <Label htmlFor='firstName'>First name</Label>
-                <Input
-                    name='firstName'
-                    id='firstName'
-                    mb={3}
-                    ref={register({required: true})}
-                />
-                {errors.firstName && <p>This field is required</p>}
-
-                <Label htmlFor='lastName'>Last name</Label>
-                <Input
-                    type='lastName'
-                    name='lastName'
-                    id='lastName'
-                    mb={3}
-                    ref={register({required: true})}
-                />
-                {errors.lastName && <p>This field is required</p>}
-
-                <Label htmlFor='comment'>Comment</Label>
-                <Textarea
-                    name='comment'
-                    id='comment'
-                    rows='6'
-                    mb={3}
-                    ref={register}
-                /> */}
-
-                <SchoolQuestions />
+                {school && schoolsArray.includes(school) && schoolToQuestions[school] ? 
+                    schoolToQuestions[school].map(question => { 
+                        return(questionToComponent(question, register, watch, errors, contentAccept, setContentAccept))})
+                    : 
+                    <>
+                        School is unset.
+                    </>
+                
+                }
                 
                 <Button mb='3rem' sx={{mt: '3rem'}}>Submit</Button>
                 
