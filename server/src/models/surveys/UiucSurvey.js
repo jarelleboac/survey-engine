@@ -4,7 +4,7 @@ import { uiucQuestions } from '../../schema';
 import { questionSchemaToMongooseModel } from '../../utils';
 
 // Generate a mongoose-compatible version of the question schema
-const mappedQuestions = questionSchemaToMongooseModel(uiucQuestions);
+const mappedQuestions = questionSchemaToMongooseModel(uiucQuestions.customQuestions);
 
 const uiucSurveySchema = new mongoose.Schema({
     ...mappedQuestions,
