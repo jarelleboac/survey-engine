@@ -80,10 +80,5 @@ export const SchoolAdminPanel = () => {
                     sendEmailsFetch(submissionStatus.sent)
                 }}>Send Reminders</Button>
             </Flex>
-            <Divider />
-            <Heading mt='20px'>Download Responses</Heading>
-            <Button mt='15px' mr='20px' onClick={() => {
-                downloadSurveyResponses()
-            }}>Download Responses (.json)</Button>
         </div>)
 }

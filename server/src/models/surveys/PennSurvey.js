@@ -4,7 +4,7 @@ import { pennQuestions } from '../../schema';
 import { questionSchemaToMongooseModel } from '../../utils';
 
 // Generate a mongoose-compatible version of the question schema
-const mappedQuestions = questionSchemaToMongooseModel(pennQuestions);
+const mappedQuestions = questionSchemaToMongooseModel(pennQuestions.customQuestions);
 
 const pennSurveySchema = new mongoose.Schema({
     ...mappedQuestions,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import {
     Label,
@@ -16,7 +16,7 @@ import {
     Heading
 } from 'theme-ui'
 
-import { commonQuestions } from '../../../common/schema.js'
+import { schoolToQuestions, schoolsArray } from '../../../common/schema.js'
 import { submitSurvey, triggerToast } from '../utils'
 
 // keyword for user input question in checkbox/radio
@@ -174,10 +174,6 @@ const questionToComponent = (question, register, watch, errors, contentAccept, s
     return (<></>)
 }
 
-/**
- * Progress bar that shows how far we are in the survey
- */
-
 export function Survey({school, token}) {
 
     const { register, handleSubmit, errors, watch } = useForm();
@@ -220,36 +216,14 @@ export function Survey({school, token}) {
                 sx={{width: '80%', height: '80%', top: '50%'}}
                 className="survey">
 
-                {/* <Label htmlFor='firstName'>First name</Label>
-                <Input
-                    name='firstName'
-                    id='firstName'
-                    mb={3}
-                    ref={register({required: true})}
-                />
-                {errors.firstName && <p>This field is required</p>}
-
-                <Label htmlFor='lastName'>Last name</Label>
-                <Input
-                    type='lastName'
-                    name='lastName'
-                    id='lastName'
-                    mb={3}
-                    ref={register({required: true})}
-                />
-                {errors.lastName && <p>This field is required</p>}
-
-                <Label htmlFor='comment'>Comment</Label>
-                <Textarea
-                    name='comment'
-                    id='comment'
-                    rows='6'
-                    mb={3}
-                    ref={register}
-                /> */}
-
-                {commonQuestions.map(question => { 
-                    return(questionToComponent(question, register, watch, errors, contentAccept, setContentAccept))})
+                {school && schoolsArray.includes(school) && schoolToQuestions[school] ? 
+                    schoolToQuestions[school].map(question => { 
+                        return(questionToComponent(question, register, watch, errors, contentAccept, setContentAccept))})
+                    : 
+                    <>
+                        School is unset.
+                    </>
+                
                 }
                 
                 <Button mb='3rem' sx={{mt: '3rem'}}>Submit</Button>
@@ -260,4 +234,3 @@ export function Survey({school, token}) {
     );
     // TODO styling wise line height styling of checkboxes (white space in front)
 }
-console.log(commonQuestions)
