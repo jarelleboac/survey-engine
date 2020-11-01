@@ -28,6 +28,10 @@ const submissionStatus = {
 };
 const submissionStatusArray = Object.values(submissionStatus);
 
+const generalSurveyStatus = {
+  unsent: 'UNSENT', open: 'OPEN', closed: 'CLOSED',
+};
+
 /**
  * Schema for questions. Note that the "type" field should be for Mongoose
  */
@@ -513,6 +517,7 @@ export {
   drexelQuestions, dukeQuestions, rutgersQuestions,
   columbiaQuestions, cmuQuestions, uiucQuestions, nyuQuestions,
   schoolToQuestion,
+  generalSurveyStatus,
 };
 
 // /**
