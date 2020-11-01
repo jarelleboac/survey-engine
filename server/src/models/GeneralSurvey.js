@@ -14,6 +14,7 @@ const generalSurveySchema = new mongoose.Schema({
         type: String,
         required: [true, 'Submission status is required'],
         enum: Object.values(generalSurveyStatus),
+        default: generalSurveyStatus.unsent,
     },
     token: {
         type: String,
