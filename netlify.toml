@@ -1,4 +1,4 @@
 [build]
-  ignore = "git diff --quiet HEAD^ HEAD client/"
+  ignore = "git diff --quiet HEAD^ HEAD"
   base = "client"
-  publish = "client/build"
+  publish = "build"
