@@ -709,7 +709,7 @@ const uiucQuestions = {
       required: true,
       type: String,
     },
-    major: { // TODO- check with CD
+    major: {
       id: 'major',
       question: 'Please select which fits you the best.',
       component: 'Radio',
@@ -717,9 +717,11 @@ const uiucQuestions = {
         'CS Engineering',
         'Math & CS',
         'Stats & CS',
-        'CS + X Degrees',
+        'CS + X',
         'Electrical and Computer Engineering',
         'Information Sciences',
+        'Minor in CS',
+        'Minor in ECE',
         'Other (Please specify)',
       ],
       required: true,
