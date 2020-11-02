@@ -32,17 +32,19 @@ const MappedOptions = ({question, register, watch}) => question.options.map(opti
         let identifier = question.id + ' ' + specify_keyword
         specify_keyword_arrays.push(identifier)
         return (
-            <Label mb={2} key={option} >
+            <Label mb={2} key={option}>
                 <Checkbox ref={register({required: question.required})} value={watch(identifier)} name={question.id} key={`${option}-box`} />
-                {option}
+                {/* TODO-text - separate this out to its own style. Search TODO-text to find all */}
+                <Text key={`${option}-text`} sx={{maxWidth: '90%'}}>{option}</Text>
                 <Input name={identifier} ref={register} key={`${question.id}-${option}-custom-input`} />
             </Label>
         )
     } else {
         return (
-            <Label mb={2} key={option} >
+            <Label mb={2} key={option}>
                 <Checkbox key={`${option}-box`} ref={register({required: question.required})} value={option} name={question.id}/>
-                {option}
+                {/* TODO-text - separate this out to its own style. Search TODO-text to find all */}
+                <Text key={`${option}-text`} sx={{maxWidth: '90%'}}>{option}</Text>
             </Label>
         )
     }
@@ -62,7 +64,9 @@ const CustomRadio = ({question, register, watch, errors}) => {
                     <Radio 
                         value={option} ref={register({required: question.required})} value={watch(identifier)} name={question.id}
                         key={`${uniqueKey}-${option}-radio`}
-                    />{option} 
+                    />
+                    {/* TODO-text - separate this out to its own style. Search TODO-text to find all */}
+                    <Text key={`${uniqueKey}-${option}-text`} sx={{maxWidth: '90%'}}>{option}</Text>
                     <Input name={identifier} ref={register} key={`${uniqueKey}-${option}-custom-input`} />
                 </Label>
             )
@@ -72,7 +76,9 @@ const CustomRadio = ({question, register, watch, errors}) => {
                     <Radio 
                         value={option} ref={register({required: question.required})} name={question.id}
                         key={`${uniqueKey}-${option}-radio`}
-                    />{option} 
+                    />
+                    {/* TODO-text - separate this out to its own style. Search TODO-text to find all */}
+                    <Text key={`${uniqueKey}-${option}-text`} sx={{maxWidth: '90%'}}>{option}</Text>
                 </Label>
             )
         }
@@ -84,6 +90,8 @@ const CustomRadio = ({question, register, watch, errors}) => {
                 fontSize: 4,
                 fontWeight: 'bold',
                 marginTop: '3rem',
+                marginBottom: '0.5rem',
+                lineHeight: '1.2'
             }}>
             {question.question}
         </Text>
@@ -101,6 +109,8 @@ const CustomMultiCheckbox = ({ question, register, watch, errors}) => {
                     fontSize: 4,
                     fontWeight: 'bold',
                     marginTop: '3rem',
+                    marginBottom: '0.5rem',
+                    lineHeight: '1.2'
                 }}>
                 {question.question}
             </Text>
