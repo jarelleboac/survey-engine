@@ -86,7 +86,7 @@ router.post('/', async (req, res) => {
                     return res.status(400).send(JSON.stringify({ error: `The survey has already been closed with status ${generalSurvey.status}.` }));
                 }
             }
-            return res.status(400).send(JSON.stringify({ error: 'This token does not exist in the DB.' }));
+            return res.status(400).send(JSON.stringify({ error: 'Could not submit survey. Please contact hello@percentageproject.com.' }));
         }
     } catch (err) {
         return res.status(400).send(JSON.stringify({ error: err.message }));
