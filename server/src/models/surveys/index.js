@@ -17,7 +17,7 @@ import { schools } from '../../schema';
  */
 const mapSchoolsToQuestionSchemas = () => {
     const dict = {};
-    // Specify mapping programmatically since syntax prevents direct key setting
+    // Specify mapping since syntax prevents direct key setting
     dict[schools.brown] = BrownSurvey;
     dict[schools.penn] = PennSurvey;
     dict[schools.harvard] = HarvardSurvey;

@@ -4,7 +4,7 @@ import { brownQuestions } from '../../schema';
 import { questionSchemaToMongooseModel } from '../../utils';
 
 // Generate a mongoose-compatible version of the question schema
-const mappedQuestions = questionSchemaToMongooseModel(brownQuestions);
+const mappedQuestions = questionSchemaToMongooseModel(brownQuestions.customQuestions);
 
 const brownSurveySchema = new mongoose.Schema({
     ...mappedQuestions,
