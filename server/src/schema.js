@@ -443,7 +443,7 @@ const brownQuestions = {
         'CS-Engaged Scholars Program',
         'Applied Math',
         'Engineering',
-        'Other (Please specify)',
+        'Other (Please specify):',
       ],
       required: true,
       type: String,
@@ -540,7 +540,53 @@ const brownQuestions = {
 };
 const pennQuestions = {
   questionOrder: [...commonOrder, ...demographicOrder],
-  customQuestions: {},
+  customQuestions: {
+    major: {
+      id: 'major',
+      question: 'Please select which fits you the best.',
+      component: 'Radio',
+      options: [
+        'CIS Major in SEAS (including NETS, DMD)',
+        'CIS Major in College',
+        'ESE Major in SEAS (including EE, CMPE, SE)',
+        'CIS Minor in SEAS (including NETS, DMD)',
+        'CIS Minor in College',
+        'ESE Minor in SEAS (including EE, CMPE, SE)',
+        'Other (Please specify):',
+      ],
+      required: true,
+      type: String,
+    },
+    confidence: {
+      id: 'confidence',
+      question: 'Check all of the following that apply to you:',
+      component: 'MultiCheckbox',
+      options: [
+        'I feel pressure at Penn to find internships, job opportunities, extracurricular activities.',
+        'I feel confident studying computer science and related fields.',
+        'I feel intimidated studying Computer Science and related fields.',
+        'None of the above',
+      ],
+      required: true,
+      type: [String],
+    },
+    acceptance: {
+      id: 'acceptance',
+      question: 'Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Penn Engineering. Check all that apply to you.',
+      component: 'MultiCheckbox',
+      options: [
+        'my race/ethnicity',
+        'my gender identity',
+        'my sexual orientation',
+        'my disability',
+        'being a first generation student',
+        'my income status',
+        'None of the above',
+      ],
+      required: true,
+      type: [String],
+    },
+  },
 };
 const harvardQuestions = {
   questionOrder: [...commonOrder, ...demographicOrder],
@@ -548,11 +594,149 @@ const harvardQuestions = {
 };
 const drexelQuestions = {
   questionOrder: [...commonOrder, ...demographicOrder],
-  customQuestions: {},
+  customQuestions: {
+    year: {
+      id: 'year',
+      question: 'What year are you in?',
+      component: 'Radio',
+      options: [
+        'Freshman',
+        'Sophomore',
+        'Pre-Junior',
+        'Junior',
+        'Senior',
+        'Graduate',
+      ],
+      required: true,
+      type: String,
+    },
+    major: {
+      id: 'major',
+      question: 'Please select which fits you the best.',
+      component: 'Radio',
+      options: [
+        'Computer Science Major in CCI',
+        'Information Systems Major in CCI',
+        'Software Engineering Major in CCI',
+        'Data Science Major in CCI',
+        'Computing & Security Technology Major in CCI',
+        'Minor in College of Computing & Informatics',
+        'Other Major in College of Engineering',
+        'Other Minor in College of Engineering',
+        'Other (Please specify):',
+      ],
+      required: true,
+      type: String,
+    },
+    confidence: {
+      id: 'confidence',
+      question: 'Check all of the following that apply to you:',
+      component: 'MultiCheckbox',
+      options: [
+        'I feel pressure at Drexel to find co-ops, research opportunities, and extracurricular activities.',
+        'I feel confident studying computer science and related fields.',
+        'I feel intimidated studying Computer Science and related fields.',
+        'None of the above',
+      ],
+      required: true,
+      type: [String],
+    },
+    acceptance: {
+      id: 'acceptance',
+      question: 'Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Drexel CCI/Engineering. Check all that apply to you.',
+      component: 'MultiCheckbox',
+      options: [
+        'my race/ethnicity',
+        'my gender identity',
+        'my sexual orientation',
+        'my disability',
+        'being a first generation student',
+        'my income status',
+        'None of the above',
+      ],
+      required: true,
+      type: [String],
+    },
+    job: {
+      id: 'job',
+      question: 'Someone has once claimed to me that _____ has unfairly given me an advantage in gaining co-op opportunities. Check all that apply to you.',
+      component: 'MultiCheckbox',
+      options: [
+        'my race/ethnicity',
+        'my gender identity',
+        'my sexual orientation',
+        'my disability',
+        'being a first generation student',
+        'my income status',
+        'None of the above',
+      ],
+      required: true,
+      type: [String],
+    },
+    department: {
+      id: 'department',
+      question: 'I feel adequately supported by my Co-op Advisor and the resources offered by Steinbright.',
+      component: 'Radio',
+      options: [
+        'Yes',
+        'No',
+        'Maybe',
+      ],
+      required: true,
+      type: String,
+    },
+  },
 };
 const dukeQuestions = {
   questionOrder: [...commonOrder, ...demographicOrder],
-  customQuestions: {},
+  customQuestions: {
+    major: {
+      id: 'major',
+      question: 'Please select which fits you the best.',
+      component: 'Radio',
+      options: [
+        'Computer Science major in Trinity College',
+        'Electrical Engineering major in Pratt School of Engineering',
+        'Electrical Engineering / CS double major in Pratt School of Engineering',
+        'Computer Science Minor',
+        'Computer Science secondary major',
+        'Computer Science IDM',
+        'Program II',
+        'Other (Please specify):',
+      ],
+      required: true,
+      type: String,
+    },
+    confidence: {
+      id: 'confidence',
+      question: 'Check all of the following that apply to you:',
+      component: 'MultiCheckbox',
+      options: [
+        'I feel pressure at Duke to find internships, job opportunities, extracurricular activities.',
+        'I feel confident studying computer science and related fields.',
+        'I feel intimidated studying Computer Science and related fields.',
+        'None of the above',
+      ],
+      required: true,
+      type: [String],
+    },
+    acceptance: {
+      id: 'acceptance',
+      question: 'Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Duke. Check all that apply to you.',
+      component: 'MultiCheckbox',
+      options: [
+        'my race/ethnicity',
+        'my gender identity',
+        'my sexual orientation',
+        'my disability',
+        'being a first generation student',
+        'my income status',
+        'None of the above',
+      ],
+      required: true,
+      type: [String],
+    },
+  },     
 };
 const rutgersQuestions = {
   questionOrder: [...commonOrder, ...demographicOrder],
@@ -574,7 +758,7 @@ const cmuQuestions = {
         'Electric & Computer Engineering Minor in CIT',
         'Information Systems Minor in DC',
         'Statistics and Machine Learning Minor in DC',
-        'Other (Please specify)',
+        'Other (Please specify):',
       ],
       required: true,
       type: String,
@@ -655,7 +839,7 @@ const nyuQuestions = {
         'CS or related minors in Tandon (including CS, Computer Engineering, Game Media, Robotics, etc.)',
         'Interactive Media Arts Major in Tisch',
         'Interactive Media Arts Minor in Tisch',
-        'Other (Please specify)',
+        'Other (Please specify):',
       ],
       required: true,
       type: String,
@@ -722,7 +906,7 @@ const uiucQuestions = {
         'Information Sciences',
         'Minor in CS',
         'Minor in ECE',
-        'Other (Please specify)',
+        'Other (Please specify):',
       ],
       required: true,
       type: String,
@@ -827,7 +1011,7 @@ const vanderbiltQuestions = {
         'Engineering Science major',
         'Communication of Science and Technology major/minor',
         'Scientific Computing minor',
-        'Other (Please specify)',
+        'Other (Please specify):',
       ],
       required: true,
       type: String,
@@ -894,7 +1078,7 @@ schoolToQuestions[schools.penn] = buildOrderedQuestions(pennQuestions);
 schoolToQuestions[schools.harvard] = buildOrderedQuestions(harvardQuestions);
 schoolToQuestions[schools.vanderbilt] = buildOrderedQuestions(vanderbiltQuestions);
 schoolToQuestions[schools.drexel] = buildOrderedQuestions(drexelQuestions);
-schoolToQuestions[schools.duke] = buildOrderedQuestions(uiucQuestions);
+schoolToQuestions[schools.duke] = buildOrderedQuestions(dukeQuestions);
 schoolToQuestions[schools.rutgers] = buildOrderedQuestions(rutgersQuestions);
 schoolToQuestions[schools.cmu] = buildOrderedQuestions(cmuQuestions);
 schoolToQuestions[schools.columbia] = buildOrderedQuestions(columbiaQuestions);
