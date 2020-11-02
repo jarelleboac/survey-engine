@@ -4,7 +4,7 @@ import { vanderbiltQuestions } from '../../schema';
 import { questionSchemaToMongooseModel } from '../../utils';
 
 // Generate a mongoose-compatible version of the question schema
-const mappedQuestions = questionSchemaToMongooseModel(vanderbiltQuestions);
+const mappedQuestions = questionSchemaToMongooseModel(vanderbiltQuestions.customQuestions);
 
 const vanderbiltSurveySchema = new mongoose.Schema({
     ...mappedQuestions,

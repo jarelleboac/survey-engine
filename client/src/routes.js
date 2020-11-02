@@ -186,7 +186,6 @@ export const Routes = () => {
     
     const StateMachine = () => {
         const query = useQuery();
-        console.log(window.location.pathname)
 
         const pathname = window.location.pathname
 
