@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import passport from 'passport';
 import {
-    submissionStatus, roles, schools, schoolsArray,
+    submissionStatus, roles, schools, schoolsArray, generalSurveyStatus,
 } from '../schema';
 import Surveys from '../models/surveys';
 import Email from '../models/Email';
@@ -21,7 +21,6 @@ const router = Router();
 router.post('/', async (req, res) => {
     const { school, token, responses } = req.body;
 
-    // Should validate email before continuing
     try {
         // Find the email by the token
         const email = await Email.findOne({ school, token });
@@ -56,6 +55,35 @@ router.post('/', async (req, res) => {
                 return res.status(400).send(JSON.stringify({ error: `This email is already listed as ${email.status}.` }));
             }
         } else {
+            // Handle finding the token in the GeneralSurvey models
+            const generalSurvey = await GeneralSurvey.findOne({ school, token });
+            if (generalSurvey) {
+                // If the survey hasn't been closed yet
+                if (generalSurvey.status !== submissionStatus.closed) {
+                    // Attempt to save the survey response
+                    try {
+                        // Get the school's appropriate survey model
+                        const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
+
+                        if (!SurveyModel) {
+                            return res.status(400).send(JSON.stringify({ error: 'This school\'s model has not been implemented.' }));
+                        }
+                        // Save that model
+                        const builtModel = new SurveyModel(
+                            { ...responses, status: submissionStatus.completed, school },
+                        );
+
+                        // Save the model to DB
+                        await builtModel.save();
+
+                        return res.send(JSON.stringify({ message: `Successfully wrote a new response to ${school}.` }));
+                    } catch (err) {
+                        return res.status(400).send(JSON.stringify({ error: err }));
+                    }
+                } else {
+                    return res.status(400).send(JSON.stringify({ error: `The survey has already been closed with status ${generalSurvey.status}.` }));
+                }
+            }
             return res.status(400).send(JSON.stringify({ error: 'This token does not exist in the DB.' }));
         }
     } catch (err) {
@@ -95,7 +123,7 @@ router.post('/makeGeneralizedLinks', passport.authenticate('jwt', { session: fal
             await Promise.all(schoolsArray.map((curSchool) => GeneralSurvey.findOne({ curSchool })
                 .then(async (document) => {
                     if (!document) {
-                        const newGeneralSurvey = new GeneralSurvey({ curSchool });
+                        const newGeneralSurvey = new GeneralSurvey({ school: curSchool });
                         const savedSurvey = await newGeneralSurvey.save();
                         links[curSchool] = `${process.env.CORS_ORIGIN}/survey?token=${savedSurvey.token}&school=${curSchool}`;
                     } else {
