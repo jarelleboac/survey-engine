@@ -70,7 +70,9 @@ router.post('/', async (req, res) => {
                         }
                         // Save that model
                         const builtModel = new SurveyModel(
-                            { ...responses, status: submissionStatus.completed, school },
+                            {
+                                ...responses, status: submissionStatus.completed, school, general: true,
+                            },
                         );
 
                         // Save the model to DB
