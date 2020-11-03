@@ -9,7 +9,8 @@ export const validEmail = (email) => {
 }
 
 /**
- * Transforms strings into where the first value is capitalized, remaining are lowercase
+ * Transforms strings into where the first value is capitalized, remaining are lowercase.
+ * If input is a acronym, capitalize the whole string.
  * 
  * @param {string} input – input string to be converted 
  */

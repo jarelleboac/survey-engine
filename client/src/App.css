@@ -66,6 +66,24 @@ body,
     padding-bottom: 10px;
 }
 
+/* TODO: do these belong at the top? */
+@font-face {
+  font-family: "D-DIN";
+  src:
+    url("./assets/fonts/D-DIN.woff") format("woff"),
+    url("./assets/fonts/D-DIN.otf") format("opentype"),
+    url("./assets/fonts/D-DIN.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "D-DIN";
+  src:
+    url("./assets/fonts/D-DIN-Bold.woff") format("woff"),
+    url("./assets/fonts/D-DIN-Bold.otf") format("opentype"),
+    url("./assets/fonts/D-DIN-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
 /* for error msgs p in the survey form */
 p {
   color: #bf1650;
