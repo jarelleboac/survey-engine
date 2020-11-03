@@ -13,9 +13,12 @@ export const validEmail = (email) => {
  * 
  * @param {string} input – input string to be converted 
  */
-export const capitalizeString = (input) => (
-    input.charAt(0).toUpperCase() + input.slice(1).toLowerCase()
-)
+export const capitalizeString = (input) => {
+    if (['CMU', 'NYU', 'UMD', 'UIUC'].includes(input)) {
+        return input.toUpperCase()
+    }
+    return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase()
+}
 
 // Checks to see if the entire list of values are valid emails, returning the invalid emails
 export const getInvalidEmails = (emails) => emails.filter(email => !validEmail(email))
