@@ -18,13 +18,19 @@ const funkTheme = {
             outline: 'none',	
             maxWidth: '40%',	
             padding: '0 0 0 0',
+            fontFamily: 'D-DIN, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif'
         }	
     },
     colors: {
         text: '#000',
         background: '#fff',
         primary: '#648',
-    }
+    },
+    fonts: {
+        body: 'D-DIN, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+        heading: 'inherit',
+        monospace: 'Menlo, monospace',
+    },
 }
 
 // const themeObj = {
