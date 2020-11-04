@@ -301,7 +301,7 @@ const commonQuestions = {
       'Woman',
       'Man',
       'Non-binary',
-      'Perfer to self-describe:',
+      'Prefer to self-describe:',
       'Prefer not to say',
     ],
     required: true,
