@@ -59,7 +59,7 @@ router.post('/', async (req, res) => {
             const generalSurvey = await GeneralSurvey.findOne({ school, token });
             if (generalSurvey) {
                 // If the survey hasn't been closed yet
-                if (generalSurvey.status !== submissionStatus.closed) {
+                if (generalSurvey.status !== generalSurveyStatus.closed) {
                     // Attempt to save the survey response
                     try {
                         // Get the school's appropriate survey model
