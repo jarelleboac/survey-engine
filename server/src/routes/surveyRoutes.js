@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
                     const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
 
                     if (!SurveyModel) {
-                        return res.status(400).send(JSON.stringify({ error: 'This school\'s model has not been implemented.' }));
+                        return res.status(400).send(JSON.stringify({ error: 'Could not find survey. Please contact hello@percentageproject.com.' }));
                     }
                     // Save that model
                     const builtModel = new SurveyModel(
@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
                     email.status = submissionStatus.completed;
                     await email.save();
 
-                    return res.send(JSON.stringify({ message: `Successfully wrote a new response to ${school}.` }));
+                    return res.send(JSON.stringify({ message: 'Submitted sucessfully. Thank you for your participation!' }));
                 } catch (err) {
                     return res.status(400).send(JSON.stringify({ error: err }));
                 }
@@ -66,7 +66,7 @@ router.post('/', async (req, res) => {
                         const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
 
                         if (!SurveyModel) {
-                            return res.status(400).send(JSON.stringify({ error: 'This school\'s model has not been implemented.' }));
+                            return res.status(400).send(JSON.stringify({ error: 'Could not find survey. Please contact hello@percentageproject.com.' }));
                         }
                         // Save that model
                         const builtModel = new SurveyModel(
@@ -78,12 +78,12 @@ router.post('/', async (req, res) => {
                         // Save the model to DB
                         await builtModel.save();
 
-                        return res.send(JSON.stringify({ message: `Successfully wrote a new response to ${school}.` }));
+                        return res.send(JSON.stringify({ message: 'Submitted Successfully. Thank you for your participation!' }));
                     } catch (err) {
                         return res.status(400).send(JSON.stringify({ error: err }));
                     }
                 } else {
-                    return res.status(400).send(JSON.stringify({ error: `The survey has already been closed with status ${generalSurvey.status}.` }));
+                    return res.status(400).send(JSON.stringify({ error: 'The survey is now closed. Please contact hello@percentageproject.com with any questions.' }));
                 }
             }
             return res.status(400).send(JSON.stringify({ error: 'Could not submit survey. Please contact hello@percentageproject.com.' }));
