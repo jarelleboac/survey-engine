@@ -110,7 +110,7 @@ export const downloadJSON = (fetchFunction) => {
 }
 
 /**
- * Handles getting all survey responses for a certain school
+ * Handles getting all survey responses for all schools
  * 
  */
 export const getMasterSurveyResponses = () => (
@@ -126,7 +126,7 @@ export const getMasterSurveyResponses = () => (
 )
 
 /**
- * Handles getting all survey responses for a certain school
+ * Handles setting the sender email for a school
  * 
  * @param {string} school – user school 
  */
@@ -145,7 +145,24 @@ export const changeSenderEmail = (data, school) => (
 )
 
 /**
- * Handles getting all survey responses for a certain school
+ * Handles getting all generalized survey links for all schools. Will generate them if they don't already exist
+ * 
+ */
+export const getGeneralSurveyLinks = () => (
+    fetch(`${process.env.REACT_APP_API_URL}/survey/makeGeneralizedLinks`, 
+        {
+            headers: { 
+                'Content-Type': 'application/json', 
+                credentials: 'include',
+                Authorization: `${localStorage.jwtToken}`,
+                withCredentials: true, 
+            },
+            method: "POST"
+        })
+)
+
+/**
+ * Handles unsubscribing a user
  * 
  * @param {string} token – email token to unsubscribe 
  */
