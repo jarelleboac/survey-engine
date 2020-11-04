@@ -16,6 +16,11 @@ const surveyCommonSchema = new mongoose.Schema({
         required: [true, 'A school is required'],
         enum: schoolsArray,
     },
+    general: {
+        type: Boolean,
+        required: [true, 'Generalized link must be set.'],
+        default: false,
+    },
     ...mappedCommonQuestions,
 });
 
