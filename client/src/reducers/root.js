@@ -10,6 +10,9 @@ import {
 import {
     SET_COUNTS
 } from "../actions/email"
+import {
+    SET_COUNT
+} from "../actions/generalStatus"
 import { triggerToast } from '../utils';
 
 const messages = (state = "", { data, type }) => {
@@ -33,10 +36,20 @@ const emails = (state = {total: 0, unsent: 0, sent: 0, inprogress: 0, completed:
     }
 }
 
+const generalStatus = (state = {count: 0}, {count, type}) => {
+    switch (type) {
+    case SET_COUNT:
+        return count;
+    default:
+        return state;
+    }
+}
+
 
 export default combineReducers({
     session,
     errors,
     messages,
-    emails
+    emails,
+    generalStatus
 });
