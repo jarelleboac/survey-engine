@@ -34,6 +34,18 @@ export const getCounts = (school) => (fetch(`${process.env.REACT_APP_API_URL}/em
             withCredentials: true, }
     }))
 
+
+export const getGeneralCounts = (school) => (fetch(`${process.env.REACT_APP_API_URL}/survey/count/${school}`, 
+    {
+        headers: { 
+            'Content-Type': 'application/json', 
+            credentials: 'include',
+            Authorization: `${localStorage.jwtToken}`,
+            withCredentials: true, 
+        }
+    }
+))
+
 // Gets counts for the school
 export const sendEmails = (school, status) => (fetch(`${process.env.REACT_APP_API_URL}/email/${school}/sendEmails`, 
     {

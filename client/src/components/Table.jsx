@@ -4,6 +4,8 @@ import {useSelector} from 'react-redux'
 
 export const Table = () => {
     const emails = useSelector(state => state.emails)
+    const genCount = useSelector(state => state.generalStatus)
+    const total = emails.total + genCount.count
     return (
         <div>
             <Heading className="section-header">Summary</Heading>
@@ -20,8 +22,11 @@ export const Table = () => {
                 <Text>
                  Completed: {emails.completed}
                 </Text>
+                <Text>
+                    Completed via General: {genCount.count}
+                </Text>
                 <Text sx={{fontWeight: 'bold'}}>
-                 Total: {emails.total}
+                 Total: {total}
                 </Text>
             </div>
         </div>
