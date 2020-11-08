@@ -144,6 +144,34 @@ router.post('/makeGeneralizedLinks', passport.authenticate('jwt', { session: fal
     }
 });
 
+/**
+ * Handles getting count for responses collected via
+ * general survey for a school for school admins
+ *
+ * @param {req.params.school} – Expects the school to be loaded
+ *
+ */
+router.get('/count/:school', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const { school: reqSchool } = req.params;
+
+    const { role, school } = req.user;
+
+    if (role === roles.schoolAdmin && reqSchool === school) {
+        try {
+            // Get the school's appropriate survey model
+            const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
+
+            // Get all surveys from that model
+            const surveys = await SurveyModel.find({ general: true });
+            return res.send(JSON.stringify({ count: surveys.length }));
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
+    } else {
+        res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+});
+
 // /**
 //  * Handles getting all responses for a certain school for school admins
 //  *

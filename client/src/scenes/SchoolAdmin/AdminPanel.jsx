@@ -2,8 +2,9 @@ import { Table } from '../../components/Table'
 import React, { useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { CSVUpload } from '../../components/CSVUpload'
-import { getCounts, sendEmails, getSurveyResponses, triggerToast } from '../../utils'
-import {setCountsAction} from  '../../actions/email'
+import { getCounts, sendEmails, getSurveyResponses, triggerToast, getGeneralCounts } from '../../utils'
+import { setCountsAction } from  '../../actions/email'
+import { setGeneralCountsAction } from '../../actions/generalStatus'
 import { Button, Flex, Heading, Divider } from 'theme-ui'
 import {submissionStatus} from '../../../../common/schema'
 
@@ -51,13 +52,20 @@ export const SchoolAdminPanel = () => {
 
     // Fetch counts on first load and populate the store
     useEffect(() => {
-        getCounts(session.school)
-            .then(res => {
-                if (!res.ok) throw Error(res.statusText)
-                else return res.json()
+        Promise.all([getCounts(session.school), getGeneralCounts(session.school)])
+            .then(async res => {
+                if (!res[0].ok) throw Error(res[0].statusText)
+                else {
+                    // TODO-Cleanup: is there a way to do this w/o awaiting?
+                    const email = await res[0].json()
+                    const general = await res[1].json()
+                    return [email, general]
+                }
             })
-            .then(res => {
-                dispatch(setCountsAction(res))
+            .then(([emailCount, genCount]) => {
+                // TODO-Cleanup: should this be one action?
+                dispatch(setCountsAction(emailCount))
+                dispatch(setGeneralCountsAction(genCount))
                 setFreshData(true)
             })
             .catch(error => {
