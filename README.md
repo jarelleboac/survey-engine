@@ -46,6 +46,8 @@ Mid-survey
 - The client is bootstrapped from create-react-app, and is located in `/client`. 
 
 ## Getting Started
+Install MongoDB
+
 - From root, repeat:
 ### Client
 `cd client`
