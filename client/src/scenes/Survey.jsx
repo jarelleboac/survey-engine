@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import {
     Label,
     Input,
@@ -17,6 +19,7 @@ import {
 } from 'theme-ui'
 
 import { schoolToQuestions, schoolsArray } from '../../../common/schema.js'
+import { redirectoToThanksAction } from '../actions/survey.js';
 import { submitSurvey, triggerToast } from '../utils'
 
 // keyword for user input question in checkbox/radio
@@ -187,12 +190,15 @@ const questionToComponent = (question, register, watch, errors, contentAccept, s
 }
 
 export function Survey({school, token}) {
+    const dispatch = useDispatch()
 
     const { register, handleSubmit, errors, watch } = useForm();
 
     const [message, setMessage] = useState("")
-
+ 
     const [contentAccept, setContentAccept] = useState(false)
+
+    const shouldRedirect = useSelector(state => state.surveyRedirect)
 
     useEffect(() => {
         if (message !== "") {
@@ -214,11 +220,16 @@ export function Survey({school, token}) {
                 if (res.error) {
                     setMessage(res.error)
                 } else if (res.message) {
-                    setMessage(res.message)
+                    dispatch(redirectoToThanksAction(true))
                 }
             })
             .catch(err => setMessage(err.error))
     };
+    
+
+    if (shouldRedirect) {
+        return <Redirect to='/thankYou' />
+    }
 
     return (
         <>
