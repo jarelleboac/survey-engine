@@ -13,6 +13,9 @@ import {
 import {
     SET_COUNT
 } from "../actions/generalStatus"
+import {
+    REDIRECT_TO_THANKS
+} from "../actions/survey"
 import { triggerToast } from '../utils';
 
 const messages = (state = "", { data, type }) => {
@@ -45,11 +48,20 @@ const generalStatus = (state = {count: 0}, {count, type}) => {
     }
 }
 
+const surveyRedirect = (state = false, {redirect, type}) => {
+    switch (type) {
+    case REDIRECT_TO_THANKS:
+        return redirect;
+    default:
+        return state;
+    }
+}
 
 export default combineReducers({
     session,
     errors,
     messages,
     emails,
-    generalStatus
+    generalStatus,
+    surveyRedirect
 });

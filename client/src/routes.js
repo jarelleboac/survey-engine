@@ -7,6 +7,7 @@ import { Login } from './scenes/Login'
 import { SchoolAdminPanel } from './scenes/SchoolAdmin/AdminPanel'
 import { PercentAdminPanel } from './scenes/PercentAdmin/PercentAdminPanel'
 import { Dashboard } from './scenes/Dashboard'
+import { ThankYou } from './scenes/ThankYou'
 import { Unsubscribe } from './scenes/Unsubscribe'
 import { roles } from '../../common/schema';
 
@@ -53,6 +54,7 @@ export const PageSwitches = () => {
             <Route path="/login" component={Login} />
             <Route path="/survey" component={Survey} />
             <Route path="/unsubscribe" component={Unsubscribe} />
+            <Route path="/thankYou" component={ThankYou} />
             {/* <Route path="/signup" component={Signup} /> */}
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/">
@@ -203,6 +205,8 @@ export const Routes = () => {
             return <WrappedSurvey school={school} token={token} />
         } else if (pathname === "/unsubscribe" && token) {
             return <Unsubscribe token={token} />
+        } else if (pathname === "/thankYou") {
+            return <ThankYou />
         }
         else {
             return (<Login />)
