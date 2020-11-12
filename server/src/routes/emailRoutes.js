@@ -67,7 +67,7 @@ router.post('/unsubscribe', async (req, res) => {
             await email.save();
             return res.status(200).send(JSON.stringify({ message: 'You have been successfully unsubscribed.' }));
         }
-        return res.status(400).send(JSON.stringify({ error: 'This token does not exist in the DB.' }));
+        return res.status(400).send(JSON.stringify({ error: 'Could not unsubscribe. Please contact hello@percentageproject.com' }));
     } catch (err) {
         return res.status(400).send(JSON.stringify({ error: err.message }));
     }

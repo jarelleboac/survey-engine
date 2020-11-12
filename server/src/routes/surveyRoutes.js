@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
                     return res.status(400).send(JSON.stringify({ error: err }));
                 }
             } else {
-                return res.status(400).send(JSON.stringify({ error: `This email is already listed as ${email.status}.` }));
+                return res.status(400).send(JSON.stringify({ error: `This email is already listed as ${email.status}. Please contact hello@percentageproject.com.` }));
             }
         } else {
             // Handle finding the token in the GeneralSurvey models
