@@ -32,8 +32,6 @@ export function sendStatusEmail(user, status, surveyUrl, school, senderEmail, un
         email = reminder(user, surveyUrl, school, senderEmail, unsubscribeUrl);
         break;
     case submissionStatus.unsent:
-        console.log(user)
-        console.log(senderEmail)
         email = unsent(user, surveyUrl, school, senderEmail, unsubscribeUrl);
         break;
     default:
