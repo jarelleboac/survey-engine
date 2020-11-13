@@ -10,6 +10,15 @@ const router = Router();
 
 const { CORS_ORIGIN } = process.env;
 
+function chunkArray(array, size) {
+    let result = []
+    let arrayCopy = [...array]
+    while (arrayCopy.length > 0) {
+        result.push(arrayCopy.splice(0, size))
+    }
+    return result
+}
+
 router.get('/:school', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { role, school } = req.user;
 
@@ -141,37 +150,42 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
 
     if (role === roles.schoolAdmin && userSchool === school) {
         // Find emails e.g. type school: BROWN, status: UNSENT
-        const emails = await Email.find({ school, status: requestType });
+        const emails = await Email.find({ school, status: requestType }).limit(130);
 
         const decryptedEmails = emails.map((model) => (
             { model, token: model.token, email: decrypt(model.email) }
         ));
+
+        const chunkedDecryptedEmails = chunkArray(decryptedEmails, 13);
 
         const senderEmail = await SenderEmail.findOne({ school });
         if (!senderEmail) {
             return res.status(400).send(JSON.stringify({ error: 'Please set a sender email first.' }));
         }
 
-        await Promise.all(decryptedEmails.map((email) => {
-            // Make a survey URL for the thing that we need
-            const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
-            const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
+        for (let index = 0; index < chunkedDecryptedEmails.length; index++) {
+            await Promise.all(chunkedDecryptedEmails[index].map((email) => {
+                // Make a survey URL for the thing that we need
+                const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
+                const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
 
-            return sendStatusEmail(email, requestType, surveyUrl, school, senderEmail.email, unsubscribeUrl)
-                .then(async (data) => {
-                    // Set it to sent if it hasn't already been sent
-                    if (email.model.status !== submissionStatus.sent) {
-                        // eslint-disable-next-line no-param-reassign
-                        email.model.status = submissionStatus.sent;
-                        await email.model.save();
-                    }
-                    count += 1;
-                })
-                .catch((err) => {
-                    console.log(err);
-                    error += 1;
-                });
-        }));
+                return sendStatusEmail(email, requestType, surveyUrl, school, senderEmail.email, unsubscribeUrl)
+                    .then(async (data) => {
+                        // Set it to sent if it hasn't already been sent
+                        if (email.model.status !== submissionStatus.sent) {
+                            // eslint-disable-next-line no-param-reassign
+                            email.model.status = submissionStatus.sent;
+                            await email.model.save();
+                        }
+                        count += 1;
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        error += 1;
+                    });
+            }))
+            await new Promise(r => setTimeout(r, 900)); // in milliseconds
+        }
     } else {
         return res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
     }
