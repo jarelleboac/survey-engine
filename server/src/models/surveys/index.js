@@ -9,6 +9,7 @@ import { UiucSurvey } from './UiucSurvey';
 import { NyuSurvey } from './NyuSurvey';
 import { VanderbiltSurvey } from './VanderbiltSurvey';
 import { HarvardSurvey } from './HarvardSurvey';
+import { UmdSurvey } from './UmdSurvey';
 import SurveyCommon from './SurveyCommon';
 import { schools } from '../../schema';
 
@@ -28,6 +29,7 @@ const mapSchoolsToQuestionSchemas = () => {
     dict[schools.columbia] = ColumbiaSurvey;
     dict[schools.nyu] = NyuSurvey;
     dict[schools.uiuc] = UiucSurvey;
+    dict[schools.umd] = UmdSurvey;
     dict[schools.vanderbilt] = VanderbiltSurvey;
     return dict;
 };
@@ -43,6 +45,7 @@ export default {
     ColumbiaSurvey,
     CmuSurvey,
     UiucSurvey,
+    UmdSurvey,
     NyuSurvey,
     HarvardSurvey,
     VanderbiltSurvey,
