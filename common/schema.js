@@ -14,6 +14,7 @@ const schools = {
   columbia: 'COLUMBIA',
   nyu: 'NYU',
   uiuc: 'UIUC',
+  umd: 'UMD',
   vanderbilt: 'VANDERBILT',
   percentProj: 'PERCENTAGE_PROJECT',
 };
@@ -1001,6 +1002,10 @@ const uiucQuestions = {
     }
   },
 };
+const umdQuestions = {
+  questionOrder: [...commonOrder, ...demographicOrder],
+  customQuestions: {},
+};
 const vanderbiltQuestions = {
   questionOrder: [...commonOrder, ...demographicOrder],
   customQuestions: {
@@ -1088,6 +1093,7 @@ schoolToQuestions[schools.cmu] = buildOrderedQuestions(cmuQuestions);
 schoolToQuestions[schools.columbia] = buildOrderedQuestions(columbiaQuestions);
 schoolToQuestions[schools.nyu] = buildOrderedQuestions(nyuQuestions);
 schoolToQuestions[schools.uiuc] = buildOrderedQuestions(uiucQuestions);
+schoolToQuestions[schools.umd] = buildOrderedQuestions(umdQuestions)
 
 export {
   schools, schoolsArray, roles, rolesArray, submissionStatus, submissionStatusArray,
@@ -1095,6 +1101,7 @@ export {
   brownQuestions, pennQuestions, harvardQuestions, vanderbiltQuestions,
   drexelQuestions, dukeQuestions, rutgersQuestions,
   columbiaQuestions, cmuQuestions, uiucQuestions, nyuQuestions,
+  umdQuestions,
   generalSurveyStatus,
   schoolToQuestions,
 };
