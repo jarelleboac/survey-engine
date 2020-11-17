@@ -11,22 +11,21 @@ const Queue = require('bull');
 // 1. Initiating the Queue
 const sendMailQueue = new Queue('sendMail', {
     redis: {
-    host: '127.0.0.1',
-    port: 6379,
-    password: 'root'
-}
+        host: '127.0.0.1',
+        port: 6379,
+        password: 'root',
+    },
 });
-
 
 const { CORS_ORIGIN } = process.env;
 
 function chunkArray(array, size) {
-    let result = []
-    let arrayCopy = [...array]
+    const result = [];
+    const arrayCopy = [...array];
     while (arrayCopy.length > 0) {
-        result.push(arrayCopy.splice(0, size))
+        result.push(arrayCopy.splice(0, size));
     }
-    return result
+    return result;
 }
 
 router.get('/:school', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -157,11 +156,11 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
     if (role === roles.schoolAdmin && userSchool === school) {
         // Find emails e.g. type school: BROWN, status: UNSENT
         const emails = await Email.find({ school, status: requestType });
-        
+
         const decryptedEmails = emails.map((model) => (
             { model, token: model.token, email: decrypt(model.email) }
         ));
-        
+
         const chunkedDecryptedEmails = chunkArray(decryptedEmails, 2);
 
         const senderEmail = await SenderEmail.findOne({ school });
@@ -171,45 +170,44 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
 
         for (let index = 0; index < chunkedDecryptedEmails.length; index++) {
             const data = {
-                senderEmail: senderEmail,
+                senderEmail,
                 emails: chunkedDecryptedEmails[index],
-                requestType: requestType,
-                school: school, 
-              };
-              const options = {
-                delay: 1 + 6*((index)*10000), // 1 min in ms
-              };
-              
+                requestType,
+                school,
+            };
+            const options = {
+                delay: 1 + 6 * ((index) * 10000), // 1 min in ms
+            };
+
             // 2. Adding a Job to the Queue
-            sendMailQueue.add(data, options);  
-            sendMailQueue.process(async job => { 
-            try{
-                return await sendMail(job.data.emails, job.data.senderEmail, job.data.requestType, job.data.school); 
-            }
-            catch (ex) {
-                console.log(ex);
-                job.moveToFailed();
-            }
+            sendMailQueue.add(data, options);
+            sendMailQueue.process(async (job) => {
+                try {
+                    return await sendMail(job.data.emails, job.data.senderEmail, job.data.requestType, job.data.school);
+                } catch (ex) {
+                    console.log(ex);
+                    job.moveToFailed();
+                }
             });
         }
     } else {
         return res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
     }
 
-    return res.send({ message: `Sending emails` });
+    return res.send({ message: 'Sending emails' });
 });
 
-function sendMail(emails, senderEmail, requestType, school){
+function sendMail(emails, senderEmail, requestType, school) {
     // Counts success and failure emails
     let count = 0;
     let error = 0;
-    console.log("MAPS")
-    console.log(emails)
+    console.log('MAPS');
+    console.log(emails);
     return new Promise.all(emails.map((email) => {
         // Make a survey URL for the thing that we need
         const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
         const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
-        
+
         return sendStatusEmail(email, requestType, surveyUrl, school, senderEmail.email, unsubscribeUrl)
             .then(async (data) => {
                 // Set it to sent if it hasn't already been sent
@@ -222,9 +220,9 @@ function sendMail(emails, senderEmail, requestType, school){
             })
             .catch((err) => {
                 console.log(err);
-                error += 1
+                error += 1;
             });
-    }))
+    }));
 }
 
 /**
