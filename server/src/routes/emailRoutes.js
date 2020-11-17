@@ -11,14 +11,11 @@ const router = Router();
 
 const { CORS_ORIGIN } = process.env;
 
+// Connect to a local redis intance locally, and the Heroku-provided URL in production
+const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
+
 // 1. Initiating the Queue
-const sendMailQueue = new Queue('sendMail', {
-    redis: {
-        host: '127.0.0.1',
-        port: 6379,
-        password: 'root',
-    },
-});
+const sendMailQueue = new Queue('sendMail', REDIS_URL);
 
 function chunkArray(array, size) {
     const result = [];
