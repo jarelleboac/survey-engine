@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import passport from 'passport';
+import Queue from 'bull';
 import { submissionStatus, roles } from '../schema';
 import Email from '../models/Email';
 import { encrypt, decrypt, isEmail } from '../utils';
@@ -7,7 +8,9 @@ import { sendStatusEmail } from '../utils/aws';
 import SenderEmail from '../models/SenderEmail';
 
 const router = Router();
-const Queue = require('bull');
+
+const { CORS_ORIGIN } = process.env;
+
 // 1. Initiating the Queue
 const sendMailQueue = new Queue('sendMail', {
     redis: {
@@ -16,8 +19,6 @@ const sendMailQueue = new Queue('sendMail', {
         password: 'root',
     },
 });
-
-const { CORS_ORIGIN } = process.env;
 
 function chunkArray(array, size) {
     const result = [];
