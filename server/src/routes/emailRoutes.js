@@ -14,17 +14,6 @@ const { CORS_ORIGIN } = process.env;
 // Connect to a local redis intance locally, and the Heroku-provided URL in production
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
 
-// 1. Initiating the Queue
-const sendMailQueue = new Queue('sendMail', REDIS_URL);
-
-function chunkArray(array, size) {
-    const result = [];
-    const arrayCopy = [...array];
-    while (arrayCopy.length > 0) {
-        result.push(arrayCopy.splice(0, size));
-    }
-    return result;
-}
 
 router.get('/:school', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { role, school } = req.user;
@@ -159,69 +148,61 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
             { model, token: model.token, email: decrypt(model.email) }
         ));
 
-        const chunkedDecryptedEmails = chunkArray(decryptedEmails, 2);
-
         const senderEmail = await SenderEmail.findOne({ school });
         if (!senderEmail) {
             return res.status(400).send(JSON.stringify({ error: 'Please set a sender email first.' }));
         }
+         
+        // 1. Initiating the Queue
+        const sendMailQueue = new Queue('sendMail', REDIS_URL);
+        const data = {
+            senderEmail,
+            emails: decryptedEmails,
+            requestType,
+            school,
+        };
 
-        for (let index = 0; index < chunkedDecryptedEmails.length; index++) {
-            const data = {
-                senderEmail,
-                emails: chunkedDecryptedEmails[index],
-                requestType,
-                school,
-            };
-            const options = {
-                delay: 1 + 6 * ((index) * 10000), // 1 min in ms
-            };
+        // 2. Adding a Job to the Queue
+        sendMailQueue.add(data);
+        sendMailQueue.process(async(job) => {
+            try {
+                let count = 0
+                let error = 0
+                data = job.data
+                for(const email of data.emails) {
+                    // Make a survey URL for the thing that we need
+                    const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
+                    const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
+                    await sendStatusEmail(email, data.requestType, surveyUrl, data.school, data.senderEmail.email, unsubscribeUrl)
+                          .then(async (data) => {
+                              // Set it to sent if it hasn't already been sent
+                              if (email.model.status !== submissionStatus.sent) {
+                                  console.log(email);
+                                  console.log("sent");
+                                  // eslint-disable-next-line no-param-reassign
+                                  email.model.status = submissionStatus.sent;
+                                  await email.model.save();
+                              }
+                              count += 1;
+                          })
+                          .catch((err) => {
+                              console.log(err);
+                              error += 1;
+                          });
+                    await new Promise(r => setTimeout(r, 5000)); // in milliseconds
+                };
+            } catch (ex) {
+                console.log(ex);
+                job.moveToFailed();
+            }
+        });
 
-            // 2. Adding a Job to the Queue
-            sendMailQueue.add(data, options);
-            sendMailQueue.process(async (job) => {
-                try {
-                    return await sendMail(job.data.emails, job.data.senderEmail, job.data.requestType, job.data.school);
-                } catch (ex) {
-                    console.log(ex);
-                    job.moveToFailed();
-                }
-            });
-        }
     } else {
         return res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
     }
 
     return res.send({ message: 'Sending emails' });
 });
-
-function sendMail(emails, senderEmail, requestType, school) {
-    // Counts success and failure emails
-    let count = 0;
-    let error = 0;
-    console.log('MAPS');
-    console.log(emails);
-    return new Promise.all(emails.map((email) => {
-        // Make a survey URL for the thing that we need
-        const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
-        const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
-
-        return sendStatusEmail(email, requestType, surveyUrl, school, senderEmail.email, unsubscribeUrl)
-            .then(async (data) => {
-                // Set it to sent if it hasn't already been sent
-                if (email.model.status !== submissionStatus.sent) {
-                    // eslint-disable-next-line no-param-reassign
-                    email.model.status = submissionStatus.sent;
-                    await email.model.save();
-                }
-                count += 1;
-            })
-            .catch((err) => {
-                console.log(err);
-                error += 1;
-            });
-    }));
-}
 
 /**
  * Changes the email from which emails will be sent for a certain school
