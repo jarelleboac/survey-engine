@@ -152,7 +152,7 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
         if (!senderEmail) {
             return res.status(400).send(JSON.stringify({ error: 'Please set a sender email first.' }));
         }
-         
+
         // 1. Initiating the Queue
         const sendMailQueue = new Queue('sendMail', REDIS_URL);
         const data = {
@@ -164,21 +164,20 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
 
         // 2. Adding a Job to the Queue
         sendMailQueue.add(data);
-        sendMailQueue.process(async(job) => {
+        // TODO-Cleanup: move processing to separate file
+        sendMailQueue.process(async (job) => {
             try {
-                let count = 0
-                let error = 0
-                data = job.data
-                for(const email of data.emails) {
+                let count = 0;
+                let error = 0;
+                const jobData = job.data;
+                for (const email of jobData.emails) {
                     // Make a survey URL for the thing that we need
                     const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
                     const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
-                    await sendStatusEmail(email, data.requestType, surveyUrl, data.school, data.senderEmail.email, unsubscribeUrl)
-                          .then(async (data) => {
+                    await sendStatusEmail(email, jobData.requestType, surveyUrl, jobData.school, jobData.senderEmail.email, unsubscribeUrl)
+                          .then(async () => {
                               // Set it to sent if it hasn't already been sent
                               if (email.model.status !== submissionStatus.sent) {
-                                  console.log(email);
-                                  console.log("sent");
                                   // eslint-disable-next-line no-param-reassign
                                   email.model.status = submissionStatus.sent;
                                   await email.model.save();
@@ -189,18 +188,17 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
                               console.log(err);
                               error += 1;
                           });
-                    await new Promise(r => setTimeout(r, 5000)); // in milliseconds
+                    await new Promise(r => setTimeout(r, 1000)); // in milliseconds
                 };
+                console.log(`For ${jobData.school} and ${jobData.requestType}, ${count} emails were successfully sent. ${error} emails had an error.`);
             } catch (ex) {
                 console.log(ex);
                 job.moveToFailed();
             }
         });
-
     } else {
         return res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
     }
-
     return res.send({ message: 'Sending emails' });
 });
 
