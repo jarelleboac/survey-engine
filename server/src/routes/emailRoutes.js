@@ -172,7 +172,7 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
                 const jobData = job.data;
                 for (const email of jobData.emails) {
                     // Make a survey URL for the thing that we need
-                    const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${school}`;
+                    const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${jobData.school}`;
                     const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
                     await sendStatusEmail(email, jobData.requestType, surveyUrl, jobData.school, jobData.senderEmail.email, unsubscribeUrl)
                           .then(async () => {
@@ -188,7 +188,7 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
                               console.log(err);
                               error += 1;
                           });
-                    await new Promise(r => setTimeout(r, 1000)); // in milliseconds
+                    await new Promise(r => setTimeout(r, 500)); // in milliseconds
                 };
                 console.log(`For ${jobData.school} and ${jobData.requestType}, ${count} emails were successfully sent. ${error} emails had an error.`);
             } catch (ex) {
