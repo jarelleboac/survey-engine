@@ -5,6 +5,11 @@ import { commonQuestions, submissionStatusArray, schoolsArray } from '../../sche
 // Generate a mongoose-compatible version of the question schema
 const mappedCommonQuestions = questionSchemaToMongooseModel(commonQuestions);
 
+const currentESTDateTime = {
+    // add the timestamp, set as the server side EST current time
+    timestamps: { currentTime: () => new Date().toLocaleString("en-US", {timeZone: "America/New_York"})}
+  };
+
 const surveyCommonSchema = new mongoose.Schema({
     status: {
         type: String,
@@ -22,7 +27,7 @@ const surveyCommonSchema = new mongoose.Schema({
         default: false,
     },
     ...mappedCommonQuestions,
-});
+}, currentESTDateTime);
 
 const SurveyCommon = mongoose.model('SurveyCommon', surveyCommonSchema);
 
