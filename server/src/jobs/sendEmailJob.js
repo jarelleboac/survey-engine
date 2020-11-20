@@ -50,7 +50,6 @@ async function start() {
                 const surveyUrl = `${CORS_ORIGIN}/survey?xtoken=${email.token}&school=${data.school}`;
                 const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
 
-                console.log('email');
                 await sendStatusEmail(email, data.requestType, surveyUrl, data.school, data.senderEmail.email, unsubscribeUrl)
                     .then(async () => {
                         // Set it to sent if it hasn't already been sent
