@@ -17,7 +17,7 @@
 		"test": "jest",
 		"schema": "cp ../common/schema.js ./src/schema.js",
 		"heroku": "npm run schema && git push heroku production",
-		"worker": "NODE_ENV=production npm run build && node ./dist/jobs/sendEmailJob.js"
+		"worker": "node ./dist/jobs/sendEmailJob.js"
 	},
 	"nodemonConfig": {
 		"exec": "npm run dev",
