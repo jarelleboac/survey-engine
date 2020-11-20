@@ -18,11 +18,13 @@ export default (user, surveyUrl, school, senderEmail, unsubscribeUrl) => ({
                 // HTML Format of the email
                 Charset: 'UTF-8',
                 Data: `<!doctype html>
-                Oops! <br><br>
+                Hi there, <br><br>
 				
-				Sorry about that! We sent you the wrong link in our previous email.<br><br>
-                
-                Here is the actual link to your survey: ${escape(surveyUrl)}<br><br>
+				Just a quick reminder to fill out your survey! This will allow us to understand the current state of students from all backgrounds and follow metrics from year to year.<br><br>
+
+                Hearing about your unique experience is very important to us, and we'd appreciate your time in filling out this 5-minute survey.<br><br>
+
+				Head on over to the survey at your unique url: ${escape(surveyUrl)}<br><br>
 				
 				Best,<br>
                 The Percentage Project Team
@@ -33,11 +35,13 @@ export default (user, surveyUrl, school, senderEmail, unsubscribeUrl) => ({
             },
             Text: {
                 Charset: 'UTF-8',
-                Data: `Oops!
+                Data: `Hi there,
 				
-				Sorry about that! We sent you the wrong link in our previous email.
-                
-                Here is the actual link to your survey: ${escape(surveyUrl)}
+				Just a quick reminder to fill out your survey! This will allow us to understand the current state of students from all backgrounds and follow metrics from year to year.
+
+                Hearing about your unique experience is very important to us, and we'd appreciate your time in filling out this 5-minute survey.
+
+				Head on over to the survey at your unique url: ${escape(surveyUrl)}
 				
 				Best,
                 The Percentage Project Team
