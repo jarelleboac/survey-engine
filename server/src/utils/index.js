@@ -5,7 +5,7 @@ export const questionSchemaToMongooseModel = (questions) => {
     const obj = {};
     Object.values(questions).forEach((question) => {
         // Ignore text component
-        if (question.component === 'Text') {
+        if (question.component === 'Text' || question.component === 'TextWithLink') {
             return;
         }
         const { id, required, type } = question;

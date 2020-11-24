@@ -47,7 +47,7 @@ async function start() {
         try {
             for (const email of emails) {
             // Make a survey URL for the thing that we need
-                const surveyUrl = `${CORS_ORIGIN}/survey?xtoken=${email.token}&school=${data.school}`;
+                const surveyUrl = `${CORS_ORIGIN}/survey?token=${email.token}&school=${data.school}`;
                 const unsubscribeUrl = `${CORS_ORIGIN}/unsubscribe?token=${email.token}`;
 
                 await sendStatusEmail(email, data.requestType, surveyUrl, data.school, data.senderEmail.email, unsubscribeUrl)
