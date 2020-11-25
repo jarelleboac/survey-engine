@@ -458,7 +458,7 @@ const brownQuestions = {
       question: 'Check all of the following that apply to you:',
       component: 'MultiCheckbox',
       options: [
-        'I feel pressure at Brown to find internships, job opportunities, and extracurricular activities.',
+        'I feel pressure at Brown to find internships, job opportunities, extracurricular activities.',
         'I feel confident studying computer science and related fields.',
         'I feel intimidated studying Computer Science and related fields.',
         'None of the above',
@@ -567,7 +567,7 @@ const pennQuestions = {
       question: 'Check all of the following that apply to you:',
       component: 'MultiCheckbox',
       options: [
-        'I feel pressure at Penn to find internships, job opportunities, and extracurricular activities.',
+        'I feel pressure at Penn to find internships, job opportunities, extracurricular activities.',
         'I feel confident studying computer science and related fields.',
         'I feel intimidated studying Computer Science and related fields.',
         'None of the above',
@@ -594,11 +594,11 @@ const pennQuestions = {
   },
 };
 const harvardQuestions = {
-  questionOrder: [...commonOrder.slice(0, 4), 'harvard1', 'harvard2', ...commonOrder.slice(4), ...demographicOrder, 'harvard3'],
+  questionOrder: [...commonOrder.slice(0, 4), 'harvard1', 'harvard2', ...commonOrder.slice(4), ...demographicOrder],
   customQuestions: {
     major: {
       id: 'major',
-      question: 'Please select which declared or intended plan of study fits you best.',
+      question: 'Please select which fits you the best.',
       component: 'Radio',
       options: [
         'CS concentration or secondary in SEAS',
@@ -617,7 +617,7 @@ const harvardQuestions = {
       question: 'Check all of the following that apply to you:',
       component: 'MultiCheckbox',
       options: [
-        'I feel pressure at Harvard to find internships, job opportunities, and extracurricular activities.',
+        'I feel pressure at Harvard to find internships, job opportunities, extracurricular activities.',
         'I feel confident studying computer science and related fields.',
         'I feel intimidated studying Computer Science and related fields.',
         'None of the above',
@@ -684,17 +684,8 @@ const harvardQuestions = {
       required: true,
       type: [String],
     },
-    harvard3: {
-      id: 'harvard3',
-      heading: '[Optional] Chat with Us?',
-      component: 'TextWithLink',
-      text1: 'Would you be interested in being interviewed by the Percentage Project about your experience? If so, please submit your email at ',
-      text2: '. Please note that your email will be submitted separately from your other question responses.',
-      url: 'https://tiny.cc/stem-interview'
-    },
   },
 };
-
 const drexelQuestions = {
   questionOrder: [...commonOrder, ...demographicOrder],
   customQuestions: {
@@ -815,7 +806,7 @@ const dukeQuestions = {
       question: 'Check all of the following that apply to you:',
       component: 'MultiCheckbox',
       options: [
-        'I feel pressure at Duke to find internships, job opportunities, and extracurricular activities.',
+        'I feel pressure at Duke to find internships, job opportunities, extracurricular activities.',
         'I feel confident studying computer science and related fields.',
         'I feel intimidated studying Computer Science and related fields.',
         'None of the above',
@@ -863,7 +854,7 @@ const rutgersQuestions = {
       question: 'Check all of the following that apply to you:',
       component: 'MultiCheckbox',
       options: [
-        'I feel pressure at Rutgers to find internships, job opportunities, and extracurricular activities.',
+        'I feel pressure at Rutgers to find internships, job opportunities, extracurricular activities.',
         'I feel confident studying computer science and related fields.',
         'I feel intimidated studying Computer Science and related fields.',
         'None of the above',
@@ -965,7 +956,7 @@ const cmuQuestions = {
       question: 'Check all of the following that apply to you:',
       component: 'MultiCheckbox',
       options: [
-        'I feel pressure at Carnegie Mellon to find internships, job opportunities, and extracurricular activities.',
+        'I feel pressure at Carnegie Mellon to find internships, job opportunities, extracurricular activities.',
         'I feel confident studying computer science and related fields.',
         'I feel intimidated studying Computer Science and related fields.',
         'None of the above',
@@ -1046,7 +1037,7 @@ const nyuQuestions = {
       question: 'Check all of the following that apply to you:',
       component: 'MultiCheckbox',
       options: [
-        'I feel pressure at NYU to find internships, job opportunities, and extracurricular activities.',
+        'I feel pressure at NYU to find internships, job opportunities, extracurricular activities.',
         'I feel confident studying computer science and related fields.',
         'I feel intimidated studying Computer Science and related fields.',
         'None of the above',
@@ -1113,7 +1104,7 @@ const uiucQuestions = {
       question: 'Check all of the following that apply to you:',
       component: 'MultiCheckbox',
       options: [
-        'I feel pressure at UIUC to find internships, job opportunities, and extracurricular activities.',
+        'I feel pressure at UIUC to find internships, job opportunities, extracurricular activities.',
         'I feel confident studying computer science and related fields.',
         'I feel intimidated studying Computer Science and related fields.',
         'None of the above',
@@ -1196,54 +1187,7 @@ const uiucQuestions = {
 };
 const umdQuestions = {
   questionOrder: [...commonOrder, ...demographicOrder],
-  customQuestions: {
-    major: {
-      id: 'major',
-      question: 'Please select which fits you the best.',
-      component: 'Radio',
-      options: [
-        'CS major',
-        'CS minor',
-        'Computer Engineering Major (Clark)',
-        'Computer Engineering Minor (Clark)',
-        'Information Science Major (iSchool)',
-        'Information Systems Major (Smith)',
-        'Letters and Sciences - Undecided',
-        'Other (Please specify):',
-      ],
-      required: true,
-      type: String,
-    },
-    confidence: {
-      id: 'confidence',
-      question: 'Check all of the following that apply to you:',
-      component: 'MultiCheckbox',
-      options: [
-        'I feel pressure at UMD to find internships, job opportunities, and extracurricular activities.',
-        'I feel confident studying computer science and related fields.',
-        'I feel intimidated studying Computer Science and related fields.',
-        'None of the above',
-      ],
-      required: true,
-      type: [String],
-    },
-    acceptance: {
-      id: 'acceptance',
-      question: 'Someone has once claimed to me that _____ has unfairly contributed to my acceptance to UMD. Check all that apply to you.',
-      component: 'MultiCheckbox',
-      options: [
-        'my race/ethnicity',
-        'my gender identity',
-        'my sexual orientation',
-        'my disability',
-        'being a first generation student',
-        'my income status',
-        'None of the above',
-      ],
-      required: true,
-      type: [String],
-    },
-  },
+  customQuestions: {},
 };
 const vanderbiltQuestions = {
   questionOrder: [...commonOrder, ...demographicOrder],
@@ -1269,7 +1213,7 @@ const vanderbiltQuestions = {
       question: 'Check all of the following that apply to you:',
       component: 'MultiCheckbox',
       options: [
-        'I feel pressure at Vanderbilt to find internships, job opportunities, and extracurricular activities.',
+        'I feel pressure at Vanderbilt to find internships, job opportunities, extracurricular activities.',
         'I feel confident studying computer science and related fields.',
         'I feel intimidated studying Computer Science and related fields.',
         'None of the above',
