@@ -15,7 +15,8 @@ import {
     Button,
     Container,
     Text,
-    Heading
+    Heading,
+    Link
 } from 'theme-ui'
 
 import { schoolToQuestions, schoolsArray } from '../../../common/schema.js'
@@ -161,8 +162,23 @@ const TextBlock = ({question}) => {
     return (
         <>
             <Divider mt="30px"/>
-            <Heading>{question.heading}</Heading>
+            <Heading sx={{marginBottom: '0.5rem'}}>{question.heading}</Heading>
             <Text style={{ whiteSpace: 'pre-wrap' }}>{question.text}</Text>
+        </>
+    )
+}
+
+// TODO: find a better way to do this
+const TextWithLink = ({question}) => {
+    return (
+        <>
+            <Divider mt="30px"/>
+            <Heading sx={{marginBottom: '0.5rem'}}>{question.heading}</Heading>
+            <Text>
+                {question.text1}
+                <Link href={question.url}>{question.url}</Link>
+                {question.text2}
+            </Text>
         </>
     )
 }
@@ -183,6 +199,8 @@ const questionToComponent = (question, register, watch, errors, contentAccept, s
             return <CustomRadio question={question}  register={register} watch={watch} errors={errors} key={`${question.id}-component`} />
         }  else if (question.component === "Text") {
             return <TextBlock question={question} />
+        } else if (question.component === "TextWithLink") {
+            return <TextWithLink question={question} />
         }
     }
   
