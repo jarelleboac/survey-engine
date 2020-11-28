@@ -1016,8 +1016,83 @@ const cmuQuestions = {
   },
 };
 const columbiaQuestions = {
-  questionOrder: [...commonOrder, ...demographicOrder],
-  customQuestions: {},
+  questionOrder: [...commonOrder.slice(0, 13), 'columbia1', ...commonOrder.slice(13), ...demographicOrder],
+  customQuestions: {
+    year: {
+      id: 'year',
+      question: 'What year are you in?',
+      component: 'Radio',
+      options: [
+        'First year',
+        'Sophomore',
+        'Junior',
+        'Senior',
+        'Super Senior',
+        'Masters',
+      ],
+      required: true,
+      type: String,
+    },
+    major: {
+      id: 'major',
+      question: 'Please select which fits you the best.',
+      component: 'Radio',
+      options: [
+        'Prospective CS Major or Minor/Concentration in SEAS, CC, Barnard or GS',
+        'CS Major or Minor in Barnard',
+        'CS Major or Concentration in CC',
+        'CS Major or Concentration in GS',
+        'CS Major or Minor in SEAS',
+        'CE Major or Minor in SEAS',
+        'Other (Please specify):',
+      ],
+      required: true,
+      type: String,
+    },
+    confidence: {
+      id: 'confidence',
+      question: 'Check all of the following that apply to you:',
+      component: 'MultiCheckbox',
+      options: [
+        'I feel pressure at Columbia to find internships, job opportunities, and extracurricular activities.',
+        'I feel confident studying computer science and related fields.',
+        'I feel intimidated studying Computer Science and related fields.',
+        'None of the above',
+      ],
+      required: true,
+      type: [String],
+    },
+    acceptance: {
+      id: 'acceptance',
+      question: 'Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Columbia. Check all that apply to you.',
+      component: 'MultiCheckbox',
+      options: [
+        'my race/ethnicity',
+        'my gender identity',
+        'my sexual orientation',
+        'my disability',
+        'being a first generation student',
+        'my income status',
+        'None of the above',
+      ],
+      required: true,
+      type: [String],
+    },
+    columbia1: {
+      id: 'columbia1',
+      question: 'I feel that the CS Department has been accommodating to my experience as a student throughout the COVID-19 pandemic given the additional challenges of time zone differences, internet connectivity, remote learning, etc.',
+      component: 'Radio',
+      options: [
+        'Strongly Agree',
+        'Agree',
+        'Neutral',
+        'Disagree',
+        'Strongly Disagree',
+      ],
+      required: true,
+      type: String,
+    }
+  },
 };
 const nyuQuestions = {
   questionOrder: [...commonOrder, ...demographicOrder],
