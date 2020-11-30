@@ -58,4 +58,5 @@ export default (user, surveyUrl, school, senderEmail, unsubscribeUrl) => ({
     ReplyToAddresses: [
         `The Percentage Project <${senderEmail}>`,
     ],
+    ReturnPath: 'program@percentageproject.com',
 });
