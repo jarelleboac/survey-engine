@@ -173,15 +173,15 @@ const SingleCheckboxTextCombo = ({question, register, watch, option, identifier,
         setIsChecked(e.target.checked);
     }
 
-        return (
-            <Label mb={2} key={option} >
+    return (
+        <Label mb={2} key={option} >
             <Checkbox ref={register({required: question.required})} value={watch(identifier)} name={question.id} key={`${option}-box`} onChange={handleOnChange}/>
-                {/* TODO-text - separate this out to its own style. Search TODO-text to find all */}
-                <Text key={`${option}-text`} sx={{maxWidth: '90%'}}>{option}</Text>
+            {/* TODO-text - separate this out to its own style. Search TODO-text to find all */}
+            <Text key={`${option}-text`} sx={{maxWidth: '90%'}}>{option}</Text>
             {isChecked?(
                 <Input variant="noBorder" name={identifier} ref={register({ required: true })}
-                key={`${question.id}-${option}-custom-input`} />
-                ):null}
+                    key={`${question.id}-${option}-custom-input`} />
+            ):null}
             {errors[identifier] && <p>This field is required</p>}
         </Label>
     )
@@ -202,8 +202,8 @@ const SingleRadioTextCombo = ({question, register, watch, option, identifier, un
             {/* TODO-text - separate this out to its own style. Search TODO-text to find all */}
             <Text key={`${uniqueKey}-${option}-text`} sx={{maxWidth: '90%'}}>{option}</Text>
             {isChecked?(<Input variant="noBorder" name={identifier} ref={register} key={`${uniqueKey}-${option}-custom-input`} disabled={!isChecked}/>):null}
-            </Label>
-        )
+        </Label>
+    )
 }
 
 const questionToComponent = (question, register, watch, errors, contentAccept, setContentAccept) => {
