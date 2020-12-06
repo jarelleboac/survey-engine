@@ -2,6 +2,7 @@ import { Router } from 'express';
 import passport from 'passport';
 import {
     submissionStatus, roles, schools, schoolsArray, generalSurveyStatus,
+    defaultCloseDate,
 } from '../schema';
 import Surveys from '../models/surveys';
 import Email from '../models/Email';
@@ -156,7 +157,7 @@ router.get('/closeDate/:school', async (req, res) => {
                 return res.status(200).send(JSON.stringify({ closeDate: schoolDoc.closeDate }));
             }
             // Default to February 1 2021, 11:59 PM EST
-            return res.status(400).send(JSON.stringify({ closeDate: '2021-02-02T04:59:00.000Z' }));
+            return res.status(400).send(JSON.stringify({ closeDate: defaultCloseDate }));
         } catch (err) {
             return res.status(400).send(err.message);
         }

@@ -1,8 +1,13 @@
 import React from "react";
 import { Heading, Text } from 'theme-ui'
+import { defaultCloseDate } from '../../../common/schema'
 
-
-export const SurveyClosed = ({date = '2021-02-02T04:59:00.000Z'}) => {
+/**
+ * Fallback component that renders if the survey has been closed
+ * 
+ * @param {string} date - the date that the survey closed 
+ */
+export const SurveyClosed = ({ date = defaultCloseDate }) => {
     return (
         <div className="container">
             <div id="logo-container">
