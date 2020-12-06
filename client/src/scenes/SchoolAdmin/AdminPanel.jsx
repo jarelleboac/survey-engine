@@ -28,28 +28,6 @@ export const SchoolAdminPanel = () => {
             })
     }
 
-    // Downloads survey responses for a single school
-    const downloadSurveyResponses = async () => {
-
-        getSurveyResponses(session.school)
-            .then(res => {
-                if (!res.ok) throw Error(res.statusText)
-                else return res.json()
-            }).then(res => {
-                // Create a temp link for downloading
-                const downloadLink = document.createElement("a");
-                const jsonString = JSON.stringify(res)
-                const file = new Blob([jsonString], { type: "application/json" });
-                downloadLink.href = URL.createObjectURL(file);
-                downloadLink.download = "responses.json";
-                document.body.appendChild(downloadLink)
-                downloadLink.click();
-                document.body.removeChild(downloadLink)
-            }).catch(err => {
-                console.error(err)
-            })
-    }
-
     // Fetch counts on first load and populate the store
     useEffect(() => {
         Promise.all([getCounts(session.school), getGeneralCounts(session.school)])
