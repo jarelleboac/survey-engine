@@ -220,6 +220,7 @@ export const changeCloseDate = (data, school) => (
         })
 )
 
+// Helper middleware that checks if status is ok or not
 export const checkStatus = (res) => {
     if (res.status >= 200 && res.status < 300) {
         return res
@@ -228,4 +229,15 @@ export const checkStatus = (res) => {
         err.response = res
         throw err
     }
+}
+
+export const getCloseDate = (school) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/survey/closeDate/${school}`, 
+        {
+            headers: { 
+                'Content-Type': 'application/json', 
+                credentials: 'include',
+                withCredentials: true, 
+            },
+        })
 }

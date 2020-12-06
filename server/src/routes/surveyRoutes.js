@@ -117,6 +117,31 @@ router.get('/allResponses', passport.authenticate('jwt', { session: false }), as
  * Handle setting a date at which to close the survey
  *
  * @param {req.params.school} – Expects a valid school to be attached with the string
+ *
+ */
+router.get('/closeDate/:school', async (req, res) => {
+    const { school } = req.params;
+
+    if (schoolsArray.includes(school)) {
+        try {
+            const schoolDoc = await School.findOne({ school });
+            if (schoolDoc) {
+                return res.status(200).send(JSON.stringify({ closeDate: schoolDoc.closeDate }));
+            }
+            // Default to February 1 2021, 11:59 PM EST
+            return res.status(400).send(JSON.stringify({ closeDate: '2021-02-02T04:59:00.000Z' }));
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
+    } else {
+        res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+});
+
+/**
+ * Handle setting a date at which to close the survey
+ *
+ * @param {req.params.school} – Expects a valid school to be attached with the string
  * @param {req.body.closeDate} - Expects the date
  *
  */

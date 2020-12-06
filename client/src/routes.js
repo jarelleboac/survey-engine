@@ -8,6 +8,7 @@ import { SchoolAdminPanel } from './scenes/SchoolAdmin/AdminPanel'
 import { PercentAdminPanel } from './scenes/PercentAdmin/PercentAdminPanel'
 import { Dashboard } from './scenes/Dashboard'
 import { ThankYou } from './scenes/ThankYou'
+import { SurveyClosed } from './scenes/SurveyClosed'
 import { Unsubscribe } from './scenes/Unsubscribe'
 import { roles } from '../../common/schema';
 
@@ -23,7 +24,7 @@ import {
     Link,
     useLocation
 } from "react-router-dom";
-import { capitalizeString } from './utils';
+import { capitalizeString, getCloseDate, triggerToast, checkStatus } from './utils';
 
 
 export const routes = [
@@ -73,7 +74,6 @@ export const PageSwitches = () => {
         </Switch>)
 }
 
-// FIXME: Once survey routes are done, this will need to be routing users to the survey
 const Frame = () => {
     
     const dispatch = useDispatch()
@@ -121,7 +121,7 @@ const Frame = () => {
 };
 
 /**
- * Version of the Survey component for external sight
+ * Version of the Survey component for external sight. Returns closed or open survey
  * 
  * @param {string} school – the school that this survey belongs to
  * @param {string} token – the UUID of the survey
@@ -129,26 +129,51 @@ const Frame = () => {
 const WrappedSurvey = ({school, token}) => {
     const lowercaseSchool = capitalizeString(school)
 
-    return(
-        <div className="container">
-            <div id="logo-container">
-                <Link to="/">
-                    <img src="logo.png" id="logo" alt="% project logo"/>
-                </Link>
-            </div>
-            <header
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    variant: 'styles.header',
-                }}
-                className="header">
-                <Heading>Survey at {lowercaseSchool}</Heading>
-            </header>
-           
+    // Await loading survey until information about close date has been set
+    const [isLoading, setLoading] = useState(true);
+    const [surveyCloseDate, setSurveyCloseDate] = useState(true);
 
-            <Survey school={school} token={token} />
-        </div>)
+    useEffect(() => {
+        getCloseDate(school)
+            .then(checkStatus)
+            .then(res => res.json())
+            .then(({closeDate}) => {
+                setSurveyCloseDate(new Date(closeDate))
+                setLoading(false)
+            })
+            .catch(err => {
+                setLoading(false)
+                triggerToast(`${err.message} occurred, please contact hello@percentageproject.com.`)}
+            )
+    }, []);
+
+    if (isLoading) {
+        return <SurveyClosed></SurveyClosed>;
+    }
+    
+
+    return (
+        new Date() < surveyCloseDate ? 
+            <div className="container">
+                <div id="logo-container">
+                    <Link to="/">
+                        <img src="logo.png" id="logo" alt="% project logo"/>
+                    </Link>
+                </div>
+                <header
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        variant: 'styles.header',
+                    }}
+                    className="header">
+                    <Heading>Survey at {lowercaseSchool}</Heading>
+                </header>
+                <Survey school={school} token={token} />
+            </div> 
+            :
+            <SurveyClosed date={surveyCloseDate} />
+    )
 }
 
 const FallbackPage = () => {

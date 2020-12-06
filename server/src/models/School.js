@@ -5,7 +5,7 @@ import { schoolsArray } from '../schema';
 const schoolSchema = new mongoose.Schema({
     closeDate: {
         type: Date,
-        default: new Date('2021-02-02T04:59:00.000Z'), // Default to February 1, 11:59 PM EST
+        default: new Date('2021-02-02T04:59:00.000Z'), // Default to February 1 2021, 11:59 PM EST
     },
     school: {
         type: String,
