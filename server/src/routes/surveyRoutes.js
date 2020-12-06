@@ -114,6 +114,33 @@ router.get('/allResponses', passport.authenticate('jwt', { session: false }), as
 });
 
 /**
+ * Handles getting all responses for a certain school, for percentage project admins only
+ *
+ * @param {req.params.school} – Expects a valid school to be attached with the string
+ *
+ */
+router.get('/:school', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const { school } = req.params;
+
+    const { role, school: userSchool } = req.user;
+
+    if (role === roles.percentAdmin && userSchool === schools.percentProj) {
+        try {
+            // Get the school's appropriate survey model
+            const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
+
+            // Get all surveys from that model
+            const surveys = await SurveyModel.find();
+            return res.send(JSON.stringify(surveys));
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
+    } else {
+        res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+});
+
+/**
  * Handle setting a date at which to close the survey
  *
  * @param {req.params.school} – Expects a valid school to be attached with the string
