@@ -2,7 +2,7 @@ import { Table } from '../../components/Table'
 import React, { useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { CSVUpload } from '../../components/CSVUpload'
-import { getCounts, sendEmails, triggerToast, getGeneralCounts } from '../../utils'
+import { getCounts, sendEmails, triggerToast, getGeneralCounts, changeCloseDate, checkStatus } from '../../utils'
 import { setCountsAction } from  '../../actions/email'
 import { setGeneralCountsAction } from '../../actions/generalStatus'
 import { Button, Flex, Heading, Divider } from 'theme-ui'
@@ -72,10 +72,23 @@ export const SchoolAdminPanel = () => {
             <Divider />
             <Heading mt='20px'>Set Survey Close Date</Heading>
             <div styles={{display: 'block'}}>
-                <DatePicker selected={closeDate} onChange={date => setCloseDate(date)} />
+                <DatePicker
+                    selected={closeDate}
+                    onChange={date => setCloseDate(date)}
+                    timeInputLabel="Time:"
+                    dateFormat="MM/dd/yyyy h:mm aa"
+                    showTimeInput
+                />
             </div>
             <Button mt='15px' mr='20px' onClick={() => {
-                setCloseDate(closeDate)
+                changeCloseDate({ closeDate: closeDate }, session.school)
+                    .then(checkStatus)
+                    .then(res => res.json())
+                    .then(data => {
+                        triggerToast(`Set close date successfully to ${new Date(data.closeDate).toLocaleString()}`)
+
+                    })
+                    .catch(err => console.error(err))
             }}>Set Close Date</Button>
         </div>)
 }

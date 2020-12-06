@@ -7,6 +7,7 @@ import Surveys from '../models/surveys';
 import Email from '../models/Email';
 import SurveyCommon from '../models/surveys/SurveyCommon';
 import GeneralSurvey from '../models/GeneralSurvey';
+import School from '../models/School';
 
 const router = Router();
 
@@ -113,6 +114,50 @@ router.get('/allResponses', passport.authenticate('jwt', { session: false }), as
 });
 
 /**
+ * Handle setting a date at which to close the survey
+ *
+ * @param {req.params.school} – Expects a valid school to be attached with the string
+ * @param {req.body.closeDate} - Expects the date
+ *
+ */
+router.post('/closeDate/:school', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const { school } = req.params;
+    const { role, school: userSchool } = req.user;
+    const { closeDate } = req.body;
+
+    if (role === roles.schoolAdmin && userSchool === school && schoolsArray.includes(userSchool)) {
+        try {
+            // // Get the school's appropriate school model
+            // const castedDate = new Date(closeDate).toISOString(); // convert to date
+            // console.log(castedDate);
+            // const schoolModel = await School.findOne({ school });
+
+            // if (!schoolModel) {
+            //     const newModel = new School({ closeDate: castedDate });
+            //     await newModel.save();
+            // }
+            // else {
+            //     schoolModel.closeDate = castedDate;
+            //     await schoolModel.save();
+            // }
+            // return res.status(200).send({ closeDate });
+            School.findOneAndUpdate({ school }, { closeDate }, { new: true, upsert: true }, (mongooseErr, mongooseDoc) => {
+                if (mongooseErr) {
+                    return res.status(400).send(mongooseErr);
+                }
+                const updatedDate = mongooseDoc.closeDate;
+                return res.send(JSON.stringify({ closeDate: updatedDate }));
+            });
+        } catch (err) {
+            console.log(err);
+            return res.status(400).send(err.message);
+        }
+    } else {
+        res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+});
+
+/**
  * Handles making general survey URLs if not already created. Limited to only the % project admins
  *
  */
@@ -164,33 +209,6 @@ router.get('/count/:school', passport.authenticate('jwt', { session: false }), a
             // Get all surveys from that model
             const surveys = await SurveyModel.find({ general: true });
             return res.send(JSON.stringify({ count: surveys.length }));
-        } catch (err) {
-            return res.status(400).send(err.message);
-        }
-    } else {
-        res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
-    }
-});
-
-/**
- * Handles getting all responses for a certain school, for percentage project admins only
- *
- * @param {req.params.school} – Expects a valid school to be attached with the string
- *
- */
-router.get('/:school', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    const { school } = req.params;
-
-    const { role, school: userSchool } = req.user;
-
-    if (role === roles.percentAdmin && userSchool === schools.percentProj) {
-        try {
-            // Get the school's appropriate survey model
-            const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
-
-            // Get all surveys from that model
-            const surveys = await SurveyModel.find();
-            return res.send(JSON.stringify(surveys));
         } catch (err) {
             return res.status(400).send(err.message);
         }
