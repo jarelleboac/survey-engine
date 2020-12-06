@@ -141,9 +141,9 @@ router.get('/:school', passport.authenticate('jwt', { session: false }), async (
 });
 
 /**
- * Handle setting a date at which to close the survey
+ * Handle getting the date a survey closes for a particular school
  *
- * @param {req.params.school} – Expects a valid school to be attached with the string
+ * @param {req.params.school} – Expects a valid school to be attached with the body
  *
  */
 router.get('/closeDate/:school', async (req, res) => {
