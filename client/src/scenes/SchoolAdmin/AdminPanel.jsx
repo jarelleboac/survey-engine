@@ -2,16 +2,19 @@ import { Table } from '../../components/Table'
 import React, { useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { CSVUpload } from '../../components/CSVUpload'
-import { getCounts, sendEmails, getSurveyResponses, triggerToast, getGeneralCounts } from '../../utils'
+import { getCounts, sendEmails, triggerToast, getGeneralCounts } from '../../utils'
 import { setCountsAction } from  '../../actions/email'
 import { setGeneralCountsAction } from '../../actions/generalStatus'
 import { Button, Flex, Heading, Divider } from 'theme-ui'
 import {submissionStatus} from '../../../../common/schema'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 
 export const SchoolAdminPanel = () => {
     const dispatch = useDispatch();
     const [freshData, setFreshData] = useState(false)
+    const [closeDate, setCloseDate] = useState(new Date());
     const session = useSelector(state => state.session)
 
 
@@ -66,5 +69,13 @@ export const SchoolAdminPanel = () => {
                     sendEmailsFetch(submissionStatus.sent)
                 }}>Send Reminders</Button>
             </Flex>
+            <Divider />
+            <Heading mt='20px'>Set Survey Close Date</Heading>
+            <div styles={{display: 'block'}}>
+                <DatePicker selected={closeDate} onChange={date => setCloseDate(date)} />
+            </div>
+            <Button mt='15px' mr='20px' onClick={() => {
+                setCloseDate(closeDate)
+            }}>Set Close Date</Button>
         </div>)
 }
