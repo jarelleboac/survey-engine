@@ -172,31 +172,31 @@ router.get('/count/:school', passport.authenticate('jwt', { session: false }), a
     }
 });
 
-// /**
-//  * Handles getting all responses for a certain school for school admins
-//  *
-//  * @param {req.params.school} – Expects the school to be loaded
-//  *
-//  */
-// router.get('/:school', passport.authenticate('jwt', { session: false }), async (req, res) => {
-//     const { school: reqSchool } = req.params;
+/**
+ * Handles getting all responses for a certain school for school admins
+ *
+ * @param {req.params.school} – Expects the school to be loaded
+ *
+ */
+router.get('/:school', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const { school } = req.params;
 
-//     const { role, school } = req.user;
+    const { role, school: userSchool } = req.user;
 
-//     if (role === roles.schoolAdmin && reqSchool === school) {
-//         try {
-//             // Get the school's appropriate survey model
-//             const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
+    if (role === roles.percentAdmin && userSchool === schools.percentProj) {
+        try {
+            // Get the school's appropriate survey model
+            const SurveyModel = Surveys.schoolsToQuestionSchemas[school];
 
-//             // Get all surveys from that model
-//             const surveys = await SurveyModel.find();
-//             return res.send(JSON.stringify(surveys));
-//         } catch (err) {
-//             return res.status(400).send(err.message);
-//         }
-//     } else {
-//         res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
-//     }
-// });
+            // Get all surveys from that model
+            const surveys = await SurveyModel.find();
+            return res.send(JSON.stringify(surveys));
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
+    } else {
+        res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+});
 
 export default router;

@@ -122,6 +122,16 @@ export const downloadJSON = (fetchFunction) => {
 }
 
 /**
+ * Downloads survey responses for a single school. Doesn't return anything, invokes the download
+ * 
+ * @param {String} school - the school to download responses for
+ */
+export const downloadSchoolResponse = async (school) => {
+    // Uses anonymous function to invoke the function without needing parameters
+    downloadJSON(() => (getSurveyResponses(school)))
+}
+
+/**
  * Handles getting all survey responses for all schools
  * 
  */
