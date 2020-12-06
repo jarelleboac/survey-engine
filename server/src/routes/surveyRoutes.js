@@ -173,9 +173,9 @@ router.get('/count/:school', passport.authenticate('jwt', { session: false }), a
 });
 
 /**
- * Handles getting all responses for a certain school for school admins
+ * Handles getting all responses for a certain school, for percentage project admins only
  *
- * @param {req.params.school} – Expects the school to be loaded
+ * @param {req.params.school} – Expects a valid school to be attached with the string
  *
  */
 router.get('/:school', passport.authenticate('jwt', { session: false }), async (req, res) => {
