@@ -7,8 +7,8 @@ const mappedCommonQuestions = questionSchemaToMongooseModel(commonQuestions);
 
 const currentESTDateTime = {
     // add the timestamp, set as the server side EST current time
-    timestamps: { currentTime: () => new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }) },
-};
+    timestamps: { currentTime: () => new Date().toLocaleString("en-US", {timeZone: "America/New_York"})}
+  };
 
 const surveyCommonSchema = new mongoose.Schema({
     status: {
