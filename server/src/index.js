@@ -105,6 +105,8 @@ const {
         cookie,
     }));
 
+    mongoose.set('useFindAndModify', false);
+
     app.get('/', (req, res) => {
         res.json({
             message: 'Hello World!',
