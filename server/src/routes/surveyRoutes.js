@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
                     email.status = submissionStatus.completed;
                     await email.save();
 
-                    return res.send(JSON.stringify({ message: 'Submitted sucessfully. Thank you for your participation!' }));
+                    return res.send(JSON.stringify({ message: 'Submitted successfully. Thank you for your participation!' }));
                 } catch (err) {
                     return res.status(400).send(JSON.stringify({ error: err }));
                 }
@@ -88,7 +88,7 @@ router.post('/', async (req, res) => {
                     return res.status(400).send(JSON.stringify({ error: 'The survey is now closed. Please contact hello@percentageproject.com with any questions.' }));
                 }
             }
-            return res.status(400).send(JSON.stringify({ error: 'Could not submit survey. Please contact hello@percentageproject.com.' }));
+            return res.status(400).send(JSON.stringify({ error: 'A survey with that token and school could not be found. Please contact hello@percentageproject.com.' }));
         }
     } catch (err) {
         return res.status(400).send(JSON.stringify({ error: err.message }));
