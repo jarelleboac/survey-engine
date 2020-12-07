@@ -122,7 +122,7 @@ router.post('/makeGeneralizedLinks', passport.authenticate('jwt', { session: fal
         try {
             // Builds links for each of the schools
             const links = {};
-            await Promise.all(schoolsArray.map((curSchool) => GeneralSurvey.findOne({ curSchool })
+            await Promise.all(schoolsArray.map((curSchool) => GeneralSurvey.findOne({ school: curSchool })
                 .then(async (document) => {
                     if (!document) {
                         const newGeneralSurvey = new GeneralSurvey({ school: curSchool });
