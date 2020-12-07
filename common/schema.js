@@ -33,12 +33,11 @@ const generalSurveyStatus = {
   unsent: 'UNSENT', open: 'OPEN', closed: 'CLOSED',
 };
 
-const defaultCloseDate = '2021-02-02T04:59:00.000Z';
 /**
  * Schema for questions. Note that the "type" field should be for Mongoose
  */
 const commonQuestions = {
-  // TODO: Actually fix the participation agreement so it doesn't look jank. This is a temporary hack.
+  // TODO: Actually fix the participation agreement so it doesn't look jank. This is a temporary hack. 
   participationIntro: {
     id: 'participationIntro',
     heading: 'Consent for Participation in the Survey',
@@ -523,7 +522,7 @@ const brownQuestions = {
         'Agree',
         'Neutral',
         'Disagree',
-        'Strongly Disagree',
+        'Strongly Disagree'
       ],
       required: true,
       type: String,
@@ -537,11 +536,11 @@ const brownQuestions = {
         'Agree',
         'Neutral',
         'Disagree',
-        'Strongly Disagree',
+        'Strongly Disagree'
       ],
       required: true,
       type: String,
-    },
+    }
   },
 };
 const pennQuestions = {
@@ -666,10 +665,10 @@ const harvardQuestions = {
         'Elementary school',
         'Middle school / junior high',
         'High school',
-        'College',
+        'College'
       ],
       required: true,
-      type: String,
+      type: String
     },
     harvard2: {
       id: 'harvard2',
@@ -691,7 +690,7 @@ const harvardQuestions = {
       component: 'TextWithLink',
       text1: 'Would you be interested in being interviewed by the Percentage Project about your experience? If so, please submit your email at ',
       text2: '. Please note that your email will be submitted separately from your other question responses.',
-      url: 'https://tiny.cc/stem-interview',
+      url: 'https://tiny.cc/stem-interview'
     },
   },
 };
@@ -840,7 +839,7 @@ const dukeQuestions = {
       required: true,
       type: [String],
     },
-  },
+  },     
 };
 const rutgersQuestions = {
   questionOrder: [...commonOrder.slice(0, 8), 'rutgers1', ...commonOrder.slice(8, 13), 'rutgers2', ...commonOrder.slice(13), ...demographicOrder],
@@ -1092,7 +1091,7 @@ const columbiaQuestions = {
       ],
       required: true,
       type: String,
-    },
+    }
   },
 };
 const nyuQuestions = {
@@ -1250,7 +1249,7 @@ const uiucQuestions = {
         '2 - I have written at least one line of code before',
         '3 - I have written some code with help from a template or tutorial',
         '4 - I completed some type of project before (i.e. website, app, game, etc.)',
-        '5 - I have made contributions towards an internship, research, open source, or similar large-scale project',
+        '5 - I have made contributions towards an internship, research, open source, or similar large-scale project'
       ],
       required: true,
       type: String,
@@ -1263,11 +1262,11 @@ const uiucQuestions = {
         '0 - Not applicable (did not transfer into the major or university)',
         '1 - Intimidated and not supported at all',
         '2 - Somewhat intimidated but encouraged to apply',
-        '3 - Not intimidated and encouraged to apply',
+        '3 - Not intimidated and encouraged to apply'
       ],
       required: true,
       type: String,
-    },
+    }
   },
 };
 const umdQuestions = {
@@ -1408,11 +1407,10 @@ schoolToQuestions[schools.cmu] = buildOrderedQuestions(cmuQuestions);
 schoolToQuestions[schools.columbia] = buildOrderedQuestions(columbiaQuestions);
 schoolToQuestions[schools.nyu] = buildOrderedQuestions(nyuQuestions);
 schoolToQuestions[schools.uiuc] = buildOrderedQuestions(uiucQuestions);
-schoolToQuestions[schools.umd] = buildOrderedQuestions(umdQuestions);
+schoolToQuestions[schools.umd] = buildOrderedQuestions(umdQuestions)
 
 export {
   schools, schoolsArray, roles, rolesArray, submissionStatus, submissionStatusArray,
-  defaultCloseDate,
   commonQuestions,
   brownQuestions, pennQuestions, harvardQuestions, vanderbiltQuestions,
   drexelQuestions, dukeQuestions, rutgersQuestions,
