@@ -5,6 +5,7 @@ import { getMasterSurveyResponses, downloadJSON, getGeneralSurveyLinks, download
 import { Heading, Divider, Button, Select } from 'theme-ui'
 import { schoolsArray } from '../../../../common/schema'
 
+// Simple dropdown selector that uses a useEffect setter hook to set the selected option
 const SchoolSelector = ({setSelectedSchool}) => {
     return (
         <Select onChange={(e => { 
@@ -15,12 +16,14 @@ const SchoolSelector = ({setSelectedSchool}) => {
 
 export const PercentAdminPanel = () => {
 
+    // Begin with UNSET
+    const [selectedSchool, setSelectedSchool] = useState('UNSET')
+
     // Downloads survey responses for all school
     const downloadSurveyResponses = async () => {
         downloadJSON(getMasterSurveyResponses)
     }
 
-    const [selectedSchool, setSelectedSchool] = useState('UNSET')
 
     return (
         <div className="admin-container">

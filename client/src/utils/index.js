@@ -200,3 +200,44 @@ export const unsubscribe = (token) => (
             body: JSON.stringify({token: token})
         })
 )
+
+/**
+ * Handles setting the sender email for a school
+ * 
+ * @param {string} school – user school 
+ */
+export const changeCloseDate = (data, school) => (
+    fetch(`${process.env.REACT_APP_API_URL}/survey/closeDate/${school}`, 
+        {
+            headers: { 
+                'Content-Type': 'application/json', 
+                credentials: 'include',
+                Authorization: `${localStorage.jwtToken}`,
+                withCredentials: true, 
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+)
+
+// Helper middleware that checks if status is ok or not
+export const checkStatus = (res) => {
+    if (res.status >= 200 && res.status < 300) {
+        return res
+    } else {
+        let err = new Error(res.statusText)
+        err.response = res
+        throw err
+    }
+}
+
+export const getCloseDate = (school) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/survey/closeDate/${school}`, 
+        {
+            headers: { 
+                'Content-Type': 'application/json', 
+                credentials: 'include',
+                withCredentials: true, 
+            },
+        })
+}
