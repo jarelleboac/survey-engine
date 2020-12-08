@@ -157,7 +157,7 @@ router.get('/closeDate/:school', async (req, res) => {
                 return res.status(200).send(JSON.stringify({ closeDate: schoolDoc.closeDate }));
             }
             // Default to February 1 2021, 11:59 PM EST
-            return res.status(400).send(JSON.stringify({ closeDate: defaultCloseDate }));
+            return res.status(200).send(JSON.stringify({ closeDate: defaultCloseDate }));
         } catch (err) {
             return res.status(400).send(err.message);
         }
