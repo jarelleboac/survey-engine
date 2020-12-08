@@ -156,14 +156,13 @@ router.get('/closeDate/:school', async (req, res) => {
             if (schoolDoc) {
                 return res.status(200).send(JSON.stringify({ closeDate: schoolDoc.closeDate }));
             }
-            // Default to February 1 2021, 11:59 PM EST
+            // Default to close date specified in schema
             return res.status(200).send(JSON.stringify({ closeDate: defaultCloseDate }));
         } catch (err) {
             return res.status(400).send(err.message);
         }
-    } else {
-        res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
     }
+    return res.status(400).send(JSON.stringify({ error: 'Invalid school.' }));
 });
 
 /**
