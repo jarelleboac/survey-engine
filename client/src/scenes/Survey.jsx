@@ -163,7 +163,7 @@ const TextBlock = ({question}) => {
         <>
             <Divider mt="30px"/>
             <Heading sx={{marginBottom: '0.5rem'}}>{question.heading}</Heading>
-            <Text>{question.text}</Text>
+            <Text style={{ whiteSpace: 'pre-wrap' }}>{question.text}</Text>
         </>
     )
 }

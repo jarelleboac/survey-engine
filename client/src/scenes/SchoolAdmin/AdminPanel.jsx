@@ -2,16 +2,19 @@ import { Table } from '../../components/Table'
 import React, { useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { CSVUpload } from '../../components/CSVUpload'
-import { getCounts, sendEmails, getSurveyResponses, triggerToast, getGeneralCounts } from '../../utils'
+import { getCounts, sendEmails, triggerToast, getGeneralCounts, changeCloseDate, checkStatus } from '../../utils'
 import { setCountsAction } from  '../../actions/email'
 import { setGeneralCountsAction } from '../../actions/generalStatus'
 import { Button, Flex, Heading, Divider } from 'theme-ui'
 import {submissionStatus} from '../../../../common/schema'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 
 export const SchoolAdminPanel = () => {
     const dispatch = useDispatch();
     const [freshData, setFreshData] = useState(false)
+    const [closeDate, setCloseDate] = useState(new Date());
     const session = useSelector(state => state.session)
 
 
@@ -24,28 +27,6 @@ export const SchoolAdminPanel = () => {
                 triggerToast(res.message)
             }).catch(err => {
                 triggerToast(err)
-                console.error(err)
-            })
-    }
-
-    // Downloads survey responses for a single school
-    const downloadSurveyResponses = async () => {
-
-        getSurveyResponses(session.school)
-            .then(res => {
-                if (!res.ok) throw Error(res.statusText)
-                else return res.json()
-            }).then(res => {
-                // Create a temp link for downloading
-                const downloadLink = document.createElement("a");
-                const jsonString = JSON.stringify(res)
-                const file = new Blob([jsonString], { type: "application/json" });
-                downloadLink.href = URL.createObjectURL(file);
-                downloadLink.download = "responses.json";
-                document.body.appendChild(downloadLink)
-                downloadLink.click();
-                document.body.removeChild(downloadLink)
-            }).catch(err => {
                 console.error(err)
             })
     }
@@ -88,5 +69,26 @@ export const SchoolAdminPanel = () => {
                     sendEmailsFetch(submissionStatus.sent)
                 }}>Send Reminders</Button>
             </Flex>
+            <Divider />
+            <Heading mt='20px'>Set Survey Close Date</Heading>
+            <div styles={{display: 'block'}}>
+                <DatePicker
+                    selected={closeDate}
+                    onChange={date => setCloseDate(date)}
+                    timeInputLabel="Time:"
+                    dateFormat="MM/dd/yyyy h:mm aa"
+                    showTimeInput
+                />
+            </div>
+            <Button mt='15px' mr='20px' onClick={() => {
+                changeCloseDate({ closeDate: closeDate }, session.school)
+                    .then(checkStatus)
+                    .then(res => res.json())
+                    .then(data => {
+                        triggerToast(`Set close date successfully to ${new Date(data.closeDate).toLocaleString()}`)
+
+                    })
+                    .catch(err => console.error(err))
+            }}>Set Close Date</Button>
         </div>)
 }
