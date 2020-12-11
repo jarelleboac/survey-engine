@@ -20,8 +20,8 @@ export default (user, surveyUrl, school, senderEmail, unsubscribeUrl) => ({
                 Data: `<!doctype html>
                 Hi there, <br><br>
         
-                Last chance to fill out the ${formatSchool(school)} computer science survey! The survey will be closing tomorrow, so be sure to fill it out today.
-
+                Last chance to fill out the ${formatSchool(school)} computer science survey! The survey will be closing tomorrow, so be sure to fill it out today.<br><br>
+                
                 Hearing about your unique experience is very important to us, and we'd appreciate your time in filling out this 5-minute survey.<br><br>
 
                 Head on over to the survey at your unique url: ${escape(surveyUrl)}<br><br>
@@ -38,7 +38,7 @@ export default (user, surveyUrl, school, senderEmail, unsubscribeUrl) => ({
                 Data: `Hi there,
 
                 Last chance to fill out the Brown computer science survey! The survey will be closing tomorrow, so be sure to fill it out today.
-
+                
                 Hearing about your unique experience is very important to us, and we'd appreciate your time in filling out this 5-minute survey.
 
                 Head on over to the survey at your unique url: ${escape(surveyUrl)}
