@@ -33,7 +33,7 @@ const generalSurveyStatus = {
   unsent: 'UNSENT', open: 'OPEN', closed: 'CLOSED',
 };
 
-const defaultCloseDate = '2021-02-02T04:59:00.000Z';
+const defaultCloseDate = '2021-01-01T04:59:00.000Z';
 /**
  * Schema for questions. Note that the "type" field should be for Mongoose
  */
