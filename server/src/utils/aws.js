@@ -4,6 +4,7 @@ import { submissionStatus } from '../schema';
 import unsent from './emailTemplates/unsent';
 import reminder from './emailTemplates/reminder';
 import brownReminder from './emailTemplates/brownReminder';
+import harvardReminder from './emailTemplates/harvardReminder';
 
 const { AWS_REGION } = process.env;
 
@@ -32,6 +33,8 @@ export function sendStatusEmail(user, status, surveyUrl, school, senderEmail, un
     case submissionStatus.sent:
         if (school === 'BROWN') {
             email = brownReminder(user, surveyUrl, school, senderEmail, unsubscribeUrl);
+        } else if (school === 'HARVARD') {
+            email = harvardReminder(user, surveyUrl, school, senderEmail, unsubscribeUrl);
         } else {
             email = reminder(user, surveyUrl, school, senderEmail, unsubscribeUrl);
         }
