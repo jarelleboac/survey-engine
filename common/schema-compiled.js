@@ -5,6 +5,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.exportSchoolQuestions = exports.schoolToQuestions = exports.generalSurveyStatus = exports.umdQuestions = exports.nyuQuestions = exports.uiucQuestions = exports.cmuQuestions = exports.columbiaQuestions = exports.rutgersQuestions = exports.dukeQuestions = exports.drexelQuestions = exports.vanderbiltQuestions = exports.harvardQuestions = exports.pennQuestions = exports.brownQuestions = exports.commonQuestions = exports.defaultCloseDate = exports.submissionStatusArray = exports.submissionStatus = exports.rolesArray = exports.roles = exports.schoolsArray = exports.schools = void 0;
 
+var _fs = _interopRequireDefault(require("fs"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -911,9 +923,33 @@ schoolToQuestions[schools.columbia] = buildOrderedQuestions(columbiaQuestions);
 schoolToQuestions[schools.nyu] = buildOrderedQuestions(nyuQuestions);
 schoolToQuestions[schools.uiuc] = buildOrderedQuestions(uiucQuestions);
 schoolToQuestions[schools.umd] = buildOrderedQuestions(umdQuestions);
+/**
+ * Handles exporting questions as a .json file. Run using `npm esq`
+ */
 
 var exportSchoolQuestions = function exportSchoolQuestions() {
-  console.log(schoolToQuestions);
+  var res = {}; // Select just question, id, and options
+
+  Object.entries(schoolToQuestions).forEach(function (_ref) {
+    var _ref2 = _slicedToArray(_ref, 2),
+        key = _ref2[0],
+        value = _ref2[1];
+
+    res[key] = value.map(function (_ref3) {
+      var question = _ref3.question,
+          id = _ref3.id,
+          options = _ref3.options;
+      return {
+        question: question,
+        id: id,
+        options: options
+      };
+    });
+  }); // Pretty print out the file
+
+  var data = JSON.stringify(res, null, 4);
+
+  _fs["default"].writeFileSync('school-questions.json', data);
 };
 
 exports.exportSchoolQuestions = exportSchoolQuestions;

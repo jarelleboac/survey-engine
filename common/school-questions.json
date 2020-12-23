@@ -1,0 +1,3794 @@
+{
+    "BROWN": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "First year",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "Computer Science",
+                "Applied Math-CS",
+                "CS-Economics",
+                "Math-CS",
+                "Computational Biology",
+                "CS-Engaged Scholars Program",
+                "Applied Math",
+                "Engineering",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at Brown to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class, office hours, or TA hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office/TA hours.",
+                "I prefer to go to office/TA hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza, anonymously or publicly.",
+                "If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by the CS department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Brown. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "I feel that the CS Department has been accommodating to my experience as a student throughout the COVID-19 pandemic, given the additional challenges of time zone differences, internet connectivity, remote learning, etc.",
+            "id": "brown1",
+            "options": [
+                "Strongly Agree",
+                "Agree",
+                "Neutral",
+                "Disagree",
+                "Strongly Disagree"
+            ]
+        },
+        {
+            "question": "I miss the physical spaces of Brown’s CS community, such as the sunlab, CIT lobby, atrium, lecture halls, fishbowl, etc.",
+            "id": "brown2",
+            "options": [
+                "Strongly Agree",
+                "Agree",
+                "Neutral",
+                "Disagree",
+                "Strongly Disagree"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ],
+    "PENN": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "First year",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Super Senior",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "CIS Major in SEAS (including NETS, DMD)",
+                "CIS Major in College",
+                "ESE Major in SEAS (including EE, CMPE, SE)",
+                "CIS Minor in SEAS (including NETS, DMD)",
+                "CIS Minor in College",
+                "ESE Minor in SEAS (including EE, CMPE, SE)",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at Penn to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza, anonymously or publicly.",
+                "If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by the CS department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Penn Engineering. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ],
+    "HARVARD": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "First year",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Super Senior",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which declared or intended plan of study fits you best.",
+            "id": "major",
+            "options": [
+                "CS concentration or secondary in SEAS",
+                "Electrical Engineering concentration or secondary in SEAS",
+                "Other concentration or secondary in SEAS",
+                "Math concentration or secondary",
+                "Statistics concentration or secondary",
+                "Neuroscience concentration or secondary",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "At what age did you start programming?",
+            "id": "harvard1",
+            "options": [
+                "Elementary school",
+                "Middle school / junior high",
+                "High school",
+                "College"
+            ]
+        },
+        {
+            "question": " If you need extra support in a CS class, what do you do? Check all that apply to you.",
+            "id": "harvard2",
+            "options": [
+                "Attend office hours",
+                "Work in a group",
+                "Seek peer tutoring",
+                "Ask questions on Ed/Piazza",
+                "I prefer to work independently"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at Harvard to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza or Ed, anonymously or publicly.",
+                "If Piazza or Ed didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by the CS department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Harvard. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "id": "harvard3"
+        }
+    ],
+    "VANDERBILT": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "First year",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Super Senior",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "Computer Science major/minor",
+                "Computer Engineering major/minor",
+                "Electrical Engineering major/minor",
+                "Engineering Science major",
+                "Communication of Science and Technology major/minor",
+                "Scientific Computing minor",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at Vanderbilt to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza, anonymously or publicly.",
+                "If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by the CS department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Vanderbilt. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ],
+    "DREXEL": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "Freshman",
+                "Sophomore",
+                "Pre-Junior",
+                "Junior",
+                "Senior",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "Computer Science Major in CCI",
+                "Information Systems Major in CCI",
+                "Software Engineering Major in CCI",
+                "Data Science Major in CCI",
+                "Computing & Security Technology Major in CCI",
+                "Minor in College of Computing & Informatics",
+                "Other Major in College of Engineering",
+                "Other Minor in College of Engineering",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at Drexel to find co-ops, research opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza, anonymously or publicly.",
+                "If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by my Co-op Advisor and the resources offered by Steinbright.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Drexel CCI/Engineering. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining co-op opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ],
+    "DUKE": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "First year",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Super Senior",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "Computer Science major in Trinity College",
+                "Electrical Engineering major in Pratt School of Engineering",
+                "Electrical Engineering / CS double major in Pratt School of Engineering",
+                "Computer Science Minor",
+                "Computer Science secondary major",
+                "Computer Science IDM",
+                "Program II",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at Duke to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza, anonymously or publicly.",
+                "If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by the CS department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Duke. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ],
+    "RUTGERS": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "First year",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Super Senior",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "CS Major in SAS",
+                "CS Minor in SAS",
+                "ECE Major in SOE",
+                "ITI Major in SOC",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at Rutgers to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza, anonymously or publicly.",
+                "If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you feel overwhelmed or uncomfortable being at the CAVE (Hill Room 252)?",
+            "id": "rutgers1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe",
+                "I have never been to CAVE"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your tech-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by my major/minor's department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Do you feel like there are enough Rutgers resources specifically geared toward helping underrepresented groups in tech progress, such as mentoring, tutoring for higher-level classes, scholarships or financial aid availability, etc.?",
+            "id": "rutgers2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Rutgers. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ],
+    "CMU": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "First year",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Super Senior",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "Major in SCS (including CS, CompBio, AI, and HCI majors)",
+                "Electric & Computer Engineering Major in CIT",
+                "Information Systems Major in DC",
+                "Statistics and Machine Learning Major in DC",
+                "Minor in SCS (including HCI, LTI, ML, SWE, Robotics, Neural Computation, Information Security, and IDeATe minors)",
+                "Electric & Computer Engineering Minor in CIT",
+                "Information Systems Minor in DC",
+                "Statistics and Machine Learning Minor in DC",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at Carnegie Mellon to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza, anonymously or publicly.",
+                "If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by the CS-related department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Carnegie Mellon. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) SCS4ALL, Society of Hispanic Professional Engineers, National Society of Black Engineers, and ColorStack, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ],
+    "COLUMBIA": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "First year",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Super Senior",
+                "Masters"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "Prospective CS Major or Minor/Concentration in SEAS, CC, Barnard or GS",
+                "CS Major or Minor in Barnard",
+                "CS Major or Concentration in CC",
+                "CS Major or Concentration in GS",
+                "CS Major or Minor in SEAS",
+                "CE Major or Minor in SEAS",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at Columbia to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza, anonymously or publicly.",
+                "If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by the CS department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel that the CS Department has been accommodating to my experience as a student throughout the COVID-19 pandemic given the additional challenges of time zone differences, internet connectivity, remote learning, etc.",
+            "id": "columbia1",
+            "options": [
+                "Strongly Agree",
+                "Agree",
+                "Neutral",
+                "Disagree",
+                "Strongly Disagree"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to Columbia. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ],
+    "NYU": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "First year",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Super Senior",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "CS or related major in College of Arts & Science (including CS, Engineering, Econ & CS, etc.)",
+                "CS or related minor in College of Arts & Science (including CS, CS & Mathematics, and Web Programming and Applications)",
+                "Gallatin STAC - Science, Technology, Art, and Creativity",
+                "Computer Science Education Minor in Steinhardt",
+                "Computing and Data Science in Stern",
+                "CS, Computer Engineering, or Electrical & Computer Engineering major in Tandon",
+                "CS or related minors in Tandon (including CS, Computer Engineering, Game Media, Robotics, etc.)",
+                "Interactive Media Arts Major in Tisch",
+                "Interactive Media Arts Minor in Tisch",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at NYU to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza, anonymously or publicly.",
+                "If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by the CS department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to NYU. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ],
+    "UIUC": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "Freshman",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Fifth year +",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "CS Engineering",
+                "Math & CS",
+                "Stats & CS",
+                "CS + X",
+                "Electrical and Computer Engineering",
+                "Information Sciences",
+                "Minor in CS",
+                "Minor in ECE",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at UIUC to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza and Campuswire, anonymously or publicly.",
+                "If Piazza and Campuswire didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by the CS department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to UIUC Engineering. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Blacks and African Americans in Computing, Latinxs in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "How would you describe your ability to code before you came to college? If you are between two of these categories, round up to the nearest integer.",
+            "id": "uiuc1",
+            "options": [
+                "1 - I had no previous experience with coding",
+                "2 - I have written at least one line of code before",
+                "3 - I have written some code with help from a template or tutorial",
+                "4 - I completed some type of project before (i.e. website, app, game, etc.)",
+                "5 - I have made contributions towards an internship, research, open source, or similar large-scale project"
+            ]
+        },
+        {
+            "question": "How encouraged or supported did you feel when starting the process of transferring into Illinois CS (from within the university or from a different school)?",
+            "id": "uiuc2",
+            "options": [
+                "0 - Not applicable (did not transfer into the major or university)",
+                "1 - Intimidated and not supported at all",
+                "2 - Somewhat intimidated but encouraged to apply",
+                "3 - Not intimidated and encouraged to apply"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ],
+    "UMD": [
+        {
+            "id": "participationIntro"
+        },
+        {
+            "question": "By checking the box below I understand my rights and give my consent to participate in the survey.",
+            "id": "participation",
+            "options": [
+                "I agree to participate."
+            ]
+        },
+        {
+            "question": "What year are you in?",
+            "id": "year",
+            "options": [
+                "First year",
+                "Sophomore",
+                "Junior",
+                "Senior",
+                "Super Senior",
+                "Graduate"
+            ]
+        },
+        {
+            "question": "Please select which fits you the best.",
+            "id": "major",
+            "options": [
+                "CS major",
+                "CS minor",
+                "Computer Engineering Major (Clark)",
+                "Computer Engineering Minor (Clark)",
+                "Information Science Major (iSchool)",
+                "Information Systems Major (Smith)",
+                "Letters and Sciences - Undecided",
+                "Other (Please specify):"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "confidence",
+            "options": [
+                "I feel pressure at UMD to find internships, job opportunities, and extracurricular activities.",
+                "I feel confident studying computer science and related fields.",
+                "I feel intimidated studying Computer Science and related fields.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "microaggression",
+            "options": [
+                "I have experienced a microaggression. A microaggression is a comment that subtly and often unconsciously or unintentionally expresses a prejudiced attitude toward a member of a marginalized group.",
+                "I have been interrupted or talked to condescendingly by someone who assumed they knew more.",
+                "In a group project, my opinion is as respected as that of other group members.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "respect",
+            "options": [
+                "My peers respect me.",
+                "I would tell my peers if they made discriminatory or inappropriate comments.",
+                "My professors and TAs respect me.",
+                "I have to prove myself before being taken seriously in academic settings.",
+                "I would tell my professors or TAs if a discriminatory or inappropriate comment was made during class or office hours, either by another student, a TA, or the professor.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that apply to you:",
+            "id": "comfort",
+            "options": [
+                "I generally feel comfortable asking questions during lecture.",
+                "I feel more comfortable in a class taught by a professor who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I generally feel comfortable asking questions in office hours.",
+                "I prefer to go to office hours led by someone who shares a similar identity, such as race, ethnicity, gender, gender expression, age, disability, sexual orientation, parental education, or income status.",
+                "I ask questions on Piazza, anonymously or publicly.",
+                "If Piazza didn’t allow for anonymous questions, I would not likely post on the platform.",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you have a faculty member whom you perceive as a role model?",
+            "id": "roleModel",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you seriously considered leaving your computer science-related field of study?",
+            "id": "leaving",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you ever been encouraged to take leave or drop out by a faculty member or an administrator?",
+            "id": "dropOut",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "At my university, students from every background have an equal chance to succeed.",
+            "id": "equal",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "I feel adequately supported by the CS department and the resources offered by the department.",
+            "id": "department",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly contributed to my acceptance to UMD. Check all that apply to you.",
+            "id": "acceptance",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Someone has once claimed to me that _____ has unfairly given me an advantage in gaining job opportunities. Check all that apply to you.",
+            "id": "job",
+            "options": [
+                "my race/ethnicity",
+                "my gender identity",
+                "my sexual orientation",
+                "my disability",
+                "being a first generation student",
+                "my income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Check all of the following that you agree with. I believe that conscious and unconscious biases against certain groups based on ______ still exist today.",
+            "id": "bias",
+            "options": [
+                "race/ethnicity",
+                "gender identity",
+                "sexual orientation",
+                "disabilities",
+                "parental education",
+                "income status",
+                "None of the above"
+            ]
+        },
+        {
+            "question": "Do you believe organizations whose purpose is to support underrepresented or marginalized groups, such as (but not limited to) Women in Computer Science, Society of Hispanic Professional Engineers, National Society of Black Engineers, are still needed today?",
+            "id": "groups",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Content Warning: The following four questions contain references to sexual violence. Please press “Continue” to view these questions, or “Skip” to skip these questions.",
+            "id": "contentWarning",
+            "options": [
+                "Continue",
+                "Skip"
+            ]
+        },
+        {
+            "question": "Sexual harassment is defined as unwelcome sexual advances, requests for sexual favors and other verbal or physical conduct of a sexual nature. Have you ever experienced any form of sexual harassment?",
+            "id": "harassment1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual harassment?",
+            "id": "harassment2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Sexual assault is defined as intentional sexual contact, characterized by use of force, threats, intimidation, abuse of authority or when the victim does not or cannot consent. Have you ever experienced any form of sexual assault?",
+            "id": "assault1",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "question": "Have you or someone you know been affected by sexual assault?",
+            "id": "assault2",
+            "options": [
+                "Yes",
+                "No",
+                "Maybe"
+            ]
+        },
+        {
+            "id": "idIntro"
+        },
+        {
+            "question": "What is your gender?",
+            "id": "gender",
+            "options": [
+                "Woman",
+                "Man",
+                "Non-binary",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you transgender?",
+            "id": "transgender",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which categories best describe how you self-identify? Check all that apply.",
+            "id": "ethnicity",
+            "options": [
+                "African American/Black",
+                "Asian",
+                "Hispanic/Latinx",
+                "Middle Eastern/North African (MENA)",
+                "Native American/Alaska Native/First Nations",
+                "Native Hawaiian or other Pacific Islander",
+                "White",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Which of the following best describes your current sexual orientation? Check all that apply.",
+            "id": "lgbq",
+            "options": [
+                "Asexual",
+                "Bisexual",
+                "Gay/lesbian",
+                "Heterosexual/straight",
+                "Pansexual",
+                "Queer",
+                "Prefer to self-describe:",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Do you have a disability, or have a history or record of having a disability?",
+            "id": "disability",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a first generation student?",
+            "id": "fg",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you a low-income student?",
+            "id": "li",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        },
+        {
+            "question": "Are you an international student?",
+            "id": "international",
+            "options": [
+                "Yes",
+                "No",
+                "Prefer not to say"
+            ]
+        }
+    ]
+}
