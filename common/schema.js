@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 /**
  * Exports shared schemas between client and server. Holds information specific to certain
  * universities.
@@ -1410,6 +1412,22 @@ schoolToQuestions[schools.nyu] = buildOrderedQuestions(nyuQuestions);
 schoolToQuestions[schools.uiuc] = buildOrderedQuestions(uiucQuestions);
 schoolToQuestions[schools.umd] = buildOrderedQuestions(umdQuestions);
 
+/**
+ * Handles exporting questions as a .json file. Run using `npm esq`
+ */
+const exportSchoolQuestions = () => {
+  const res = {};
+
+  // Select just question, id, and options
+  Object.entries(schoolToQuestions).forEach(([key, value]) => {
+    res[key] = value.map(({ question, id, options }) => ({ question, id, options }));
+  });
+
+  // Pretty print out the file
+  const data = JSON.stringify(res, null, 4);
+  fs.writeFileSync('school-questions.json', data);
+};
+
 export {
   schools, schoolsArray, roles, rolesArray, submissionStatus, submissionStatusArray,
   defaultCloseDate,
@@ -1420,4 +1438,5 @@ export {
   umdQuestions,
   generalSurveyStatus,
   schoolToQuestions,
+  exportSchoolQuestions,
 };

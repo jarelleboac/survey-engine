@@ -5,7 +5,8 @@
   "main": "schema.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "transpile": "babel schema-raw.js --out-file schema.js"
+    "transpile": "babel schema.js --out-file schema-compiled.js",
+    "esq": "npm run transpile && node -e 'require(\"./schema-compiled.js\").exportSchoolQuestions()'"
   },
   "babel": {
     "presets": [
@@ -21,5 +22,6 @@
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0"
-  }
+  },
+  "dependencies": {}
 }
