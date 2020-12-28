@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 /**
  * Exports shared schemas between client and server. Holds information specific to certain
  * universities.
@@ -595,7 +597,7 @@ const pennQuestions = {
   },
 };
 const harvardQuestions = {
-  questionOrder: [...commonOrder.slice(0, 4), 'harvard1', 'harvard2', ...commonOrder.slice(4), ...demographicOrder, 'harvard3'],
+  questionOrder: [...commonOrder.slice(0, 4), 'harvard1', 'harvard2', ...commonOrder.slice(4), ...demographicOrder, 'harvard3', 'harvard4'],
   customQuestions: {
     major: {
       id: 'major',
@@ -692,6 +694,14 @@ const harvardQuestions = {
       text1: 'Would you be interested in being interviewed by the Percentage Project about your experience? If so, please submit your email at ',
       text2: '. Please note that your email will be submitted separately from your other question responses.',
       url: 'https://tiny.cc/stem-interview',
+    },
+    harvard4: {
+      id: 'harvard4',
+      heading: '[Optional] Raffle',
+      component: 'TextWithLink',
+      text1: 'As a thank you for your participation, we are holding a raffle for a $50 Amazon gift card. If you would like to enter the raffle, please submit your email at ',
+      text2: '. Please note that your email will be submitted separately from your other question responses.',
+      url: 'https://forms.gle/JvRtyNLobAvzLWmV8',
     },
   },
 };
@@ -1410,6 +1420,22 @@ schoolToQuestions[schools.nyu] = buildOrderedQuestions(nyuQuestions);
 schoolToQuestions[schools.uiuc] = buildOrderedQuestions(uiucQuestions);
 schoolToQuestions[schools.umd] = buildOrderedQuestions(umdQuestions);
 
+/**
+ * Handles exporting questions as a .json file. Run using `npm esq`
+ */
+const exportSchoolQuestions = () => {
+  const res = {};
+
+  // Select just question, id, and options
+  Object.entries(schoolToQuestions).forEach(([key, value]) => {
+    res[key] = value.map(({ question, id, options }) => ({ question, id, options }));
+  });
+
+  // Pretty print out the file
+  const data = JSON.stringify(res, null, 4);
+  fs.writeFileSync('school-questions.json', data);
+};
+
 export {
   schools, schoolsArray, roles, rolesArray, submissionStatus, submissionStatusArray,
   defaultCloseDate,
@@ -1420,4 +1446,5 @@ export {
   umdQuestions,
   generalSurveyStatus,
   schoolToQuestions,
+  exportSchoolQuestions,
 };
