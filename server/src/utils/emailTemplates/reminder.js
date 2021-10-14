@@ -31,7 +31,7 @@ export default (user, surveyUrl, school, senderEmail, unsubscribeUrl) => {
 
     const tableBody = makeEmailTableRows(greeting, bodyPart1, bodyPart2, bodyPart3, bodyPart4, signOff1, signOff2, optOutText);
 
-    const allText = joinText(greeting, bodyPart1, bodyPart2, bodyPart3, signOff1, signOff2, optOutText);
+    const allText = joinText(greeting, bodyPart1, bodyPart2, bodyPart3, bodyPart4, signOff1, signOff2, optOutText);
 
     return ({
         Destination: {

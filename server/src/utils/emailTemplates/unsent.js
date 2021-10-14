@@ -4,26 +4,40 @@ import {
 } from '.';
 
 // Note that this sends for a single user at a time; not in batch emails
-export default (user, surveyUrl, school, senderEmail, unsubscribeUrl) => {
-    const greeting = 'Hi there,';
-
-    const bodyPart1 = `We're conducting a survey on experiences of students studying computer science and related fields at ${formatSchool(school)}. We'd love to hear about your experience! This will allow us to understand the current state of students from all backgrounds and follow metrics from year to year.`;
-
-    const bodyPart2 = 'Hearing about your unique experience is very important to us, and we\'d appreciate your time in filling out this 5-minute survey.';
-
-    const bodyPart3 = `Head on over to the survey at your unique url: ${escape(surveyUrl)}`;
-
+export default (user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideDict = {}) => {
     const title = 'Reminder for the Percentage Project Survey';
 
-    const signOff1 = 'Best,';
+    const kvArray = [
+        ['greeting', 'Hi there,'],
 
-    const signOff2 = 'The Percentage Project Team';
+        ['bodyPart1', `We're conducting a survey on experiences of students studying computer science and related fields at ${formatSchool(school)}. We'd love to hear about your experience! This will allow us to understand the current state of students from all backgrounds and follow metrics from year to year.`],
 
-    const optOutText = `If you'd like to opt out, please unsubscribe here: ${escape(unsubscribeUrl)}`;
+        ['bodyPart2', 'Hearing about your unique experience is very important to us, and we\'d appreciate your time in filling out this 5-minute survey.'],
 
-    const tableBody = makeEmailTableRows(greeting, bodyPart1, bodyPart2, bodyPart3, signOff1, signOff2, optOutText);
+        ['bodyPart3', `Head on over to the survey at your unique url: ${escape(surveyUrl)}`],
 
-    const allText = joinText(greeting, bodyPart1, bodyPart2, bodyPart3, signOff1, signOff2, optOutText);
+        ['signOff1', 'Best,'],
+
+        ['signOff2', 'The Percentage Project Team'],
+
+        ['optOutText', `If you'd like to opt out, please unsubscribe here: ${escape(unsubscribeUrl)}`],
+    ];
+    const valsMap = new Map(kvArray);
+
+    const textList = [];
+
+    // Fills the values dictionary with the
+    Object.entries(overrideDict).forEach(([key, value]) => {
+        valsMap.set(key, value);
+    });
+
+    valsMap.values.forEach((val) => {
+        textList.push(val);
+    });
+
+    const tableBody = makeEmailTableRows(textList);
+
+    const allText = joinText(textList);
 
     return ({
         Destination: {
