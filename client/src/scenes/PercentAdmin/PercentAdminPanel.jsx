@@ -1,4 +1,4 @@
-import { Table } from '../../components/Table'
+import { SummaryTable } from '../../components/Table'
 import { CreateUser } from '../../components/CreateUser'
 import React, { useState } from 'react'
 import { getMasterSurveyResponses, downloadJSON, getGeneralSurveyLinks, downloadSchoolResponse } from '../../utils'
@@ -27,7 +27,7 @@ export const PercentAdminPanel = () => {
 
     return (
         <div className="admin-container">
-            <Table />
+            <SummaryTable />
             <CreateUser />
             <Divider />
             <Heading mt='20px'>Download All Responses [.json]</Heading>

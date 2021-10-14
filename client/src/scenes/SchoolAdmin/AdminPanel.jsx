@@ -1,4 +1,4 @@
-import { Table } from '../../components/Table'
+import { SummaryTable } from '../../components/Table'
 import React, { useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { CSVUpload } from '../../components/CSVUpload'
@@ -56,7 +56,7 @@ export const SchoolAdminPanel = () => {
 
     return(
         <div className="admin-container">
-            <Table />
+            <SummaryTable />
             <Divider />
             <CSVUpload setFreshData={setFreshData} />
             <Divider />
