@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux'
 import { readString } from 'react-papaparse'
 
 import CSVReader from 'react-csv-reader'
-import { Button, Label, Textarea, Box, Heading, Flex } from 'theme-ui'
-import {triggerToast, filterEmails} from '../utils'
-import {submissionStatus} from '../../../common/schema'
+import { Button, Label, Textarea, Box, Heading, Flex, Text } from 'theme-ui'
+import { triggerToast, filterEmails } from '../utils'
+import { submissionStatus } from '../../../common/schema'
 
 export const CSVUpload = ({setFreshData}) => {
     const emailsRef = useRef()
@@ -115,6 +115,7 @@ export const TestEmailUpload = ({sendEmailsFetch}) => {
 
     return(<>
         <Heading mt='20px'>Send Test Surveys</Heading>
+        <Text>First, add emails separated by commas, then hit submit. Then, select the template you wish to send.</Text>
         <Box
             as='form'
             onSubmit={e => {
@@ -136,10 +137,10 @@ export const TestEmailUpload = ({sendEmailsFetch}) => {
         <Flex>
             <Button mt='15px' mr='20px' onClick={() => {
                 sendEmailsFetch(submissionStatus.unsent, true, testEmails)
-            }}>Send to Unsent</Button>
+            }}>Send Unsent Email Template</Button>
             <Button mt='15px' mr='20px' onClick={() => {
                 sendEmailsFetch(submissionStatus.sent, true, testEmails)
-            }}>Send Reminders</Button>
+            }}>Send Reminder Email Template</Button>
         </Flex>
     </>)
 }
