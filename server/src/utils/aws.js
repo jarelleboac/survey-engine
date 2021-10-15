@@ -16,10 +16,17 @@ AWS.config.update({ region: AWS_REGION });
 
 const ses = new AWS.SES({ apiVersion: '2010-12-01' });
 
-export function sendStatusEmail(user, status, surveyUrl, school, senderEmail, unsubscribeUrl) {
+export function sendStatusEmail(
+    user, status, surveyUrl, school, senderEmail, unsubscribeUrl, isTestEmail = false,
+) {
     // if (user.emailUnsubscribed) {
     //     logger.info('Skipping email to unsubscribed user', user);
     // }
+
+    let overrideTitle = '';
+    if (isTestEmail) {
+        overrideTitle = '[TESTER EMAIL] Reminder for the Percentage Project Survey';
+    }
 
     let email;
     // Handles sending types of emails for each
@@ -40,7 +47,7 @@ export function sendStatusEmail(user, status, surveyUrl, school, senderEmail, un
         }
         break;
     case submissionStatus.unsent:
-        email = unsent(user, surveyUrl, school, senderEmail, unsubscribeUrl);
+        email = unsent(user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideTitle);
         break;
     default:
         throw new Error(`Unimplemented email for status "${status}" to user "${user.email}`);

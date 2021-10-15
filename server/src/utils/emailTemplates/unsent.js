@@ -4,8 +4,9 @@ import {
 } from '.';
 
 // Note that this sends for a single user at a time; not in batch emails
-export default (user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideDict = {}) => {
-    const title = 'Reminder for the Percentage Project Survey';
+export default (user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideTitle = '', overrideDict = {}) => {
+    // Allows one to override the title with a custom parameter
+    const title = overrideTitle === '' ? 'Reminder for the Percentage Project Survey' : overrideTitle;
 
     const kvArray = [
         ['greeting', 'Hi there,'],
@@ -22,15 +23,17 @@ export default (user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideDi
 
         ['optOutText', `If you'd like to opt out, please unsubscribe here: ${escape(unsubscribeUrl)}`],
     ];
+    // Turn into map to preserve key ordering
     const valsMap = new Map(kvArray);
 
     const textList = [];
 
-    // Fills the values dictionary with the
+    // Fills the values dictionary with the overriden values. Note that it will insert in order afterwards
     Object.entries(overrideDict).forEach(([key, value]) => {
         valsMap.set(key, value);
     });
 
+    // Get the values from the dictionary to stick into list to feed email template
     valsMap.values.forEach((val) => {
         textList.push(val);
     });
