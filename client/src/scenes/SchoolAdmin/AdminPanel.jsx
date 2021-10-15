@@ -1,8 +1,8 @@
 import { SummaryTable } from '../../components/Table'
 import React, { useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { CSVUpload } from '../../components/CSVUpload'
-import { getCounts, sendEmails, triggerToast, getGeneralCounts, changeCloseDate, checkStatus } from '../../utils'
+import { CSVUpload, TestEmailUpload } from '../../components/CSVUpload'
+import { getCounts, sendEmails, testSendEmails, triggerToast, getGeneralCounts, changeCloseDate, checkStatus } from '../../utils'
 import { setCountsAction } from  '../../actions/email'
 import { setGeneralCountsAction } from '../../actions/generalStatus'
 import { Button, Flex, Heading, Divider } from 'theme-ui'
@@ -18,17 +18,30 @@ export const SchoolAdminPanel = () => {
     const session = useSelector(state => state.session)
 
 
-    const sendEmailsFetch = (type) => {
-        sendEmails(session.school, type)
-            .then(res => {
-                if (!res.ok) throw Error(res.statusText)
-                else return res.json()
-            }).then(res => {
-                triggerToast(res.message)
-            }).catch(err => {
-                triggerToast(err)
-                console.error(err)
-            })
+    const sendEmailsFetch = (type, testEmails = false, emails = []) => {
+        if (testEmails) {
+            testSendEmails(session.school, type, emails)
+                .then(res => {
+                    if (!res.ok) throw Error(res.statusText)
+                    else return res.json()
+                }).then(res => {
+                    triggerToast(res.message)
+                }).catch(err => {
+                    triggerToast(err)
+                    console.error(err)
+                })
+        } else {
+            sendEmails(session.school, type)
+                .then(res => {
+                    if (!res.ok) throw Error(res.statusText)
+                    else return res.json()
+                }).then(res => {
+                    triggerToast(res.message)
+                }).catch(err => {
+                    triggerToast(err)
+                    console.error(err)
+                })
+        }
     }
 
     // Fetch counts on first load and populate the store
@@ -90,5 +103,8 @@ export const SchoolAdminPanel = () => {
                     })
                     .catch(err => console.error(err))
             }}>Set Close Date</Button>
+            <Divider />
+            <TestEmailUpload sendEmailsFetch={sendEmailsFetch} />
+            <Divider />
         </div>)
 }

@@ -6,7 +6,7 @@ import {
 // Note that this sends for a single user at a time; not in batch emails
 export default (user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideTitle = '', overrideDict = {}) => {
     // Allows one to override the title with a custom parameter
-    const title = overrideTitle === '' ? 'Reminder for the Percentage Project Survey' : overrideTitle;
+    const title = overrideTitle === '' ? `Invitation to the ${formatSchool(school)} Project Survey` : overrideTitle;
 
     const kvArray = [
         ['greeting', 'Hi there,'],
@@ -34,8 +34,8 @@ export default (user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideTi
     });
 
     // Get the values from the dictionary to stick into list to feed email template
-    valsMap.values.forEach((val) => {
-        textList.push(val);
+    valsMap.forEach((value) => {
+        textList.push(value);
     });
 
     const tableBody = makeEmailTableRows(textList);
@@ -486,7 +486,7 @@ export default (user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideTi
             },
             Subject: {
                 Charset: 'UTF-8',
-                Data: `Invitation to ${formatSchool(school)} Computer Science Survey`,
+                Data: `${title}`,
             },
         },
         Source: `The Percentage Project <${senderEmail}>`,

@@ -1,10 +1,11 @@
-import React, {useState, useEffect, useRef } from 'react'
-import {useSelector} from 'react-redux'
+import React, { useState, useEffect, useRef } from 'react'
+import { useSelector } from 'react-redux'
 import { readString } from 'react-papaparse'
 
 import CSVReader from 'react-csv-reader'
-import { Button, Label, Textarea, Box, Heading } from 'theme-ui'
+import { Button, Label, Textarea, Box, Heading, Flex } from 'theme-ui'
 import {triggerToast, filterEmails} from '../utils'
+import {submissionStatus} from '../../../common/schema'
 
 export const CSVUpload = ({setFreshData}) => {
     const emailsRef = useRef()
@@ -93,4 +94,52 @@ export const CSVUpload = ({setFreshData}) => {
             </Box>
         </>)
 
+}
+
+export const TestEmailUpload = ({sendEmailsFetch}) => {
+    const [testEmails, setTestEmails] = useState([])
+
+    // Handles trying to submit text for the tester email box
+    const handleTextSubmit = (e) => {
+        const results = readString(e.target[0].value).data.flat()
+        let cleanedEmails = results.map(email => email.trim())
+
+        const [validEmails, invalidEmails] = filterEmails(cleanedEmails)
+        if (invalidEmails.length !== 0) {
+            triggerToast("Please make sure your emails are valid emails.")
+        } else {
+            setTestEmails(validEmails);
+            triggerToast(`Set ${validEmails.length} emails successfully.`)
+        }
+    }
+
+    return(<>
+        <Heading mt='20px'>Send Test Surveys</Heading>
+        <Box
+            as='form'
+            onSubmit={e => {
+                e.preventDefault() 
+                handleTextSubmit(e)}
+            }>
+  
+            <Label htmlFor='text-test-emails'>Emails for Testing</Label>
+            <Textarea
+                name='text-test-emails'
+                id='text-test-emails'
+                rows='6'
+                mb={3}
+            />
+            <Button>
+                    Submit
+            </Button>
+        </Box>
+        <Flex>
+            <Button mt='15px' mr='20px' onClick={() => {
+                sendEmailsFetch(submissionStatus.unsent, true, testEmails)
+            }}>Send to Unsent</Button>
+            <Button mt='15px' mr='20px' onClick={() => {
+                sendEmailsFetch(submissionStatus.sent, true, testEmails)
+            }}>Send Reminders</Button>
+        </Flex>
+    </>)
 }

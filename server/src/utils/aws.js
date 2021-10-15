@@ -5,6 +5,7 @@ import unsent from './emailTemplates/unsent';
 import reminder from './emailTemplates/reminder';
 import brownReminder from './emailTemplates/brownReminder';
 import harvardReminder from './emailTemplates/harvardReminder';
+import { formatSchool } from './emailTemplates';
 
 const { AWS_REGION } = process.env;
 
@@ -23,12 +24,24 @@ export function sendStatusEmail(
     //     logger.info('Skipping email to unsubscribed user', user);
     // }
 
+    let email;
+
     let overrideTitle = '';
     if (isTestEmail) {
-        overrideTitle = '[TESTER EMAIL] Reminder for the Percentage Project Survey';
+        switch (status) {
+        case submissionStatus.sent:
+            overrideTitle = `[TESTER EMAIL] Reminder: ${formatSchool(school)} Computer Science Survey`;
+            email = reminder(user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideTitle);
+            break;
+        case submissionStatus.unsent:
+            overrideTitle = `[TESTER EMAIL] Invitation to the ${formatSchool(school)} Percentage Project Survey`;
+            email = unsent(user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideTitle);
+            break;
+        default:
+            throw new Error(`Unimplemented test email for status "${status}" to user "${user.email}`);
+        }
     }
 
-    let email;
     // Handles sending types of emails for each
     switch (status) {
     // case submissionStatus.completed:

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import passport from 'passport';
 import Queue from 'bull';
+import escape from 'escape-html';
 import { submissionStatus, roles } from '../schema';
 import Email from '../models/Email';
 import GeneralSurvey from '../models/GeneralSurvey';
@@ -181,7 +182,7 @@ router.post('/:school/testSendEmails', passport.authenticate('jwt', { session: f
         // Find the sender email, ensure that they're set in the DB and in AWS
         const senderEmail = await SenderEmail.findOne({ school });
         // Uses the generalSurvey token
-        const generalSurvey = await GeneralSurvey.fineOne({ school });
+        const generalSurvey = await GeneralSurvey.findOne({ school });
 
         if (!senderEmail) {
             return res.status(400).send(JSON.stringify({ error: 'Please set a sender email first.' }));
@@ -189,9 +190,9 @@ router.post('/:school/testSendEmails', passport.authenticate('jwt', { session: f
         let count = 0;
         let error = 0;
         // Make a survey URL for the thing that we need
-        const surveyUrl = `${process.env.CORS_ORIGIN}/survey?token=${generalSurvey.token}&school=${school}`;
+        const surveyUrl = escape(`${process.env.CORS_ORIGIN}/survey?token=${generalSurvey.token}&school=${school}`);
 
-        const unsubscribeUrl = `${process.env.CORS_ORIGIN}/unsubscribe?token=<TOKEN_NOT_POPULATED_FOR_TESTING>`;
+        const unsubscribeUrl = `${process.env.CORS_ORIGIN}/unsubscribe?token=TOKEN_NOT_POPULATED_FOR_TESTING`;
 
         for (let i = 0; i < emails.length; i += 1) {
             const email = emails[i];
@@ -199,7 +200,7 @@ router.post('/:school/testSendEmails', passport.authenticate('jwt', { session: f
             // We want to synchronously block to avoid AWS sender limits, so disabling eslint for this
 
             // eslint-disable-next-line no-await-in-loop
-            await sendStatusEmail(email, requestType, surveyUrl, school, senderEmail.email, unsubscribeUrl)
+            await sendStatusEmail({ email }, requestType, surveyUrl, school, senderEmail.email, unsubscribeUrl, true)
                 // eslint-disable-next-line no-loop-func
                 .then(() => {
                     count += 1;
