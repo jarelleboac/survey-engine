@@ -6,7 +6,7 @@ import { getCounts, sendEmails, triggerToast, getGeneralCounts, changeCloseDate,
 import { setCountsAction } from  '../../actions/email'
 import { setGeneralCountsAction } from '../../actions/generalStatus'
 import { Button, Flex, Heading, Divider } from 'theme-ui'
-import {submissionStatus} from '../../../../common/schema'
+import {submissionStatus, defaultCloseDate} from '../../../../common/schema'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -14,6 +14,7 @@ import "react-datepicker/dist/react-datepicker.css";
 export const SchoolAdminPanel = () => {
     const dispatch = useDispatch();
     const [freshData, setFreshData] = useState(false)
+    const date = defaultCloseDate;
     const [closeDate, setCloseDate] = useState(new Date());
     const session = useSelector(state => state.session)
 
@@ -33,6 +34,8 @@ export const SchoolAdminPanel = () => {
 
     // Fetch counts on first load and populate the store
     useEffect(() => {
+
+        // summary
         Promise.all([getCounts(session.school), getGeneralCounts(session.school)])
             .then(async res => {
                 if (!res[0].ok) throw Error(res[0].statusText)
@@ -70,6 +73,10 @@ export const SchoolAdminPanel = () => {
                 }}>Send Reminders</Button>
             </Flex>
             <Divider />
+            
+            <Heading mt='20px'>{`The survey is currently set to close this year on ${new Date(date).toLocaleString()}`}</Heading>
+            <div styles={{display: 'block'}}>
+            </div>
             <Heading mt='20px'>Set Survey Close Date</Heading>
             <div styles={{display: 'block'}}>
                 <DatePicker

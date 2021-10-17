@@ -2,8 +2,8 @@ import { Table } from '../../components/Table'
 import { CreateUser } from '../../components/CreateUser'
 import React, { useState } from 'react'
 import { getMasterSurveyResponses, downloadJSON, getGeneralSurveyLinks, downloadSchoolResponse } from '../../utils'
-import { Heading, Divider, Button, Select } from 'theme-ui'
-import { schoolsArray } from '../../../../common/schema'
+import { Heading, Divider, Text, Button, Select } from 'theme-ui'
+import { schoolsArray, defaultCloseDate } from '../../../../common/schema'
 
 // Simple dropdown selector that uses a useEffect setter hook to set the selected option
 const SchoolSelector = ({setSelectedSchool}) => {
@@ -14,7 +14,7 @@ const SchoolSelector = ({setSelectedSchool}) => {
         </Select>)
 }
 
-export const PercentAdminPanel = () => {
+export const PercentAdminPanel = ({ date = defaultCloseDate }) => {
 
     // Begin with UNSET
     const [selectedSchool, setSelectedSchool] = useState('UNSET')
