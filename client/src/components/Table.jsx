@@ -2,7 +2,7 @@ import {Text, Button, Heading} from 'theme-ui'
 import React, {useRef, useEffect} from 'react'
 import {useSelector} from 'react-redux'
 
-export const Table = () => {
+export const SummaryTable = () => {
     const emails = useSelector(state => state.emails)
     const genCount = useSelector(state => state.generalStatus)
     const total = emails.total + genCount.count

@@ -17,7 +17,7 @@ export const websiteUrl = 'https://percentageproject.com/';
 
 export const staticImageUrl = 'https://percentage-project-static.s3.us-east-2.amazonaws.com/logo.png';
 
-export const makeEmailTableRows = (...vals) => {
+export const makeEmailTableRows = (vals) => {
     let output = '';
     for (let i = 0; i < vals.length; i += 1) {
         output += makeEmailRow(vals[i]);
@@ -25,4 +25,4 @@ export const makeEmailTableRows = (...vals) => {
     return (output);
 };
 
-export const joinText = (...vals) => (vals.join(' '));
+export const joinText = (vals) => (vals.join(' '));

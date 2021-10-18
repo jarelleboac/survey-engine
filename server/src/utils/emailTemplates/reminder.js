@@ -6,32 +6,50 @@ import {
 /* eslint no-tabs: ["error", { allowIndentationTabs: true }] */
 
 // Note that this sends for a single user at a time; not in batch emails
-export default (user, surveyUrl, school, senderEmail, unsubscribeUrl) => {
+export default (user, surveyUrl, school, senderEmail, unsubscribeUrl, overrideTitle = '', overrideDict = {}) => {
     /**
      * Pretty ugly for now, but can potentially allow for better extension in the future so there aren't other files such as brownReminder.js
      */
 
-    const title = 'Reminder for the Percentage Project Survey';
+    // Allows one to override the title with a custom parameter
+    const title = overrideTitle === '' ? `Reminder: ${formatSchool(school)} Computer Science Survey` : overrideTitle;
 
-    const greeting = 'Hi there,';
+    const kvArray = [
+        ['greeting', 'Hi there,'],
 
-    const bodyPart1 = 'Just a quick reminder to fill out your survey! This will allow us to understand the current state of students from all backgrounds and follow metrics from year to year.';
+        ['bodyPart1', 'Just a quick reminder to fill out your survey! This will allow us to understand the current state of students from all backgrounds and follow metrics from year to year.'],
 
-    const bodyPart2 = 'Hearing about your unique experience is very important to us, and we\'d appreciate your time in filling out this 5-minute survey.';
+        ['bodyPart2', 'Hearing about your unique experience is very important to us, and we\'d appreciate your time in filling out this 5-minute survey.'],
 
-    const bodyPart3 = 'Hearing about your unique experience is very important to us, and we\'d appreciate your time in filling out this 5-minute survey.';
+        ['bodyPart3', 'Hearing about your unique experience is very important to us, and we\'d appreciate your time in filling out this 5-minute survey.'],
 
-    const bodyPart4 = `Head on over to the survey at your unique url: ${escape(surveyUrl)}`;
+        ['bodyPart4', `Head on over to the survey at your unique url: ${escape(surveyUrl)}`],
 
-    const signOff1 = 'Best,';
+        ['signOff1', 'Best,'],
 
-    const signOff2 = 'The Percentage Project Team';
+        ['signOff2', 'The Percentage Project Team'],
 
-    const optOutText = `If you'd like to opt out, please unsubscribe here: ${escape(unsubscribeUrl)}`;
+        ['optOutText', `If you'd like to opt out, please unsubscribe here: ${escape(unsubscribeUrl)}`],
+    ];
 
-    const tableBody = makeEmailTableRows(greeting, bodyPart1, bodyPart2, bodyPart3, bodyPart4, signOff1, signOff2, optOutText);
+    // Turn into map to preserve key ordering
+    const valsMap = new Map(kvArray);
 
-    const allText = joinText(greeting, bodyPart1, bodyPart2, bodyPart3, signOff1, signOff2, optOutText);
+    const textList = [];
+
+    // Fills the values dictionary with the overriden values. Note that it will insert in order afterwards
+    Object.entries(overrideDict).forEach(([key, value]) => {
+        valsMap.set(key, value);
+    });
+
+    // Get the values from the dictionary to stick into list to feed email template
+    valsMap.forEach((value) => {
+        textList.push(value);
+    });
+
+    const tableBody = makeEmailTableRows(textList);
+
+    const allText = joinText(textList);
 
     return ({
         Destination: {
@@ -476,7 +494,7 @@ export default (user, surveyUrl, school, senderEmail, unsubscribeUrl) => {
             },
             Subject: {
                 Charset: 'UTF-8',
-                Data: `Reminder: ${formatSchool(school)} Computer Science Survey`,
+                Data: `${title}`,
             },
         },
         Source: `The Percentage Project <${senderEmail}>`,

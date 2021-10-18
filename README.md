@@ -72,5 +72,8 @@ Install MongoDB
 - Deploy to Heroku with monorepo support
 `npm run heroku`
 
+- Start the worker that handles email jobs
+`npm run worker`
+
 ## Credits
 The basic frame for the project and hooking up the Express server was inspired by https://github.com/CodingGarden/travel-log. 
