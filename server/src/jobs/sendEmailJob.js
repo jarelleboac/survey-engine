@@ -10,7 +10,7 @@ import { submissionStatus } from '../schema';
 import { sendStatusEmail } from '../utils/aws';
 import { decrypt } from '../utils';
 
-// Connect to a local redis intance locally, and the Heroku-provided URL in production
+// Connect to a local redis instance locally, and the Heroku-provided URL in production
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
 
 const { DATABASE_URL, CORS_ORIGIN, WEB_CONCURRENCY } = process.env;

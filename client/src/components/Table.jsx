@@ -3,7 +3,8 @@ import React, {useRef, useEffect} from 'react'
 import {useSelector} from 'react-redux'
 import {defaultCloseDate} from "/Users/rellenelle/Documents/github-projects/survey-engine/survey-engine/common/schema"
 
-export const Table = () => {
+
+export const SummaryTable = () => {
     const date = defaultCloseDate;
     const emails = useSelector(state => state.emails)
     const genCount = useSelector(state => state.generalStatus)

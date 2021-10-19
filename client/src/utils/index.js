@@ -59,6 +59,18 @@ export const sendEmails = (school, status) => (fetch(`${process.env.REACT_APP_AP
         body: JSON.stringify({requestType: status})
     }))
 
+export const testSendEmails = (school, status, emails) => (fetch(`${process.env.REACT_APP_API_URL}/email/${school}/testSendEmails`, 
+    {
+        headers: { 
+            'Content-Type': 'application/json', 
+            credentials: 'include',
+            Authorization: `${localStorage.jwtToken}`,
+            withCredentials: true, 
+        },
+        method: "POST",
+        body: JSON.stringify({requestType: status, emails: emails})
+    }))
+
 /**
  * Submits a single completed survey
  * 

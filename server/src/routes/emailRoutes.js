@@ -1,10 +1,13 @@
 import { Router } from 'express';
 import passport from 'passport';
 import Queue from 'bull';
+import escape from 'escape-html';
 import { submissionStatus, roles } from '../schema';
 import Email from '../models/Email';
+import GeneralSurvey from '../models/GeneralSurvey';
 import { encrypt, decrypt, isEmail } from '../utils';
 import SenderEmail from '../models/SenderEmail';
+import { sendStatusEmail } from '../utils/aws';
 
 const router = Router();
 
@@ -134,6 +137,7 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
 
     const { role, school: userSchool } = req.user;
 
+    // e.g. UNSENT
     const { requestType } = req.body;
 
     if (role === roles.schoolAdmin && userSchool === school) {
@@ -153,6 +157,61 @@ router.post('/:school/sendEmails', passport.authenticate('jwt', { session: false
 
         // 2. Adding a Job to the Queue
         await sendMailQueue.add(data);
+    } else {
+        return res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
+    }
+    return res.send({ message: 'Sending emails' });
+});
+
+/**
+ * sendAllEmails route for a specific school. Should include the requestType in the body
+ *
+ */
+router.post('/:school/testSendEmails', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    // TODO: NEED TO GET THE EMAILS IN AS LITERAL RAW STRINGS, VALIDATE THE EMAILS, THEN GO AGAIN
+
+    // TODO: NEED TO MAKE ANOTHER ALTERNATIVE TOKEN FOR TEST SUBMISSIONS, CAN JUST USE THE GENERAL TOKEN
+    // need to validate emails as well
+    const { school } = req.params;
+
+    const { role, school: userSchool } = req.user;
+
+    const { requestType, emails } = req.body;
+
+    if (role === roles.schoolAdmin && userSchool === school) {
+        // Find the sender email, ensure that they're set in the DB and in AWS
+        const senderEmail = await SenderEmail.findOne({ school });
+        // Uses the generalSurvey token
+        const generalSurvey = await GeneralSurvey.findOne({ school });
+
+        if (!senderEmail) {
+            return res.status(400).send(JSON.stringify({ error: 'Please set a sender email first.' }));
+        }
+        let count = 0;
+        let error = 0;
+        // Make a survey URL for the thing that we need
+        const surveyUrl = escape(`${process.env.CORS_ORIGIN}/survey?token=${generalSurvey.token}&school=${school}`);
+
+        const unsubscribeUrl = `${process.env.CORS_ORIGIN}/unsubscribe?token=TOKEN_NOT_POPULATED_FOR_TESTING`;
+
+        for (let i = 0; i < emails.length; i += 1) {
+            const email = emails[i];
+
+            // We want to synchronously block to avoid AWS sender limits, so disabling eslint for this
+
+            // eslint-disable-next-line no-await-in-loop
+            await sendStatusEmail({ email }, requestType, surveyUrl, school, senderEmail.email, unsubscribeUrl, true)
+                // eslint-disable-next-line no-loop-func
+                .then(() => {
+                    count += 1;
+                })
+                // eslint-disable-next-line no-loop-func
+                .catch((err) => {
+                    console.log(err);
+                    error += 1;
+                });
+        }
+        console.log(`For ${school} and ${requestType}, ${count} emails were successfully sent. ${error} emails had an error.`);
     } else {
         return res.status(401).send(JSON.stringify({ error: 'Not authorized.' }));
     }
