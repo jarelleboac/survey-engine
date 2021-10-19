@@ -14,8 +14,8 @@ import "react-datepicker/dist/react-datepicker.css";
 export const SchoolAdminPanel = () => {
     const dispatch = useDispatch();
     const [freshData, setFreshData] = useState(false)
-    const date = defaultCloseDate;
-    const [closeDate, setCloseDate] = useState(new Date());
+    // This can be populated with the current close date in the initial data store pull
+    const [closeDate, setCloseDate] = useState(new Date()); 
     const session = useSelector(state => state.session)
 
 
@@ -47,8 +47,6 @@ export const SchoolAdminPanel = () => {
 
     // Fetch counts on first load and populate the store
     useEffect(() => {
-
-        // summary
         Promise.all([getCounts(session.school), getGeneralCounts(session.school)])
             .then(async res => {
                 if (!res[0].ok) throw Error(res[0].statusText)
@@ -87,10 +85,8 @@ export const SchoolAdminPanel = () => {
             </Flex>
             <Divider />
             
-            <Heading mt='20px'>{`The survey is currently set to close this year on ${new Date(date).toLocaleString()}`}</Heading>
-            <div styles={{display: 'block'}}>
-            </div>
             <Heading mt='20px'>Set Survey Close Date</Heading>
+            {`The survey is currently set to close this year on ${new Date(defaultCloseDate).toLocaleString()}.`}
             <div styles={{display: 'block'}}>
                 <DatePicker
                     selected={closeDate}
